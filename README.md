@@ -42,6 +42,15 @@ The brand typeface is **Circular** (Lineto), used for everything: headings, labe
 
 If your organization holds a Lineto **web** license, check its terms before putting Circular web fonts on this public site.
 
+## Notebook moments
+
+Wherever participants choose or write, the controls sit on a sheet of notebook paper, inspired by disc-bound desk notebooks: warm white dot-grid paper, metal discs along the left edge, and a soft shadow, so the page reads like a notebook lying on whatever background the invitation has.
+
+- **Choosing:** a hand-drawn ink circle in Deep Navy appears around the chosen answer. Checkboxes get a pen tick, and options sit on ruled lines.
+- **Writing:** text boxes become ruled lines.
+- **Where:** every radio and checkbox group, 01's dilemmas, 03's decision, 04's behavior lab, and the Discovery Exchange form. Any container marked `class="notebook"` gets the treatment; nested ones collapse into a single sheet.
+- **Motion:** the ink circle draws in briefly. With reduced motion it simply appears.
+
 ## Architecture
 
 ```

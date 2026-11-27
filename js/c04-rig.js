@@ -117,7 +117,7 @@ Propose three radically different, surprising interactive mechanisms for investi
       `, { optional: true })}
       ${S.nextTpl(3, 'Continue to Step 3 · Invent your own human experiment')}
       ${S.stepTpl(3, 'Invent your own human experiment', `
-        <div class="lab">
+        <div class="lab notebook">
           <p class="lab-h">YOUR HUMAN BEHAVIOR LAB</p>
           <p class="q-big" id="lab-q">What fascinates you about people?</p>
           <div class="cats" role="group" aria-labelledby="lab-q">

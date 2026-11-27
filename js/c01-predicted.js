@@ -36,7 +36,7 @@
       <p class="hook">Five small choices. Then hand them to a machine and see whether it can guess your next five.</p>
       ${S.stepTpl(1, 'Make five choices', `
         <p class="lede">Go with whatever you'd actually choose.</p>
-        <div class="dilemmas">${dilemmas}</div>
+        <div class="dilemmas notebook">${dilemmas}</div>
         <p class="tally" aria-live="polite" data-tally></p>
         ${S.promptTpl('c01-prompt', { for: 'Claude', label: 'Copy my experiment prompt' })}
       `)}

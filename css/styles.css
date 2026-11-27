@@ -458,6 +458,108 @@ body[data-theme="c06"] .show-tell { border-style: double; border-width: 5px; }
 .print-sheet .show-tell { border: 1.5px solid #111; font-size: 1.05rem; padding: .9rem 1rem; }
 .ps-foot { font: .8rem var(--mono); color: var(--muted); }
 
+/* ---------- Notebook moments ----------
+   Wherever a participant chooses or writes, the controls sit on a sheet of
+   disc-bound, dot-grid paper (inspired by desk notebooks). Choices are marked
+   the way a pen would: an ink circle around the answer, a tick in a box.
+   The paper is always light, so it reads like a notebook lying on any page. */
+.notebook {
+  --paper: #FBF9F4; --pen: #00225A;
+  --ink: #1D2330; --muted: #555B68; --rule: rgba(29, 35, 48, .17);
+  --accent: var(--pen); --accent-ink: #fff; --panel: transparent; --focus: var(--pen);
+  position: relative; color: var(--ink); border: 0; min-width: 0;
+  background-color: var(--paper);
+  background-image: radial-gradient(circle, rgba(29, 35, 48, .17) 1px, transparent 1.4px);
+  background-size: 20px 20px; background-position: 10px 10px;
+  border-radius: 3px 9px 9px 3px;
+  padding: 1.4rem 1.5rem 1.2rem 2.6rem;
+  margin: 1.25rem 0 1.75rem .9rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .08), 0 16px 30px -20px rgba(0, 0, 0, .55), inset 0 0 0 1px rgba(29, 35, 48, .07);
+}
+/* The disc binding along the left edge */
+.notebook::before {
+  content: ""; position: absolute; left: -11px; top: 16px; bottom: 16px; width: 22px; pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, #34373C 0 6.5px, #7A7E85 7px 8.5px, #26282C 9px 10.2px, transparent 10.8px) 0 0 / 22px 44px;
+  background-repeat: no-repeat round;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .25));
+}
+/* A page inside a page stays one sheet */
+.notebook .notebook { background: none; box-shadow: none; padding: 0; margin: 0 0 1.25rem; border-radius: 0; }
+.notebook .notebook::before { display: none; }
+
+.notebook legend { float: left; width: 100%; color: var(--ink); font-weight: 600; margin-bottom: .55rem; }
+.notebook .choices-list, .notebook .checks-list, .notebook > .hint, .notebook legend + * { clear: both; }
+.notebook .hint, .notebook .prompt-hint { color: var(--muted); }
+
+/* Options become ruled lines on the page */
+.notebook .choices-list, .notebook .checks-list { gap: 0; }
+.notebook .choice, .notebook .check {
+  background: transparent; border: 0; border-bottom: 1px solid var(--rule); border-radius: 0;
+  padding: .7rem .3rem .62rem; transition: background-color .15s ease;
+}
+.notebook .choice:hover, .notebook .check:hover { background: rgba(0, 34, 90, .04); border-color: var(--rule); }
+.notebook .choice:has(input:checked), .notebook .check:has(input:checked) { border-color: var(--rule); }
+.notebook .choice:has(input:focus-visible), .notebook .check:has(input:focus-visible), .notebook .d-opt:has(input:focus-visible) { outline: 2px solid var(--pen); outline-offset: 1px; }
+
+/* Pencil-drawn marks; ink once chosen */
+.notebook .choice-mark, .notebook .check-mark { border: 1.5px solid rgba(29, 35, 48, .45); background: transparent; }
+.notebook .choice input:checked ~ .choice-mark { border-color: var(--pen); }
+.notebook .choice input:checked ~ .choice-mark::after { background: var(--pen); width: .55rem; height: .55rem; }
+.notebook .check-mark { border-radius: 2px; }
+.notebook .check input:checked ~ .check-mark { background: transparent; border-color: rgba(29, 35, 48, .45); }
+.notebook .check input:checked ~ .check-mark::after {
+  width: .42rem; height: .95rem; border: solid var(--pen); border-width: 0 3px 3px 0; border-radius: 0 0 2px 0;
+  transform: rotate(40deg) translate(2px, -5px); animation: ink-in .25s ease-out both;
+}
+
+/* The ink circle around the chosen answer */
+.notebook .choice-text, .notebook .d-text { position: relative; }
+.notebook .choice input:checked ~ .choice-text { font-weight: 500; }
+.notebook .choice input:checked ~ .choice-text::after,
+.notebook .d-opt:has(input:checked) .d-text::after {
+  content: ""; position: absolute; inset: -.34em -.55em -.3em -.38em; pointer-events: none;
+  border: 2px solid var(--pen); border-radius: 46% 54% 42% 58% / 58% 44% 56% 42%;
+  transform: rotate(-1.4deg); animation: ink-circle .38s ease-out both;
+}
+@keyframes ink-circle { from { clip-path: inset(0 100% 0 0); opacity: .4; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+@keyframes ink-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* 01 · the five dilemmas: one page, options written as A / B lines */
+.dilemmas.notebook { display: grid; gap: 1.3rem; }
+.notebook .dilemma { background: transparent; border: 0; padding: 0; }
+.notebook .dilemma legend { font-size: 1.05rem; }
+.notebook .d-opt { border: 0; border-bottom: 1px solid var(--rule); min-height: 3rem; padding: .6rem .3rem; color: var(--ink); }
+.notebook .d-opt:hover { background: rgba(0, 34, 90, .04); border-color: var(--rule); }
+.notebook .d-opt:has(input:checked) { background: transparent; color: var(--ink); border-color: var(--rule); }
+.notebook .d-letter { border: 1.5px solid rgba(29, 35, 48, .45); border-radius: 50%; }
+.notebook .d-opt:has(input:checked) .d-letter { background: var(--pen); border-color: var(--pen); color: #fff; }
+.notebook .d-opt:has(input:checked) .d-text { font-weight: 500; }
+
+/* Containers that become a page */
+.decision.notebook, .lab.notebook { max-width: 52rem; }
+.notebook .cat { border-color: rgba(29, 35, 48, .55); color: var(--ink); }
+.notebook .cat[aria-pressed="true"] { background: var(--pen); border-color: var(--pen); color: #fff; }
+.notebook .example { color: var(--ink); border-color: rgba(29, 35, 48, .4); }
+.notebook output { color: var(--ink); }
+
+/* Writing: ruled lines for paragraphs, a single line for short answers */
+.field textarea {
+  color: #1D2330; background-color: #FBF9F4; border: 1px solid rgba(29, 35, 48, .14); border-radius: 3px;
+  background-image: linear-gradient(to bottom, transparent calc(1.8rem - 1px), rgba(29, 35, 48, .2) calc(1.8rem - 1px));
+  background-size: 100% 1.8rem; background-attachment: local;
+  line-height: 1.8rem; padding: 0 .85rem .25rem; box-shadow: 0 10px 22px -18px rgba(0, 0, 0, .5);
+}
+.field input[type="text"], .field input[type="url"] {
+  color: #1D2330; background: #FBF9F4; border: 0; border-bottom: 1.5px solid rgba(29, 35, 48, .4); border-radius: 2px 2px 0 0;
+  box-shadow: 0 10px 22px -18px rgba(0, 0, 0, .5);
+}
+.notebook .field textarea, .notebook .field input[type="text"], .notebook .field input[type="url"] { background-color: transparent; box-shadow: none; }
+.field textarea::placeholder, .field input::placeholder { color: #6B7180; }
+
+@media (max-width: 560px) {
+  .notebook { padding: 1.2rem 1rem 1rem 2rem; margin-left: .75rem; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 700px) {
   .corner { position: static; box-shadow: none !important; }

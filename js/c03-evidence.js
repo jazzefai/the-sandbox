@@ -75,7 +75,7 @@ I want to see whether you can make me reconsider my position.`;
             <p>More than one in four participating employees did not express a preference for continuing the arrangement.</p>
           </article>
         </div>
-        <div class="decision">
+        <div class="decision notebook">
           ${S.radiosTpl('rec', 'What would you recommend?', RECS, st.rec)}
           <div class="field confidence">
             <label for="c03-conf">How confident are you?</label>

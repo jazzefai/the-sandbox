@@ -31,7 +31,7 @@
           <li><span class="ex-step-n" aria-hidden="true">03</span><span><strong>Find two people.</strong> Let them try it before you explain anything. Then swap.</span></li>
         </ol>
         <div class="ch-body exchange-grid">
-          <form class="ex-form" novalidate data-form>
+          <form class="ex-form notebook" novalidate data-form>
             ${S.radiosTpl('kind', 'What are you bringing?', KINDS, st.kind, { cls: 'inline-choices wrap' })}
             <div class="field">
               <label for="ex-from">Where it came from <span class="tag">optional</span></label>

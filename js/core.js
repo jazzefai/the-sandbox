@@ -188,7 +188,7 @@
   S.radiosTpl = function (name, legend, options, selected, o) {
     o = o || {};
     return `
-    <fieldset class="choices ${o.cls || ''}" ${o.attrs || ''}>
+    <fieldset class="choices notebook ${o.cls || ''}" ${o.attrs || ''}>
       <legend>${legend}</legend>
       ${o.hint ? `<p class="hint">${o.hint}</p>` : ''}
       <div class="choices-list">
@@ -205,7 +205,7 @@
   S.checksTpl = function (name, legend, items, checked, o) {
     o = o || {};
     return `
-    <fieldset class="checks ${o.cls || ''}">
+    <fieldset class="checks notebook ${o.cls || ''}">
       <legend>${legend}</legend>
       ${o.hint ? `<p class="hint">${o.hint}</p>` : ''}
       <div class="checks-list">

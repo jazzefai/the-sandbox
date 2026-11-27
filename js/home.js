@@ -7,13 +7,13 @@
     root.innerHTML = `
       <section class="home">
         <header class="masthead">
-          <p class="mast-kicker">An exhibition in six rooms</p>
+          <p class="mast-kicker">Arcade AI</p>
           <h1 tabindex="-1">The Sandbox</h1>
-          <p class="mast-sub">Six Invitations to Investigate</p>
+          <p class="mast-sub">AI Challenges</p>
         </header>
         <div class="home-intro">
           <p>What is. What could be. What should be. What doesn't exist yet.</p>
-          <p>Four of these rooms use an AI tool. Two use nothing but your imagination. Enter any of them, in any order, alone or with someone. Stay as long as it holds you — and leave whenever you like.</p>
+          <p>Some challenges use an AI tool. Others use nothing but your imagination. Enter any of them, in any order, alone or with someone. Leave whenever you like.</p>
         </div>
         <ol class="index" aria-label="The six invitations">
           ${S.CHALLENGES.map((c) => `

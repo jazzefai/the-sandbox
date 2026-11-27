@@ -286,7 +286,10 @@ Propose three radically different, surprising interactive mechanisms for investi
       st.trials.push({ target: targetL(), predict: predicted, chose: L, cues: active.join(', ') });
       save();
       const matched = predicted === L;
+      const inner = S.$(player, '.player-inner');
       setTimeout(() => {
+        // The player may have left (Escape or "Back to designer mode") before the door finished opening.
+        if (player.hidden || !inner || !inner.isConnected) return;
         const res = document.createElement('div');
         res.className = 'player-result';
         res.tabIndex = -1;
@@ -300,7 +303,7 @@ Propose three radically different, surprising interactive mechanisms for investi
           <p>The cues were simulated${active.length ? ` (${S.esc(active.join(', '))})` : ' — this time, no cues were switched on'}. All three doors have the same outcome.</p>
           <p>One choice is an observation, not proof that a particular design technique worked.</p>
           <p><button type="button" class="btn btn-primary" data-back>Return to designer mode</button></p>`;
-        S.$(player, '.player-inner').appendChild(res);
+        inner.appendChild(res);
         S.$(res, '[data-back]').addEventListener('click', closePlayer);
         res.focus();
       }, S.reducedMotion() ? 0 : 700);

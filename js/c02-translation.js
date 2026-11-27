@@ -50,7 +50,6 @@
           lead: 'Open <a href="https://www.canva.com/ai-image-generator/">https://www.canva.com/ai-image-generator/</a>. Sign in, open the image generator, paste the personalized prompt, and generate an image. Choose the image closest to your intention.',
           access: 'Requires your own Canva account. AI image features and how many images you can generate depend on your Canva plan — the Sandbox can\'t check this for you.'
         })}
-        <div class="empty-frame" aria-hidden="true"><span class="ef-art"></span><span class="ef-label"></span></div>
         <p class="pull">Notice that AI was not told what the image means. It was only told what it should look like.</p>
         <p class="lede">While the image is generating, predict what another person might see in it.</p>
       `)}

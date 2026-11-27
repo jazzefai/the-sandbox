@@ -667,7 +667,7 @@ body[data-theme="c02"] .questions { background: transparent; border-left: 1px so
 body[data-theme="c02"] .btn-next { border: 1px solid var(--ink); border-radius: 2rem; }
 body[data-theme="c02"] .btn-external { background: var(--ink); color: var(--bg); }
 
-/* 02, continued: writing on gallery comment cards, a visitor guide, and an empty frame for the participant's own image */
+/* 02, continued: writing on gallery comment cards and a visitor guide */
 body[data-theme="c02"] .field-big, body[data-theme="c02"] [data-step="5"] .field {
   background: #fff; border: 1px solid var(--rule); padding: 1.15rem 1.3rem 1.2rem; max-width: 40rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 18px 30px -24px rgba(0, 0, 0, .4);
@@ -689,11 +689,6 @@ body[data-theme="c02"] .solo::before {
 body[data-theme="c02"] .ask-list { max-width: 40rem; }
 body[data-theme="c02"] .ask-list li { margin: 0; padding: .65rem 0; border-bottom: 1px solid var(--rule); font-style: italic; }
 body[data-theme="c02"] .ask-list li:first-child { border-top: 1px solid var(--rule); }
-.empty-frame { display: block; width: min(100% - 18px, 22rem); margin: 2.75rem 0 1.25rem 9px; }
-.ef-art { position: relative; display: block; aspect-ratio: 4 / 3; background: #fff; box-shadow: 0 0 0 clamp(5px, .8vw, 9px) #1F1C19, 0 26px 40px -18px rgba(0, 0, 0, .45); }
-.ef-art::after { content: ""; position: absolute; inset: clamp(.8rem, 2.4vw, 1.4rem); border: 1.5px dashed #CFCAC0; }
-.ef-label { display: block; width: 8.5rem; height: 1.8rem; margin-top: 1.4rem; background: #fff; border: 1px solid var(--rule); box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
-@media print { .empty-frame { display: none !important; } }
 
 /* ---------- 04 as a game show: curtain, spotlights, marquee bulbs ---------- */
 body[data-theme="c04"] {

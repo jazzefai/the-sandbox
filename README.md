@@ -72,12 +72,11 @@ js/app.js                  hash router and top bar
 | `#/exchange` | Discovery Exchange |
 | `#/facilitator` | Facilitator notes. Only linked from the home-page footer, never from inside an invitation. |
 
-**Navigation model (modeled on mschf.com).** The home page is a black, numbered, all-caps monospace index. Hovering an entry turns it white and adds a ↗, and on mouse/trackpad a small yellow label follows the cursor (for example "Claude↗" or "No screen needed"). **Every link opens in a new tab**, including internal ones, so each invitation lives in its own tab and the index stays open behind it:
+**Navigation model (modeled on mschf.com).** The home page is a black, numbered, all-caps monospace index. Hovering an entry turns it white and adds a ↗, and on mouse/trackpad a small yellow label follows the cursor (for example "Claude↗" or "No screen needed"). **Links to other websites open in a new tab**; moving between pages of the Sandbox stays in the same tab, so the browser's Back button works.
 
-- A `MutationObserver` in `js/app.js` applies `target="_blank"`, `rel="noopener noreferrer"` and a screen-reader "(opens in a new tab)" to every link, including ones added later. The skip link is the only exception.
-- Bare URLs in the instructions (claude.ai, canva.com, m365, lovable.dev) are now real links.
-- Inline text links show a ↗.
-- A small fixed corner menu (01–06, Exchange↗, and an SB mark linking to the index) replaces the old top bar. On phones it sits at the top of the page instead.
+- A `MutationObserver` in `js/app.js` gives every link that leaves the site (Claude, Canva, Copilot, Lovable, and links people add on the Exchange) `target="_blank"`, `rel="noopener noreferrer"` and a screen-reader "(opens in a new tab)" label. It covers links added later too.
+- Those outside links show a ↗ in text. Links within the Sandbox don't.
+- A small fixed corner menu (01–06, Exchange, and an SB mark linking to the index) replaces the old top bar. On phones it sits at the top of the page instead.
 - Each invitation's "Wander elsewhere" list uses the same index style.
 - Colored `///` rows lead to the Discovery Exchange and the printable versions.
 
@@ -142,7 +141,6 @@ The Sandbox does **not** check, simulate or assume any of these. Verify each wit
 - **Nothing persists after the session.** There's no record of what the room made unless people print their card or keep their own links.
 - **Phone-friendliness isn't guaranteed.** A QR code only helps if what's behind it works on a phone. The page asks people to scan their own code first; otherwise people try it on the maker's laptop.
 - **Clipboard** needs `https://` or `localhost`; elsewhere participants copy manually from a pre-selected box. Tested in Chromium. Safari and Firefox clipboard behavior hasn't been tested by hand yet.
-- **Many tabs:** because every link opens a new tab, participants can pile up tabs. Closing an invitation's tab is how you "leave" it.
 - **Not copied from mschf.com:** it opens scrolled to the newest item at the bottom; the Sandbox has no chronology, and that would hide the introduction. Its "???" rows for unreleased drops would have added content.
 - **Visual references** are stylized illustrations, not photographs. Swap in real images in `js/art.js` if you have them.
 - **The 15-minute target, novice usability and broad appeal are unverified.** All six received positive feedback from one prototype tester. 01 and 02 were reconstructed from earlier conversation details, so their interface labels may differ from the originals.
@@ -176,7 +174,7 @@ The Sandbox does **not** check, simulate or assume any of these. Verify each wit
   - the QR code shown on the page decodes to the exact link
   - the full-screen view traps focus and Escape returns focus
   - no overflow at 375px with a long Canva link
-- **New tabs:** every link on every page opens a new tab with the screen-reader label. Two tabs on the same invitation stay in sync. The index renders at 1280px and 375px with no overflow.
+- **New tabs:** every outside link opens a new tab with the screen-reader label, and every link within the Sandbox stays in the same tab. Two tabs on the same invitation stay in sync. The index renders at 1280px and 375px with no overflow.
 
 **Cache:** script and stylesheet links carry a `?v=N` version. Bump it in `index.html` after any edit, so browsers that already loaded the site fetch the new files.
 

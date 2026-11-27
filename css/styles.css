@@ -46,7 +46,7 @@ body.has-player { overflow: hidden; }
 img, svg { max-width: 100%; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .18em; }
 a:hover { text-decoration-thickness: 2px; }
-.ch-body p a:not(.btn)::after, .lede a::after, .external-lead a::after, .build-steps a::after, .screen-free a::after { content: "↗"; font-size: .85em; margin-left: .1em; text-decoration: none; display: inline-block; }
+main a[target="_blank"]:not(.btn)::after { content: "↗"; font-size: .85em; margin-left: .1em; text-decoration: none; display: inline-block; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 main:focus, [tabindex="-1"]:focus { outline: none; }
 h1[tabindex="-1"]:focus-visible, h2[tabindex="-1"]:focus-visible { outline: none; }

@@ -1,16 +1,21 @@
 /* Router, corner chrome and link behavior.
-   Like an index of drops, every link opens in its own new tab; progress is shared
-   between tabs through localStorage, so nothing is lost when moving between them. */
+   Links to other websites open in a new tab; moving between pages of the
+   Sandbox stays in the same tab. Progress is saved in localStorage either way. */
 (function (S) {
   'use strict';
   const main = document.getElementById('main');
   const topbar = document.getElementById('topbar');
 
-  /* ---------- Every link opens a new tab ---------- */
+  /* ---------- Links to other websites open a new tab ---------- */
+  const isOutside = (a) => {
+    try { return new URL(a.href, location.href).origin !== location.origin; }
+    catch (e) { return false; }
+  };
   function newTabs(root) {
     (root.querySelectorAll ? S.$$(root, 'a[href]') : []).forEach((a) => {
       if (a.hasAttribute('data-skip') || a.dataset.nt) return;
       a.dataset.nt = '1';
+      if (!isOutside(a)) return;
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
       if (!/opens in a new tab/.test(a.textContent)) {
@@ -33,7 +38,7 @@
       <nav class="corner corner-top" aria-label="Sandbox">
         <ul>
           ${S.CHALLENGES.map((c) => `<li><a href="#/${c.id}" ${active === c.id ? 'aria-current="page"' : ''}><span class="sr-only">${S.esc(c.title)} — </span>${c.id}</a></li>`).join('')}
-          <li><a href="#/exchange" ${active === 'exchange' ? 'aria-current="page"' : ''}>Exchange<span aria-hidden="true">↗</span></a></li>
+          <li><a href="#/exchange" ${active === 'exchange' ? 'aria-current="page"' : ''}>Exchange</a></li>
         </ul>
       </nav>
       <a href="#/" class="corner corner-mark" ${active === 'home' ? 'aria-current="page"' : ''}>

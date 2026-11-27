@@ -19,7 +19,7 @@
   /* Functional monospace for text people copy and paste (prompts, keys) — not a brand face. */
   --code: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --bg: #F3F0E8; --ink: #141414; --muted: #555049; --rule: #CFC8BA;
-  --accent: #141414; --accent-ink: #F3F0E8; --panel: #FBF9F4; --focus: #1F4BCC;
+  --accent: #141414; --accent-ink: #F3F0E8; --panel: #FBF9F4; --focus: #00225A;
   --display: var(--serif);
   --index-gray: #84898E;
   --measure: 66ch;
@@ -28,12 +28,12 @@
 
 /* ---------- Themes ---------- */
 body[data-theme="home"] { --bg:#000; --ink:#F2F2F2; --muted:#9A9FA4; --rule:#2A2D30; --accent:#F2F2F2; --accent-ink:#000; --panel:#0D0E0F; --focus:#F5C842; }
-body[data-theme="c01"] { --bg:#EDEFF2; --ink:#0E1116; --muted:#4A5260; --rule:#C3C9D2; --accent:#2340D8; --accent-ink:#fff; --panel:#F8F9FB; --focus:#2340D8; --display: var(--sans); }
+body[data-theme="c01"] { --bg:#EDEFF2; --ink:#0E1116; --muted:#4A5260; --rule:#C3C9D2; --accent:#00225A; --accent-ink:#fff; --panel:#F8F9FB; --focus:#00225A; --display: var(--sans); }
 body[data-theme="c02"] { --bg:#130F0F; --ink:#F2E9E4; --muted:#B9ACA6; --rule:#3A2F2E; --accent:#FF6B5A; --accent-ink:#130F0F; --panel:#1E1817; --focus:#FFB3A8; }
 body[data-theme="c03"] { --bg:#F4EEDC; --ink:#1B1A17; --muted:#5A554A; --rule:#CFC4A6; --accent:#B3261E; --accent-ink:#fff; --panel:#FBF7EA; --focus:#7A1913; --display: var(--serif); }
 body[data-theme="c04"] { --bg:#1A1F24; --ink:#F1EDE4; --muted:#ADB5BC; --rule:#353E46; --accent:#D9A85B; --accent-ink:#1A1F24; --panel:#222930; --focus:#F2C981; --display: var(--sans); }
 body[data-theme="c05"] { --bg:#0C0B0C; --ink:#EDE6D6; --muted:#B4AB98; --rule:#2E2A26; --accent:#C9A45C; --accent-ink:#0C0B0C; --panel:#151314; --focus:#E8C987; }
-body[data-theme="c06"] { --bg:#E6ECE2; --ink:#10231A; --muted:#45584D; --rule:#BCC9BC; --accent:#2B47B8; --accent-ink:#fff; --panel:#F3F6F1; --focus:#2B47B8; }
+body[data-theme="c06"] { --bg:#E6ECE2; --ink:#10231A; --muted:#45584D; --rule:#BCC9BC; --accent:#00225A; --accent-ink:#fff; --panel:#F3F6F1; --focus:#00225A; }
 body[data-theme="exchange"] { --bg:#FAFAF6; --ink:#121212; --muted:#55524C; --rule:#D6D2C8; --accent:#121212; --accent-ink:#FAFAF6; --panel:#fff; }
 body[data-theme="facilitator"] { --bg:#FFFFFF; --ink:#1A1A1A; --muted:#555; --rule:#DDD; --accent:#1A1A1A; --accent-ink:#fff; --panel:#F6F6F4; --display: var(--sans); }
 body[data-theme="print"] { --bg:#FFFFFF; --ink:#111; --muted:#444; --rule:#ccc; --accent:#111; --accent-ink:#fff; --panel:#fff; }
@@ -126,7 +126,7 @@ body[data-theme="home"] { font-family: var(--mono); }
 .slash { margin: 0 0 1.4rem; }
 .slash-h { font: 400 clamp(1.4rem, 3.4vw, 2.6rem)/.95 var(--mono); text-transform: uppercase; letter-spacing: -.03em; margin: 0 0 .5rem; }
 .slash-mark { font-size: .45em; vertical-align: .25em; margin-right: .2em; }
-.slash-a .slash-h { color: #F5C842; } .slash-b .slash-h { color: #5AA9F5; }
+.slash-a .slash-h { color: #F5C842; } .slash-b .slash-h { color: #fff; background: #00225A; display: inline-block; padding: .12em .3em .06em; }
 .slash-p { font: 400 .88rem/1.5 var(--mono); color: var(--index-gray); max-width: 62ch; margin-left: 2.6rem; }
 .slash-p a { color: #fff; }
 .slash-p a:hover { background: #fff; color: #000; text-decoration: none; }

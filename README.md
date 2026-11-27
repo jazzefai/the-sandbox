@@ -84,7 +84,7 @@ js/c03-evidence.js         03 · The Evidence Is Lying      (Microsoft Copilot)
 js/c04-rig.js              04 · Rig the Game               (Lovable) — includes the embedded door game + designer mode
 js/c05-06-imagination.js   05 · The Impossible Object, 06 · Who Made the Rules? + printable versions
 js/exchange.js             Discovery Exchange: prepare an invitation, show it full screen with a QR code
-js/facilitator.js          facilitator notes, evaluation criteria, readiness checklist
+js/facilitator.js          facilitator notes: the day start to finish, evaluation criteria, sharing plan, readiness checklist
 js/kit.js                  table-top kit: printable tent cards with a QR code for each challenge
 js/app.js                  hash router and top bar
 ```

@@ -569,8 +569,8 @@ body[data-theme="c06"] .show-tell { border-style: double; border-width: 5px; }
 .ps-title { font-size: 2.6rem; margin: .3rem 0 .2rem; }
 .ps-tagline { font-style: italic; color: var(--muted); }
 .ps-question { font-size: 1.5rem; line-height: 1.25; border-bottom: 2px solid var(--ink); padding-bottom: 1rem; }
-.ps-movement h2 { font-size: 1.35rem; margin-top: 1.5rem; }
-.ps-movement h2 span { font-family: var(--mono); font-size: .9em; }
+.ps-movement h3 { font-size: 1.35rem; margin-top: 1.5rem; }
+.ps-movement h3 span { font-family: var(--mono); font-size: .9em; }
 .ps-movement p { font-size: 1.08rem; line-height: 1.5; margin-bottom: .6em; }
 .print-sheet .vitrines, .print-sheet .decrees { gap: 1rem; margin: 1rem 0; }
 .print-sheet .art { filter: grayscale(1) contrast(1.05); border: 1px solid #ccc; }

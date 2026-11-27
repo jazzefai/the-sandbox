@@ -72,6 +72,25 @@
             <p>About 90 minutes of sandbox time. No required sequence; nobody needs to finish everything. Each challenge aims for something presentable within 15 minutes — that target is <strong>unverified</strong>.</p>
           </section>
 
+          <section aria-labelledby="f-day"><h2 id="f-day">The day, start to finish</h2>
+            <p class="hint">A suggested shape for about 90 minutes of sandbox time. Move the times to suit your room; only the order matters.</p>
+            <ol class="f-plan">
+              <li><strong>Before people arrive · 30 minutes.</strong> Put a table-top card on each table and the “Start here” card by the door. Put printed copies of 05 and 06 on their tables. Open the Sandbox on the event Wi-Fi and press one copy button. Keep this page off any shared screen.</li>
+              <li><strong>Opening · 5 minutes.</strong> Point people to the “Start here” card or the home page. Say only what the home page says: some challenges use an AI tool, others use nothing but imagination; any order, alone or with someone, leave whenever you like. Don't explain what any challenge is “really” about.</li>
+              <li><strong>Play · about 65 minutes.</strong> Circulate and observe, don't score (see the evaluation criteria below). Notice where people stall, what they abandon, and who is leaning on you or on AI to do the thinking.</li>
+              <li><strong>Heads-up · about 15 minutes before sharing.</strong> Give the Discovery Exchange heads-up from the sharing plan below.</li>
+              <li><strong>The sharing moment · about 15 minutes.</strong> Follow the sharing plan below: find two people, take turns, try before explaining.</li>
+              <li><strong>Close · 2 minutes.</strong> On shared devices, press “Clear everything saved here” on the home page before the next person sits down.</li>
+            </ol>
+            <dl class="f-eval">
+              <dt>An AI tool is blocked or won't sign in</dt><dd>Point the person to 05 or 06, which need no technology, or pair them with someone whose access works. 04's door game and designer mode run inside the Sandbox, so Steps 1 and 2 still work without Lovable.</dd>
+              <dt>Out of Lovable credits</dt><dd>The same: 04's Steps 1 and 2, or a partner's account.</dd>
+              <dt>The copy button doesn't copy</dt><dd>The Sandbox selects the text in a box underneath; press Ctrl+C (or ⌘C on a Mac).</dd>
+              <dt>Someone finishes early</dt><dd>01–04 end with optional questions worth chasing, and any challenge can be tried a second time with someone else. The Discovery Exchange is open any time.</dd>
+              <dt>Someone doesn't want to share</dt><dd>That's fine. Note it as an observation; don't press.</dd>
+            </dl>
+          </section>
+
           <section aria-labelledby="f-each"><h2 id="f-each">Challenge by challenge</h2>
             ${S.CHALLENGES.map((c) => { const n = NOTES[c.id]; return `
               <div class="f-card">

@@ -87,12 +87,12 @@
     return `
       <article class="print-sheet" aria-labelledby="ps-${def.id}">
         <p class="ps-meta">The Sandbox · ${c.id} · ${S.esc(c.medium)} · ${S.esc(c.verb)}</p>
-        <h1 id="ps-${def.id}" class="ps-title">${S.esc(c.title)}</h1>
+        <h2 id="ps-${def.id}" class="ps-title">${S.esc(c.title)}</h2>
         <p class="ps-tagline">${S.esc(c.tagline)}</p>
         <p class="ps-question">${S.esc(c.question)}</p>
         ${def.movements.map((m) => `
           <section class="ps-movement">
-            <h2><span>${m.n}</span> · ${m.title}</h2>
+            <h3><span>${m.n}</span> · ${m.title}</h3>
             ${m.html()}
           </section>`).join('')}
         <p class="show-tell">${def.showTell}</p>

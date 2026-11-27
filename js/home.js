@@ -7,9 +7,8 @@
     root.innerHTML = `
       <section class="home">
         <header class="masthead">
-          <p class="mast-kicker">Arcade AI</p>
           <h1 tabindex="-1">The Sandbox</h1>
-          <p class="mast-sub">AI Challenges</p>
+          <p class="mast-sub">Arcade AI Challenges</p>
         </header>
         <div class="home-intro">
           <p>What is. What could be. What should be. What doesn't exist yet.</p>

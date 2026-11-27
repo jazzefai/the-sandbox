@@ -62,7 +62,7 @@
 
   function resolve() {
     const path = location.hash.replace(/^#\/?/, '').replace(/\/$/, '');
-    if (!path) return { key: 'home', theme: 'home', title: 'The Sandbox · AI Challenges' };
+    if (!path) return { key: 'home', theme: 'home', title: 'The Sandbox · Arcade AI Challenges' };
     if (S.views[path]) {
       const id = path.slice(0, 2);
       const c = S.byId(id);

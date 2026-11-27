@@ -295,6 +295,128 @@ table.evidence { border-collapse: collapse; width: 100%; max-width: 34rem; margi
 .discover { padding: 2.25rem 0 1rem; border-top: 2px solid var(--ink); margin-top: 2rem; }
 .discover h2 { font-size: clamp(1.7rem, 3.6vw, 2.6rem); }
 
+/* ---------- 03 as a case file ----------
+   The page is a desk; the invitation is a manila folder lying on it. Each step is a typed
+   sheet clipped inside, the briefings are memos, and the reveal lifts the redactions.
+   Decorative labels use the typewriter face; all participant wording is unchanged. */
+body[data-theme="c03"] {
+  --bg: #24211D; --ink: #EFE8D8; --muted: #B9AF9C; --rule: #4A443B; --focus: #F2B8AE;
+  background-image: radial-gradient(120% 80% at 50% 0%, #2E2A25 0%, #1C1A17 70%);
+  background-attachment: fixed;
+}
+body[data-theme="c03"] .challenge {
+  --bg: #E7D6A6; --ink: #1B1A17; --muted: #4D4637; --rule: #C2AC78; --panel: #FFFDF6;
+  --accent: #A8231C; --accent-ink: #fff; --focus: #7A1913; --type: var(--code);
+  position: relative; color: var(--ink);
+  margin: 4.2rem 0 2rem; padding: 0 clamp(1.1rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+  background-color: var(--bg);
+  background-image: repeating-linear-gradient(97deg, rgba(120, 90, 30, .045) 0 1px, transparent 1px 5px),
+                    repeating-linear-gradient(-3deg, rgba(255, 255, 255, .06) 0 2px, transparent 2px 9px);
+  border-radius: 0 6px 6px 6px;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .8), 0 2px 0 #CDB984, 0 5px 0 #D9C592, 0 7px 0 #BFA972;
+}
+/* The folder tab */
+body[data-theme="c03"] .challenge::before {
+  content: "Case file № 03" / "";
+  position: absolute; left: 0; bottom: 100%; height: 2.3rem; padding: 0 2.2rem 0 1.4rem;
+  display: flex; align-items: center;
+  font: 600 .78rem/1 var(--code); text-transform: uppercase; letter-spacing: .16em; color: #4D4637;
+  background: inherit; border-radius: 10px 22px 0 0;
+}
+body[data-theme="c03"] .ch-head { position: relative; padding-top: clamp(2rem, 5vw, 4rem); border-bottom: 2px solid var(--ink); }
+body[data-theme="c03"] .ch-head::after {
+  content: "Confidential" / "";
+  position: absolute; right: 0; top: clamp(1.6rem, 4vw, 3rem);
+  font: 700 clamp(.85rem, 1.6vw, 1.1rem)/1 var(--code); text-transform: uppercase; letter-spacing: .22em;
+  color: var(--accent); border: 3px double var(--accent); padding: .5rem .7rem; transform: rotate(-7deg); opacity: .85;
+}
+body[data-theme="c03"] .ch-meta, body[data-theme="c03"] .ch-title { font-family: var(--code); }
+body[data-theme="c03"] .ch-num { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+body[data-theme="c03"] .hook { font-family: var(--code); font-style: normal; font-size: clamp(1rem, 1.8vw, 1.2rem); max-width: 52ch; }
+
+/* Each step is a typed sheet, with its step number on an index tab */
+body[data-theme="c03"] .step {
+  position: relative; background: #FFFDF6; border-top: 0;
+  padding: clamp(1.6rem, 3.5vw, 2.6rem) clamp(1.1rem, 3.5vw, 2.6rem) clamp(1rem, 2.5vw, 1.8rem);
+  margin: 3.2rem 0 1.4rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 5px 6px 0 -1px #F4EDD9, 5px 6px 0 0 var(--rule), 0 18px 30px -22px rgba(60, 40, 10, .6);
+}
+body[data-theme="c03"] .step:first-of-type { padding-top: clamp(1.6rem, 3.5vw, 2.6rem); }
+body[data-theme="c03"] .step-num {
+  position: absolute; left: clamp(1.1rem, 3.5vw, 2.6rem); bottom: 100%; margin: 0;
+  padding: .55rem .9rem .45rem; border-radius: 6px 6px 0 0;
+  font: 600 .74rem/1 var(--code); letter-spacing: .14em; color: var(--accent-ink); background: var(--accent);
+}
+body[data-theme="c03"] .step:nth-of-type(2) .step-num { left: calc(clamp(1.1rem, 3.5vw, 2.6rem) + 6.5rem); }
+body[data-theme="c03"] .step:nth-of-type(3) .step-num { left: calc(clamp(1.1rem, 3.5vw, 2.6rem) + 13rem); }
+body[data-theme="c03"] .step:nth-of-type(4) .step-num { left: calc(clamp(1.1rem, 3.5vw, 2.6rem) + 19.5rem); }
+body[data-theme="c03"] .step:nth-of-type(5) .step-num { left: calc(clamp(1.1rem, 3.5vw, 2.6rem) + 26rem); }
+body[data-theme="c03"] .step h2 { border-bottom: 1px solid var(--rule); padding-bottom: .5rem; }
+body[data-theme="c03"] .lede { font-size: 1.06rem; }
+
+/* Briefings: memos, paper-clipped */
+body[data-theme="c03"] .briefing { background: #fff; padding-top: 1.8rem; }
+body[data-theme="c03"] .briefing::before {
+  content: ""; position: absolute; top: -14px; left: 1.4rem; width: 14px; height: 40px; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 40'%3E%3Cpath d='M4 30V7a3 3 0 0 1 6 0v26a5 5 0 0 1-10 0V9' fill='none' stroke='%23777B82' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+body[data-theme="c03"] .briefing-tag { font-family: var(--code); }
+body[data-theme="c03"] .briefing h3 { text-transform: none; }
+
+/* Prompts: carbon-copy slips with a perforated top edge */
+body[data-theme="c03"] .prompt { background: #FBF8EF; border: 1px solid var(--rule); box-shadow: 0 1px 0 var(--rule); position: relative; }
+body[data-theme="c03"] .prompt::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -5px; height: 10px; pointer-events: none;
+  background: radial-gradient(circle, #FFFDF6 0 3px, transparent 3.5px) 0 0 / 14px 10px repeat-x;
+}
+body[data-theme="c03"] .prompt-head { border-bottom: 1px dashed var(--rule); }
+body[data-theme="c03"] .prompt.is-copied { border-color: var(--accent); box-shadow: 4px 4px 0 var(--accent); }
+body[data-theme="c03"] .external { border: 1.5px dashed var(--accent); background: #FFFDF6; }
+
+/* The reveal: the evidence sheet, redactions lifting row by row */
+body[data-theme="c03"] .reveal { background: #fff; border: 1px solid var(--rule); box-shadow: 0 2px 0 var(--rule); }
+body[data-theme="c03"] .reveal .stamp { font-family: var(--code); background: #fff; }
+body[data-theme="c03"] .evidence th, body[data-theme="c03"] .evidence td { font-family: var(--code); font-size: .95rem; }
+body[data-theme="c03"] .evidence tbody td { position: relative; }
+body[data-theme="c03"] .evidence tbody td::after {
+  content: ""; position: absolute; inset: .4rem .1rem .4rem auto; width: 7.5em; background: #111;
+  transform-origin: right center; animation: c03-unredact .5s cubic-bezier(.6, 0, .3, 1) both;
+}
+body[data-theme="c03"] .evidence tbody tr:nth-child(1) td::after { animation-delay: .35s; }
+body[data-theme="c03"] .evidence tbody tr:nth-child(2) td::after { animation-delay: .5s; }
+body[data-theme="c03"] .evidence tbody tr:nth-child(3) td::after { animation-delay: .65s; }
+body[data-theme="c03"] .evidence tbody tr:nth-child(4) td::after { animation-delay: .8s; }
+body[data-theme="c03"] .evidence tbody tr:nth-child(5) td::after { animation-delay: .95s; }
+body[data-theme="c03"] .evidence tbody tr:nth-child(6) td::after { animation-delay: 1.1s; }
+@keyframes c03-unredact { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+body[data-theme="c03"] .your-call { background: #FBF8EF; font-family: var(--code); font-size: .95rem; }
+body[data-theme="c03"] .pull { font-family: var(--code); font-size: clamp(1.1rem, 2vw, 1.4rem); border-left: 3px solid var(--accent); padding-left: 1rem; }
+
+/* Continue buttons, the case-notes sheet and the footer on the folder */
+body[data-theme="c03"] .btn-next { font-family: var(--code); font-size: .88rem; letter-spacing: .02em; background: #FFFDF6; border: 1.5px dashed var(--ink); }
+body[data-theme="c03"] .btn-next:hover { border-style: solid; }
+body[data-theme="c03"] .discover {
+  background: #FFFDF6; border-top: 0; margin-top: 3.2rem; position: relative;
+  padding: clamp(1.6rem, 3.5vw, 2.6rem) clamp(1.1rem, 3.5vw, 2.6rem) clamp(1rem, 2.5vw, 1.8rem);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 18px 30px -22px rgba(60, 40, 10, .6);
+  background-image: repeating-linear-gradient(transparent 0 1.9rem, rgba(168, 35, 28, .12) 1.9rem calc(1.9rem + 1px));
+}
+body[data-theme="c03"] .ch-foot { border-top: 2px solid var(--ink); }
+
+@media (max-width: 700px) {
+  body[data-theme="c03"] .challenge { margin-top: 3.4rem; border-radius: 0 4px 4px 4px; }
+  body[data-theme="c03"] .ch-head::after { position: static; display: inline-block; margin-bottom: 1rem; }
+  body[data-theme="c03"] .step:nth-of-type(n) .step-num { left: clamp(1.1rem, 3.5vw, 2.6rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="c03"] .evidence tbody td::after { display: none; }
+}
+@media print {
+  body[data-theme="c03"] .challenge { box-shadow: none; background: #fff; margin: 0; padding: 0; }
+  body[data-theme="c03"] .challenge::before, body[data-theme="c03"] .ch-head::after, body[data-theme="c03"] .evidence tbody td::after { display: none; }
+  body[data-theme="c03"] .step, body[data-theme="c03"] .discover { box-shadow: none; border-top: 1px solid #999; }
+}
+
 /* ---------- 04 · Rig the Game: a theatre of doors ---------- */
 body[data-theme="c04"] .ch-question { font-weight: 700; letter-spacing: -.04em; }
 body[data-theme="c04"] .hook, body[data-theme="c04"] .pull { font-family: var(--sans); font-style: normal; }

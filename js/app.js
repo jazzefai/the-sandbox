@@ -73,7 +73,8 @@
       const c = S.byId(id);
       if (path.indexOf('print') !== -1) return { key: path, theme: 'print', active: c ? id : '', title: 'Printable invitations · The Sandbox' };
       if (c) return { key: path, theme: 'c' + id, active: id, title: `${c.id} · ${c.title} · The Sandbox` };
-      return { key: path, theme: path, active: path, title: (path === 'exchange' ? 'Discovery Exchange' : 'Facilitator notes') + ' · The Sandbox' };
+      const names = { exchange: 'Discovery Exchange', facilitator: 'Facilitator notes', kit: 'Table-top kit' };
+      return { key: path, theme: path, active: path, title: (names[path] || 'The Sandbox') + ' · The Sandbox' };
     }
     return null;
   }

@@ -54,7 +54,8 @@
     'Choose when the sharing moment happens (see the plan above) and give people a heads-up about 15 minutes before it.',
     'From a phone, scan an Exchange QR code that opens a published Lovable app and a Canva view link, while signed out.',
     'On shared devices, use "Clear everything saved here" on the home page between participants.',
-    'Time a novice walking through one AI invitation; the 15-minute target is unverified.'
+    'Time a novice walking through one AI invitation; the 15-minute target is unverified.',
+    'Print the table-top kit (#/kit) from the live site, scan two or three of the printed codes with a phone, and put one card on each table.'
   ];
 
   S.views.facilitator = function (root) {
@@ -114,6 +115,10 @@
               <dt>Nothing to show?</dt><dd>“What did you try, and where did it go sideways?” is a fine thing to share.</dd>
               <dt>Worth watching</dt><dd>How different trios' things are from each other (originality), anyone connecting their discovery to their own work (transfer), and who chose not to share and why.</dd>
             </dl>
+          </section>
+
+          <section aria-labelledby="f-kit"><h2 id="f-kit">Table-top kit</h2>
+            <p>Fold-in-half tent cards, one per table: a “Start here” card, one for each invitation, and one for the Discovery Exchange. Each shows the room's question and a QR code that opens it, so the room itself becomes the index. <a href="#/kit">Open the table-top kit</a> to print it.</p>
           </section>
 
           <section aria-labelledby="f-ready"><h2 id="f-ready">Readiness checklist</h2>

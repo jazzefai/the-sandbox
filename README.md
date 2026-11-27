@@ -85,6 +85,7 @@ js/c04-rig.js              04 · Rig the Game               (Lovable) — includ
 js/c05-06-imagination.js   05 · The Impossible Object, 06 · Who Made the Rules? + printable versions
 js/exchange.js             Discovery Exchange: prepare an invitation, show it full screen with a QR code
 js/facilitator.js          facilitator notes, evaluation criteria, readiness checklist
+js/kit.js                  table-top kit: printable tent cards with a QR code for each room
 js/app.js                  hash router and top bar
 ```
 
@@ -97,6 +98,7 @@ js/app.js                  hash router and top bar
 | `#/05/print`, `#/06/print`, `#/print` (both) | Printable versions of the imagination invitations |
 | `#/exchange` | Discovery Exchange |
 | `#/facilitator` | Facilitator notes. Only linked from the home-page footer, never from inside an invitation. |
+| `#/kit` | Table-top kit: fold-in-half tent cards, one per table (Start here, 01–06, Exchange), each with the room's question and a QR code that opens it. Linked from the facilitator notes. Print landscape, one card per page; the top half prints upside down so the folded card reads from both sides. The codes use the page's own address unless another is typed in, and the page warns if that address is local. |
 
 **Navigation model (modeled on mschf.com).** The home page is a black, numbered, all-caps monospace index. Hovering an entry turns it white and adds a ↗, and on mouse/trackpad a small yellow label follows the cursor (for example "Claude↗" or "No screen needed"). **Links to other websites open in a new tab**; moving between pages of the Sandbox stays in the same tab, so the browser's Back button works.
 
@@ -217,6 +219,7 @@ The Sandbox does **not** check, simulate or assume any of these. Verify each wit
 - [ ] Plan the sharing moment (see `#/facilitator`) and give a heads-up about 15 minutes before it.
 - [ ] From a phone, scan an Exchange QR code that opens a published Lovable app and a Canva view link, while signed out.
 - [ ] On shared devices, clear saved data between participants (home page footer).
+- [ ] Print the table-top kit (`#/kit`) from the live site, scan a few printed codes with a phone, and put one card on each table.
 - [ ] Time a novice through one AI invitation (the 15-minute target is unverified).
 - [ ] Keep `#/facilitator` off the projector before play, so objectives aren't revealed.
 - [ ] Observe, don't score: activation, delight, agency, originality, transfer. Also watch for friction, abandonment, fatigue, over-reliance on AI or facilitators, and whether people have mental space. Don't claim learning gains from enjoyment alone.

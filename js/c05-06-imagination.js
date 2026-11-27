@@ -104,11 +104,11 @@
     return function (root) {
       root.innerHTML = `
         <div class="print-controls">
-          <p><a href="#/${defs.length === 1 ? defs[0].id : ''}">${defs.length === 1 ? S.esc(defs[0].id + ' · ' + S.byId(defs[0].id).title) : 'The six invitations'}</a></p>
+          <p><a href="#/${defs.length === 1 ? defs[0].id : ''}">${defs.length === 1 ? S.esc(defs[0].id + ' · ' + S.byId(defs[0].id).title) : 'The six challenges'}</a></p>
           <p><button type="button" class="btn btn-primary" data-print>Print this</button></p>
-          <p class="hint">Prints in black and white. Each invitation starts on a new page.</p>
+          <p class="hint">Prints in black and white. Each challenge starts on a new page.</p>
         </div>
-        <h1 class="sr-only" tabindex="-1">Printable invitations</h1>
+        <h1 class="sr-only" tabindex="-1">Printable challenges</h1>
         ${defs.map(printSection).join('')}`;
       S.$(root, '[data-print]').addEventListener('click', () => window.print());
     };

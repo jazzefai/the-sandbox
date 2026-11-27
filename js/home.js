@@ -1,4 +1,4 @@
-/* Home: an index of six invitations. Each entry opens in its own new tab. */
+/* Home: an index of six challenges. Each entry opens in its own new tab. */
 (function (S) {
   'use strict';
   const TIP = { '01': 'Claude↗', '02': 'Canva AI↗', '03': 'Copilot↗', '04': 'Lovable↗', '05': 'No screen needed', '06': 'No screen needed' };
@@ -20,7 +20,7 @@
           <p>What are you curious about?</p>
           <p>Some challenges use an AI tool. Others use nothing but your imagination. Enter any of them, in any order, alone or with someone. Leave whenever you like.</p>
         </div>
-        <ol class="index" aria-label="The six invitations">
+        <ol class="index" aria-label="The six challenges">
           ${S.CHALLENGES.map((c) => `
             <li class="index-row" data-inv="${c.id}">
               <a href="#/${c.id}" class="index-link" data-tip="${S.esc(TIP[c.id])}">
@@ -41,17 +41,17 @@
           </li>
           <li class="slash slash-b">
             <p class="slash-h"><span class="slash-mark" aria-hidden="true">///</span> Rather not look at a screen?</p>
-            <p class="slash-p">Invitations 05 and 06 work entirely on paper: <a href="#/05/print" data-tip="Print↗">print 05</a>, <a href="#/06/print" data-tip="Print↗">print 06</a>, or <a href="#/print" data-tip="Print↗">print both</a>.</p>
+            <p class="slash-p">Challenges 05 and 06 work entirely on paper: <a href="#/05/print" data-tip="Print↗">print 05</a>, <a href="#/06/print" data-tip="Print↗">print 06</a>, or <a href="#/print" data-tip="Print↗">print both</a>.</p>
           </li>
         </ul>
         <footer class="home-foot">
-          <p>Nothing you write here leaves this browser. No account needed. Some invitations send you to an outside AI tool, which has its own sign-in.</p>
+          <p>Nothing you write here leaves this browser. No account needed. Some challenges send you to an outside AI tool, which has its own sign-in.</p>
           <p><button type="button" class="btn btn-quiet" data-clearall>Using a shared device? Clear everything saved here</button>
           · <a href="#/facilitator" class="facil-link">For facilitators</a></p>
         </footer>
       </section>`;
     S.$(root, '[data-clearall]').addEventListener('click', () => {
-      if (!window.confirm('Clear everything the Sandbox saved on this device, for all six invitations and the Discovery Exchange? This cannot be undone.')) return;
+      if (!window.confirm('Clear everything the Sandbox saved on this device, for all six challenges and the Discovery Exchange? This cannot be undone.')) return;
       S.clearAll();
       S.views.home(root);
       S.announce('Everything saved by the Sandbox on this device was cleared.');

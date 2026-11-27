@@ -71,7 +71,7 @@
     if (S.views[path]) {
       const id = path.slice(0, 2);
       const c = S.byId(id);
-      if (path.indexOf('print') !== -1) return { key: path, theme: 'print', active: c ? id : '', title: 'Printable invitations · The Sandbox' };
+      if (path.indexOf('print') !== -1) return { key: path, theme: 'print', active: c ? id : '', title: 'Printable challenges · The Sandbox' };
       if (c) return { key: path, theme: 'c' + id, active: id, title: `${c.id} · ${c.title} · The Sandbox` };
       const names = { exchange: 'Discovery Exchange', facilitator: 'Facilitator notes', kit: 'Table-top kit' };
       return { key: path, theme: path, active: path, title: (names[path] || 'The Sandbox') + ' · The Sandbox' };
@@ -88,7 +88,7 @@
     if (!r) {
       document.body.dataset.theme = 'home';
       renderTopbar('');
-      main.innerHTML = `<section class="notfound"><h1 tabindex="-1">That room doesn't exist (yet).</h1><p><a href="#/">Back to the six invitations</a></p></section>`;
+      main.innerHTML = `<section class="notfound"><h1 tabindex="-1">That challenge doesn't exist (yet).</h1><p><a href="#/">Back to the six challenges</a></p></section>`;
     } else {
       document.body.dataset.theme = r.theme;
       renderTopbar(r.active || r.key);
@@ -96,7 +96,7 @@
       try { S.views[r.key](main); }
       catch (e) {
         console.error(e);
-        main.innerHTML = `<section class="notfound"><h1 tabindex="-1">Something went wrong opening this invitation.</h1><p>Try reloading the page. If it keeps happening, your saved answers for it may be damaged — you can clear them from the home page.</p><p><a href="#/">Back to the six invitations</a></p></section>`;
+        main.innerHTML = `<section class="notfound"><h1 tabindex="-1">Something went wrong opening this challenge.</h1><p>Try reloading the page. If it keeps happening, your saved answers for it may be damaged — you can clear them from the home page.</p><p><a href="#/">Back to the six challenges</a></p></section>`;
       }
     }
     newTabs(main);

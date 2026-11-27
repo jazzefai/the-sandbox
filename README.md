@@ -1,4 +1,4 @@
-# The Sandbox: Six Invitations to Investigate
+# The Sandbox: Arcade AI Challenges
 
 An interactive playground of six intellectual adventures, built from `sandbox-challenge-specifications.md` (the source of truth). Four of them use an outside AI platform and two use only the imagination. There are no accounts, scores, required order, or completion tracking.
 
@@ -52,11 +52,11 @@ Wherever participants choose or write, the controls sit on a sheet of notebook p
 - **Motion:** the fill and the check draw in with a few quick strokes. With reduced motion they simply appear.
 - **Pencil:** over notebook pages, the mouse cursor becomes a small pencil whose point is the click spot. Mouse and trackpad only; elsewhere the cursor is normal.
 
-## Each room its own place
+## Each challenge wears a disguise
 
-Like the drops on mschf.com, each invitation has its own setting. The frame stays constant: the corner menu, the SB mark, and the notebook sheets with their pencil. Only the styling changes; participant wording is the same as the spec. The decorative labels (for example "Case file № 03", "Confidential", "Sealed", "Drawing № 05", "Fig. 1", "Specification") are hidden from screen readers.
+Like the drops on mschf.com, each challenge wears its own disguise. The frame stays constant: the corner menu, the SB mark, and the notebook sheets with their pencil. Only the styling changes; participant wording is the same as the spec. The decorative labels (for example "Case file № 03", "Confidential", "Sealed", "Drawing № 05", "Fig. 1", "Specification") are hidden from screen readers.
 
-| Room | Setting |
+| Challenge | Disguise |
 |---|---|
 | 01 | **A sealed prediction.** Security-envelope paper, a wax seal, steps separated by tear-off lines, the prompt as an envelope, and an airmail border on the way to Claude. |
 | 02 | **A gallery wall.** White walls, the paired illustrations framed and matted with wall labels, and large quiet wall text. |
@@ -72,12 +72,12 @@ The small labels and stamps use the typewriter-style monospace. Headings and bod
 
 ```
 index.html                 shell; loads plain scripts (no modules, so file:// also works)
-css/styles.css             base styles, one theme per invitation, responsive, reduced-motion, print
+css/styles.css             base styles, one disguise per challenge, responsive, reduced-motion, print
 js/core.js                 storage, clipboard with fallback, shared components (prompt block,
                            external-platform callout, radios/checkboxes, progressive steps, page frame)
 js/art.js                  original SVG illustrations for the spec's visual references
 js/qr.js                   QR code generator (no dependencies)
-js/home.js                 the six invitations
+js/home.js                 the six challenges
 js/c01-predicted.js        01 · Can I Be Predicted?        (Claude)
 js/c02-translation.js      02 · Lost in Translation        (Canva AI)
 js/c03-evidence.js         03 · The Evidence Is Lying      (Microsoft Copilot)
@@ -85,7 +85,7 @@ js/c04-rig.js              04 · Rig the Game               (Lovable) — includ
 js/c05-06-imagination.js   05 · The Impossible Object, 06 · Who Made the Rules? + printable versions
 js/exchange.js             Discovery Exchange: prepare an invitation, show it full screen with a QR code
 js/facilitator.js          facilitator notes, evaluation criteria, readiness checklist
-js/kit.js                  table-top kit: printable tent cards with a QR code for each room
+js/kit.js                  table-top kit: printable tent cards with a QR code for each challenge
 js/app.js                  hash router and top bar
 ```
 
@@ -94,23 +94,23 @@ js/app.js                  hash router and top bar
 | Route | Page |
 |---|---|
 | `#/` | Home |
-| `#/01` … `#/06` | The six invitations |
-| `#/05/print`, `#/06/print`, `#/print` (both) | Printable versions of the imagination invitations |
+| `#/01` … `#/06` | The six challenges |
+| `#/05/print`, `#/06/print`, `#/print` (both) | Printable versions of the imagination challenges |
 | `#/exchange` | Discovery Exchange |
-| `#/facilitator` | Facilitator notes. Only linked from the home-page footer, never from inside an invitation. |
-| `#/kit` | Table-top kit: fold-in-half tent cards, one per table (Start here, 01–06, Exchange), each with the room's question and a QR code that opens it. Linked from the facilitator notes. Print landscape, one card per page; the top half prints upside down so the folded card reads from both sides. The codes use the page's own address unless another is typed in, and the page warns if that address is local. |
+| `#/facilitator` | Facilitator notes. Only linked from the home-page footer, never from inside a challenge. |
+| `#/kit` | Table-top kit: fold-in-half tent cards, one per table (Start here, 01–06, Exchange), each with the challenge's question and a QR code that opens it. Linked from the facilitator notes. Print landscape, one card per page; the top half prints upside down so the folded card reads from both sides. The codes use the page's own address unless another is typed in, and the page warns if that address is local. |
 
 **Navigation model (modeled on mschf.com).** The home page is a black, numbered, all-caps monospace index. Hovering an entry turns it white and adds a ↗, and on mouse/trackpad a small yellow label follows the cursor (for example "Claude↗" or "No screen needed"). **Links to other websites open in a new tab**; moving between pages of the Sandbox stays in the same tab, so the browser's Back button works.
 
 - A `MutationObserver` in `js/app.js` gives every link that leaves the site (Claude, Canva, Copilot, Lovable, and links people add on the Exchange) `target="_blank"`, `rel="noopener noreferrer"` and a screen-reader "(opens in a new tab)" label. It covers links added later too.
 - Those outside links show a ↗ in text. Links within the Sandbox don't.
 - A small fixed corner menu (01–06, Exchange, and an SB mark linking to the index) replaces the old top bar. On phones it sits at the top of the page instead.
-- Each invitation's "Wander elsewhere" list uses the same index style.
+- Each challenge's "Wander elsewhere" list uses the same index style.
 - Colored `///` rows lead to the Discovery Exchange and the printable versions.
 
-Participant-facing content is unchanged, and each invitation keeps its own visual identity inside its tab.
+Participant-facing content is unchanged, and each challenge keeps its own visual identity inside its tab.
 
-**State.** Each invitation saves to `localStorage` under its own key (`sandbox.v1.c01` and so on), so progress survives moving between invitations, tabs and reloads. When another tab changes saved answers, open tabs refresh to match — unless the person is typing at that moment. Nothing is sent anywhere. There's a "Clear my answers" control on every invitation, plus "Clear everything saved here" on the home page for shared devices. If storage is blocked (for example in private browsing), a notice explains that answers won't persist.
+**State.** Each challenge saves to `localStorage` under its own key (`sandbox.v1.c01` and so on), so progress survives moving between challenges, tabs and reloads. When another tab changes saved answers, open tabs refresh to match — unless the person is typing at that moment. Nothing is sent anywhere. There's a "Clear my answers" control on every invitation, plus "Clear everything saved here" on the home page for shared devices. If storage is blocked (for example in private browsing), a notice explains that answers won't persist.
 
 **Fidelity.** Participant-facing copy, choices, examples, prompts and reveals are taken word for word from the spec. Prompt substitutions:
 
@@ -143,9 +143,9 @@ Smaller readings:
 
 ## External dependencies
 
-The site itself has none: no web fonts, CDNs, analytics, APIs or server code. These invitations send participants elsewhere, each clearly marked "Leaves the Sandbox":
+The site itself has none: no web fonts, CDNs, analytics, APIs or server code. These challenges send participants elsewhere, each clearly marked "Leaves the Sandbox":
 
-| Invitation | Platform | URL |
+| Challenge | Platform | URL |
 |---|---|---|
 | 01 | Claude | https://claude.ai/new |
 | 02 | Canva AI (+ any image-capable AI for the solo path) | https://www.canva.com/ai-image-generator/ |
@@ -177,7 +177,7 @@ The Sandbox does **not** check, simulate or assume any of these. Verify each wit
 
 ## What was tested (in-browser, Chromium)
 
-- **Copying:** every invitation's copy button locks and unlocks under the right conditions, and every prompt is personalized correctly. A real click copied to the clipboard. The blocked-clipboard fallback was confirmed (append `?copyfail` to the URL to force it).
+- **Copying:** every challenge's copy button locks and unlocks under the right conditions, and every prompt is personalized correctly. A real click copied to the clipboard. The blocked-clipboard fallback was confirmed (append `?copyfail` to the URL to force it).
 - **01:** copying unlocks only after all five choices are made.
 - **02:** the feeling never appears in the prompt; there's a warning if the description names it; the findings copy correctly.
 - **03:**
@@ -202,7 +202,7 @@ The Sandbox does **not** check, simulate or assume any of these. Verify each wit
   - the QR code shown on the page decodes to the exact link
   - the full-screen view traps focus and Escape returns focus
   - no overflow at 375px with a long Canva link
-- **New tabs:** every outside link opens a new tab with the screen-reader label, and every link within the Sandbox stays in the same tab. Two tabs on the same invitation stay in sync. The index renders at 1280px and 375px with no overflow.
+- **New tabs:** every outside link opens a new tab with the screen-reader label, and every link within the Sandbox stays in the same tab. Two tabs on the same challenge stay in sync. The index renders at 1280px and 375px with no overflow.
 
 **Cache:** script and stylesheet links carry a `?v=N` version. Bump it in `index.html` after any edit, so browsers that already loaded the site fetch the new files.
 
@@ -220,6 +220,6 @@ The Sandbox does **not** check, simulate or assume any of these. Verify each wit
 - [ ] From a phone, scan an Exchange QR code that opens a published Lovable app and a Canva view link, while signed out.
 - [ ] On shared devices, clear saved data between participants (home page footer).
 - [ ] Print the table-top kit (`#/kit`) from the live site, scan a few printed codes with a phone, and put one card on each table.
-- [ ] Time a novice through one AI invitation (the 15-minute target is unverified).
+- [ ] Time a novice through one AI challenge (the 15-minute target is unverified).
 - [ ] Keep `#/facilitator` off the projector before play, so objectives aren't revealed.
 - [ ] Observe, don't score: activation, delight, agency, originality, transfer. Also watch for friction, abandonment, fatigue, over-reliance on AI or facilitators, and whether people have mental space. Don't claim learning gains from enjoyment alone.

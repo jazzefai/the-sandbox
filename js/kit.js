@@ -1,5 +1,5 @@
 /* Table-top kit (facilitator-facing): one fold-in-half tent card per table.
-   Each card shows a room's driving question and a QR code that opens that room.
+   Each card shows a challenge's driving question and a QR code that opens it.
    Print landscape, one card per page, fold along the dashed line. The top half
    prints upside down so the card reads the right way up from both sides. */
 (function (S) {
@@ -47,7 +47,7 @@
       <div class="print-controls kit-controls">
         <p><a href="#/facilitator">Facilitator notes</a></p>
         <h1 tabindex="-1" class="kit-h">Table-top kit</h1>
-        <p class="kit-intro">One tent card per table: each room's question and a QR code that opens it. Print landscape, one card per page, then fold along the dashed line so it stands up. The top half prints upside down so the card reads from both sides.</p>
+        <p class="kit-intro">One tent card per table: each challenge's question and a QR code that opens it. Print landscape, one card per page, then fold along the dashed line so it stands up. The top half prints upside down so the card reads from both sides.</p>
         <div class="field kit-base">
           <label for="kit-base">The codes open this address</label>
           <input id="kit-base" type="url" inputmode="url" autocomplete="off" value="${S.esc(store.data.base)}" placeholder="${S.esc(defaultBase())}" aria-describedby="kit-base-hint kit-base-warn">
@@ -55,7 +55,7 @@
           <p class="warn" id="kit-base-warn" aria-live="polite" data-warn></p>
         </div>
         <p><button type="button" class="btn btn-primary" data-print>Print the kit</button></p>
-        <p class="hint">Before the day, scan two or three printed codes with a phone to check they open the right room. If your printer skips colors, turn on “Background graphics” in the print dialog.</p>
+        <p class="hint">Before the day, scan two or three printed codes with a phone to check they open the right challenge. If your printer skips colors, turn on “Background graphics” in the print dialog.</p>
       </div>
       <div class="kit-sheets" data-sheets></div>`;
 

@@ -44,7 +44,7 @@
   };
   const CHECKLIST = [
     'Host the Sandbox on an https:// address (or localhost). Copy buttons fall back to manual copy elsewhere.',
-    'Open every invitation on a participant-type laptop and on a phone; press each copy button once.',
+    'Open every challenge on a participant-type laptop and on a phone; press each copy button once.',
     'Sign in to claude.ai/new with a participant-type account and run the 01 prompt end to end.',
     'Confirm Canva AI image generation is available on participants\' Canva plans and note any generation limits.',
     'Confirm Copilot Chat is enabled at m365.cloud.microsoft for participants\' organizational accounts.',
@@ -54,7 +54,7 @@
     'Choose when the sharing moment happens (see the plan above) and give people a heads-up about 15 minutes before it.',
     'From a phone, scan an Exchange QR code that opens a published Lovable app and a Canva view link, while signed out.',
     'On shared devices, use "Clear everything saved here" on the home page between participants.',
-    'Time a novice walking through one AI invitation; the 15-minute target is unverified.',
+    'Time a novice walking through one AI challenge; the 15-minute target is unverified.',
     'Print the table-top kit (#/kit) from the live site, scan two or three of the printed codes with a phone, and put one card on each table.'
   ];
 
@@ -69,10 +69,10 @@
         <div class="ch-body">
           <section aria-labelledby="f-stance"><h2 id="f-stance">Stance</h2>
             <p>Use AI to expand what people can do, not to remove the thinking and judgment we want them to develop. The measure of success is not how much AI participants use. It is what they become more capable of imagining, investigating, creating, understanding, and deciding.</p>
-            <p>About 90 minutes of sandbox time. No required sequence; nobody needs to finish everything. Each invitation aims for something presentable within 15 minutes — that target is <strong>unverified</strong>.</p>
+            <p>About 90 minutes of sandbox time. No required sequence; nobody needs to finish everything. Each challenge aims for something presentable within 15 minutes — that target is <strong>unverified</strong>.</p>
           </section>
 
-          <section aria-labelledby="f-each"><h2 id="f-each">Invitation by invitation</h2>
+          <section aria-labelledby="f-each"><h2 id="f-each">Challenge by challenge</h2>
             ${S.CHALLENGES.map((c) => { const n = NOTES[c.id]; return `
               <div class="f-card">
                 <h3><span class="o-num">${c.id}</span> ${S.esc(c.title)} <span class="f-medium">${S.esc(c.medium)}</span></h3>
@@ -118,7 +118,7 @@
           </section>
 
           <section aria-labelledby="f-kit"><h2 id="f-kit">Table-top kit</h2>
-            <p>Fold-in-half tent cards, one per table: a “Start here” card, one for each invitation, and one for the Discovery Exchange. Each shows the room's question and a QR code that opens it, so the room itself becomes the index. <a href="#/kit">Open the table-top kit</a> to print it.</p>
+            <p>Fold-in-half tent cards, one per table: a “Start here” card, one for each challenge, and one for the Discovery Exchange. Each shows the challenge's question and a QR code that opens it, so the room itself becomes the index. <a href="#/kit">Open the table-top kit</a> to print it.</p>
           </section>
 
           <section aria-labelledby="f-ready"><h2 id="f-ready">Readiness checklist</h2>

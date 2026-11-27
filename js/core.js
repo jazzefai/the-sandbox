@@ -275,9 +275,9 @@
       <footer class="ch-foot">
         <div class="ch-leave">
           <p>Leave whenever you like — nothing here is ever marked finished or unfinished. Your answers stay in this browser only.</p>
-          <p><button type="button" class="btn btn-quiet" data-clear>Clear my answers for this invitation</button></p>
+          <p><button type="button" class="btn btn-quiet" data-clear>Clear my answers for this challenge</button></p>
         </div>
-        <nav class="ch-others" aria-label="Other invitations">
+        <nav class="ch-others" aria-label="Other challenges">
           <p class="ch-others-h">Wander elsewhere</p>
           <ul>
             ${others.map((o) => `<li><a href="#/${o.id}"><span class="o-num" aria-hidden="true"><span>#</span><span>${o.id}</span></span><span class="o-title">${S.esc(o.title)}<span class="index-arrow" aria-hidden="true">↗</span></span></a></li>`).join('')}
@@ -291,10 +291,10 @@
     const b = S.$(root, '[data-clear]');
     if (!b) return;
     b.addEventListener('click', () => {
-      if (!window.confirm('Clear your answers for this invitation on this device? This cannot be undone.')) return;
+      if (!window.confirm('Clear your answers for this challenge on this device? This cannot be undone.')) return;
       store.clear();
       rerender();
-      S.announce('Your answers for this invitation were cleared.');
+      S.announce('Your answers for this challenge were cleared.');
     });
   };
 

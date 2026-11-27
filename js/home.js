@@ -19,9 +19,9 @@
             <li class="index-row" data-inv="${c.id}">
               <a href="#/${c.id}" class="index-link" data-tip="${S.esc(TIP[c.id])}">
                 <span class="idx" aria-hidden="true"><span>#</span><span>${c.id}</span></span>
-                <span class="index-title">${S.esc(c.title)}<span class="index-arrow" aria-hidden="true">↗</span></span>
+                <span class="index-title">${S.esc(c.question)}<span class="index-arrow" aria-hidden="true">↗</span></span>
                 <span class="index-sub">
-                  <span class="index-q">${S.esc(c.question)}</span>
+                  <span class="index-q">${S.esc(c.title)}</span>
                   <span class="index-medium">${S.esc(c.medium)} · ${S.esc(c.verb)}</span>
                   ${S.hasSaved('c' + c.id) ? '<span class="index-saved">Your notes are waiting</span>' : ''}
                 </span>

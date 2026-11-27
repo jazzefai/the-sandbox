@@ -661,10 +661,39 @@ body[data-theme="c02"] .prompt.is-copied { border-color: var(--accent); box-shad
 body[data-theme="c02"] .external { border: 1px solid var(--ink); background: transparent; }
 body[data-theme="c02"] .pull { font-size: clamp(1.5rem, 3vw, 2.3rem); font-style: italic; letter-spacing: -.015em; max-width: 26ch; margin: 2.5rem 0; }
 body[data-theme="c02"] .secret { background: #fff; border-color: var(--accent); }
+body[data-theme="c02"] .field-big:focus-within, body[data-theme="c02"] [data-step="5"] .field:focus-within { border-color: var(--focus); box-shadow: 0 0 0 2px var(--focus), 0 18px 30px -24px rgba(0, 0, 0, .4); }
 body[data-theme="c02"] .solo { background: #fff; border-left: 0; border-top: 1px solid var(--ink); }
 body[data-theme="c02"] .questions { background: transparent; border-left: 1px solid var(--ink); }
 body[data-theme="c02"] .btn-next { border: 1px solid var(--ink); border-radius: 2rem; }
 body[data-theme="c02"] .btn-external { background: var(--ink); color: var(--bg); }
+
+/* 02, continued: writing on gallery comment cards, a visitor guide, and an empty frame for the participant's own image */
+body[data-theme="c02"] .field-big, body[data-theme="c02"] [data-step="5"] .field {
+  background: #fff; border: 1px solid var(--rule); padding: 1.15rem 1.3rem 1.2rem; max-width: 40rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 18px 30px -24px rgba(0, 0, 0, .4);
+}
+body[data-theme="c02"] [data-step="5"] .field label {
+  font: 600 .72rem/1.2 var(--sans); text-transform: uppercase; letter-spacing: .2em; color: var(--muted); margin-bottom: .75rem;
+}
+body[data-theme="c02"] .field-big textarea, body[data-theme="c02"] [data-step="5"] .field textarea {
+  background-color: #fff; border: 0; border-radius: 0; box-shadow: none; padding: 0 .1rem .25rem;
+}
+body[data-theme="c02"] .solo {
+  position: relative; background: #fff; border: 0; padding: 1.4rem 1.5rem 1.2rem 4.4rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 18px 30px -24px rgba(0, 0, 0, .4);
+}
+body[data-theme="c02"] .solo::before {
+  content: "i" / ""; position: absolute; left: 1.4rem; top: 1.3rem; width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  display: grid; place-items: center; background: var(--ink); color: #fff; font: italic 700 1rem/1 Georgia, serif;
+}
+body[data-theme="c02"] .ask-list { max-width: 40rem; }
+body[data-theme="c02"] .ask-list li { margin: 0; padding: .65rem 0; border-bottom: 1px solid var(--rule); font-style: italic; }
+body[data-theme="c02"] .ask-list li:first-child { border-top: 1px solid var(--rule); }
+.empty-frame { display: block; width: min(100% - 18px, 22rem); margin: 2.75rem 0 1.25rem 9px; }
+.ef-art { position: relative; display: block; aspect-ratio: 4 / 3; background: #fff; box-shadow: 0 0 0 clamp(5px, .8vw, 9px) #1F1C19, 0 26px 40px -18px rgba(0, 0, 0, .45); }
+.ef-art::after { content: ""; position: absolute; inset: clamp(.8rem, 2.4vw, 1.4rem); border: 1.5px dashed #CFCAC0; }
+.ef-label { display: block; width: 8.5rem; height: 1.8rem; margin-top: 1.4rem; background: #fff; border: 1px solid var(--rule); box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+@media print { .empty-frame { display: none !important; } }
 
 /* ---------- 04 as a game show: curtain, spotlights, marquee bulbs ---------- */
 body[data-theme="c04"] {

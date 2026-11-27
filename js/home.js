@@ -11,7 +11,7 @@
           <p class="mast-sub">Arcade AI Challenges</p>
         </header>
         <div class="home-intro">
-          <p>What is. What could be. What should be. What doesn't exist yet.</p>
+          <p>What are you curious about?</p>
           <p>Some challenges use an AI tool. Others use nothing but your imagination. Enter any of them, in any order, alone or with someone. Leave whenever you like.</p>
         </div>
         <ol class="index" aria-label="The six invitations">

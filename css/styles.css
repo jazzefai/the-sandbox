@@ -29,11 +29,11 @@
 /* ---------- Themes ---------- */
 body[data-theme="home"] { --bg:#000; --ink:#F2F2F2; --muted:#9A9FA4; --rule:#2A2D30; --accent:#F2F2F2; --accent-ink:#000; --panel:#0D0E0F; --focus:#EE7C2D; }
 body[data-theme="c01"] { --bg:#EDEFF2; --ink:#0E1116; --muted:#4A5260; --rule:#C3C9D2; --accent:#00225A; --accent-ink:#fff; --panel:#F8F9FB; --focus:#00225A; --display: var(--sans); }
-body[data-theme="c02"] { --bg:#130F0F; --ink:#F2E9E4; --muted:#B9ACA6; --rule:#3A2F2E; --accent:#FF6B5A; --accent-ink:#130F0F; --panel:#1E1817; --focus:#FFB3A8; }
+body[data-theme="c02"] { --bg:#F6F5F1; --ink:#161514; --muted:#5E5A55; --rule:#DEDAD2; --accent:#B8402E; --accent-ink:#fff; --panel:#FFFFFF; --focus:#B8402E; }
 body[data-theme="c03"] { --bg:#F4EEDC; --ink:#1B1A17; --muted:#5A554A; --rule:#CFC4A6; --accent:#B3261E; --accent-ink:#fff; --panel:#FBF7EA; --focus:#7A1913; --display: var(--serif); }
 body[data-theme="c04"] { --bg:#1A1F24; --ink:#F1EDE4; --muted:#ADB5BC; --rule:#353E46; --accent:#EE7C2D; --accent-ink:#1A1F24; --panel:#222930; --focus:#EE7C2D; --display: var(--sans); }
-body[data-theme="c05"] { --bg:#0C0B0C; --ink:#EDE6D6; --muted:#B4AB98; --rule:#2E2A26; --accent:#EE7C2D; --accent-ink:#0C0B0C; --panel:#151314; --focus:#EE7C2D; }
-body[data-theme="c06"] { --bg:#E6ECE2; --ink:#10231A; --muted:#45584D; --rule:#BCC9BC; --accent:#00225A; --accent-ink:#fff; --panel:#F3F6F1; --focus:#00225A; }
+body[data-theme="c05"] { --bg:#00225A; --ink:#EEF2F8; --muted:#B4C2DA; --rule:#3A5689; --accent:#EE7C2D; --accent-ink:#0B1530; --panel:#0A2A62; --focus:#EE7C2D; }
+body[data-theme="c06"] { --bg:#E3E1DA; --ink:#0E1B33; --muted:#454E5E; --rule:#B8B4A9; --accent:#00225A; --accent-ink:#fff; --panel:#FFFFFF; --focus:#00225A; }
 body[data-theme="exchange"] { --bg:#FAFAF6; --ink:#121212; --muted:#55524C; --rule:#D6D2C8; --accent:#121212; --accent-ink:#FAFAF6; --panel:#fff; }
 body[data-theme="facilitator"] { --bg:#FFFFFF; --ink:#1A1A1A; --muted:#555; --rule:#DDD; --accent:#1A1A1A; --accent-ink:#fff; --panel:#F6F6F4; --display: var(--sans); }
 body[data-theme="print"] { --bg:#FFFFFF; --ink:#111; --muted:#444; --rule:#ccc; --accent:#111; --accent-ink:#fff; --panel:#fff; }
@@ -579,6 +579,246 @@ body[data-theme="c06"] .show-tell { border-style: double; border-width: 5px; }
 .print-sheet .empty-shelf { display: none; }
 .print-sheet .show-tell { border: 1.5px solid #111; font-size: 1.05rem; padding: .9rem 1rem; }
 .ps-foot { font: .8rem var(--mono); color: var(--muted); }
+
+/* ==========================================================================
+   Each room its own place (styling only; participant wording is unchanged).
+   The corner menu, the notebook sheets and the pencil are the same everywhere.
+   ========================================================================== */
+
+/* ---------- 01 as a sealed prediction: security-envelope paper, tear-off slips, an envelope ---------- */
+body[data-theme="c01"] {
+  background-color: #EEF0F3;
+  background-image: repeating-linear-gradient(45deg, rgba(0, 34, 90, .055) 0 2px, transparent 2px 7px),
+                    repeating-linear-gradient(-45deg, rgba(0, 34, 90, .035) 0 1px, transparent 1px 9px);
+  background-size: auto; background-attachment: fixed;
+}
+body[data-theme="c01"] .ch-head { position: relative; }
+body[data-theme="c01"] .ch-head::after {
+  content: "Sealed" / "";
+  position: absolute; right: .5rem; top: clamp(2.2rem, 6vw, 4.5rem);
+  width: 6.4rem; height: 6.4rem; display: grid; place-items: center;
+  font: 700 .78rem/1 var(--code); text-transform: uppercase; letter-spacing: .2em; color: #3A1A05;
+  background: radial-gradient(circle at 36% 30%, #F6A86C 0, #EE7C2D 42%, #C25A16 100%);
+  border-radius: 47% 53% 50% 48% / 52% 46% 54% 48%;
+  box-shadow: inset 0 0 0 6px rgba(0, 0, 0, .07), inset 0 0 0 8px rgba(255, 255, 255, .2), 0 8px 16px -8px rgba(0, 0, 0, .45);
+  transform: rotate(-12deg);
+}
+body[data-theme="c01"] .step { border-top: 2px dashed rgba(0, 34, 90, .45); padding-top: 2.75rem; position: relative; }
+body[data-theme="c01"] .step::before {
+  content: "✂" / ""; position: absolute; top: -.9rem; left: -.1rem; padding: 0 .35rem;
+  font-size: 1.15rem; line-height: 1.6rem; color: #00225A; background: #EEF0F3;
+}
+body[data-theme="c01"] .step:first-of-type::before { display: none; }
+body[data-theme="c01"] .step-num {
+  display: inline-block; padding: .45rem .8rem; background: #fff; color: #00225A;
+  border: 1.5px dashed #00225A; border-radius: 3px; font-family: var(--code); letter-spacing: .12em;
+}
+body[data-theme="c01"] .step h2 { font-weight: 700; letter-spacing: -.035em; }
+/* The prompt is an envelope: an open flap and a wax seal */
+body[data-theme="c01"] .prompt {
+  position: relative; margin-top: 4.4rem; background: #FBFAF6; border: 1px solid #C3C8D2;
+  box-shadow: 0 18px 30px -22px rgba(0, 20, 60, .55);
+}
+body[data-theme="c01"] .prompt::before {
+  content: ""; position: absolute; left: -1px; right: -1px; bottom: 100%; height: 3.2rem; pointer-events: none;
+  background: linear-gradient(#E4E1D7, #ECE9E0); clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+body[data-theme="c01"] .prompt::after {
+  content: ""; position: absolute; left: calc(50% - 1.15rem); top: calc(-3.2rem - 1.1rem); width: 2.3rem; height: 2.3rem; pointer-events: none;
+  background: radial-gradient(circle at 36% 30%, #F6A86C 0, #EE7C2D 45%, #C25A16 100%);
+  border-radius: 47% 53% 50% 48% / 52% 46% 54% 48%; box-shadow: inset 0 0 0 3px rgba(0, 0, 0, .08), 0 3px 6px rgba(0, 0, 0, .25);
+}
+body[data-theme="c01"] .prompt-head { border-bottom: 1px solid #C3C8D2; }
+/* Leaving for Claude: an airmail border */
+body[data-theme="c01"] .external {
+  border: 8px solid transparent; background: #fff; background-clip: padding-box; padding: 1.25rem 1.4rem .6rem;
+  border-image: repeating-linear-gradient(45deg, #00225A 0 10px, #fff 10px 20px, #EE7C2D 20px 30px, #fff 30px 40px) 8;
+}
+body[data-theme="c01"] .questions, body[data-theme="c01"] .adventures {
+  background: #fff; border-left: 0; border-top: 3px solid #00225A; box-shadow: 0 12px 24px -20px rgba(0, 20, 60, .6);
+}
+
+/* ---------- 02 as a gallery wall: white walls, framed works, wall labels ---------- */
+body[data-theme="c02"] .ch-head { border-bottom: 0; padding-top: clamp(3.5rem, 9vw, 7rem); }
+body[data-theme="c02"] .ch-head::after { display: none; }
+body[data-theme="c02"] .ch-question { font-weight: 400; letter-spacing: -.035em; }
+body[data-theme="c02"] .step { border-top: 0; padding-top: clamp(3rem, 7vw, 5.5rem); }
+body[data-theme="c02"] .step-num { display: flex; align-items: center; gap: .9rem; color: var(--muted); letter-spacing: .24em; font-size: .72rem; }
+body[data-theme="c02"] .step-num::before { content: ""; width: 2.5rem; height: 1px; background: currentColor; }
+body[data-theme="c02"] .step h2 { font-size: clamp(2rem, 4.4vw, 3.3rem); letter-spacing: -.03em; }
+body[data-theme="c02"] .pair { gap: clamp(1rem, 3vw, 2.5rem); }
+body[data-theme="c02"] .pair-item .art {
+  border: 0; background: #fff; padding: clamp(.7rem, 2vw, 1.4rem); margin: 9px;
+  width: calc(100% - 18px); box-shadow: 0 0 0 clamp(5px, .8vw, 9px) #1F1C19, 0 26px 40px -18px rgba(0, 0, 0, .45);
+}
+body[data-theme="c02"] .pair-item p {
+  display: inline-block; margin-top: 1.3rem; padding: .45rem .7rem; background: #fff; color: var(--ink);
+  border: 1px solid var(--rule); font-size: .8rem; box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+}
+body[data-theme="c02"] .pair-vs { color: var(--muted); }
+body[data-theme="c02"] .prompt { background: #fff; border: 1px solid var(--rule); box-shadow: 0 2px 4px rgba(0, 0, 0, .05), 0 22px 34px -26px rgba(0, 0, 0, .45); }
+body[data-theme="c02"] .prompt.is-copied { border-color: var(--accent); box-shadow: 6px 6px 0 var(--accent); }
+body[data-theme="c02"] .external { border: 1px solid var(--ink); background: transparent; }
+body[data-theme="c02"] .pull { font-size: clamp(1.5rem, 3vw, 2.3rem); font-style: italic; letter-spacing: -.015em; max-width: 26ch; margin: 2.5rem 0; }
+body[data-theme="c02"] .secret { background: #fff; border-color: var(--accent); }
+body[data-theme="c02"] .solo { background: #fff; border-left: 0; border-top: 1px solid var(--ink); }
+body[data-theme="c02"] .questions { background: transparent; border-left: 1px solid var(--ink); }
+body[data-theme="c02"] .btn-next { border: 1px solid var(--ink); border-radius: 2rem; }
+body[data-theme="c02"] .btn-external { background: var(--ink); color: var(--bg); }
+
+/* ---------- 04 as a game show: curtain, spotlights, marquee bulbs ---------- */
+body[data-theme="c04"] {
+  background-image: radial-gradient(50% 45% at 12% 0%, rgba(238, 124, 45, .16), transparent 70%),
+                    radial-gradient(50% 45% at 88% 0%, rgba(238, 124, 45, .11), transparent 70%);
+  background-attachment: fixed;
+}
+body[data-theme="c04"] .challenge::before {
+  content: ""; display: block; height: 2.6rem; margin: 0 calc(var(--gutter) * -1);
+  background: repeating-linear-gradient(90deg, rgba(0, 0, 0, .28) 0 2px, transparent 2px 18px, rgba(255, 255, 255, .06) 18px 20px, transparent 20px 36px),
+              linear-gradient(#4E1A08, #8A3416 55%, #A4441D);
+  -webkit-mask: radial-gradient(18px 12px at 50% 0, #000 98%, transparent) 0 100% / 36px 12px repeat-x, linear-gradient(#000 0 0) 0 0 / 100% calc(100% - 11px) no-repeat;
+  mask: radial-gradient(18px 12px at 50% 0, #000 98%, transparent) 0 100% / 36px 12px repeat-x, linear-gradient(#000 0 0) 0 0 / 100% calc(100% - 11px) no-repeat;
+}
+body[data-theme="c04"] .ch-question { text-shadow: 0 0 48px rgba(238, 124, 45, .35); }
+body[data-theme="c04"] .step-num {
+  display: inline-block; background: #EE7C2D; color: #1A1F24; padding: .45rem .75rem; font-weight: 700; letter-spacing: .16em;
+  box-shadow: 0 0 20px rgba(238, 124, 45, .45);
+}
+body[data-theme="c04"] .step h2 { font-weight: 700; letter-spacing: -.035em; }
+body[data-theme="c04"] .stage-inline {
+  position: relative; padding: 2.8rem 1rem 2rem; margin: 1.5rem 0;
+  background: radial-gradient(ellipse 70% 90% at 50% 0%, #3C2C20 0%, #1E2226 75%);
+  box-shadow: inset 0 0 0 2px rgba(238, 124, 45, .35);
+}
+body[data-theme="c04"] .stage-inline::before, body[data-theme="c04"] .stage-inline::after {
+  content: ""; position: absolute; left: .9rem; right: .9rem; height: 10px; pointer-events: none;
+  background: radial-gradient(circle, #FFE1C6 0 2.4px, #EE7C2D 3px 3.8px, transparent 4.3px) 0 0 / 22px 10px repeat-x;
+  filter: drop-shadow(0 0 4px rgba(238, 124, 45, .9));
+  animation: c04-bulbs 1.1s steps(2) infinite;
+}
+body[data-theme="c04"] .stage-inline::before { top: .75rem; }
+body[data-theme="c04"] .stage-inline::after { bottom: .75rem; animation-delay: -.55s; }
+@keyframes c04-bulbs { to { background-position: 22px 0; } }
+body[data-theme="c04"] .designer {
+  border: 2px dashed #EE7C2D;
+  background: repeating-linear-gradient(-45deg, rgba(238, 124, 45, .07) 0 12px, transparent 12px 24px), var(--panel);
+}
+body[data-theme="c04"] .prompt { border-color: #EE7C2D; }
+body[data-theme="c04"] .prompt-head { background: rgba(238, 124, 45, .12); border-color: #EE7C2D; }
+
+/* ---------- 05 as a patent drawing: blueprint sheet, figures, a specification ---------- */
+body[data-theme="c05"] {
+  background-image: linear-gradient(rgba(255, 255, 255, .11) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .11) 1px, transparent 1px),
+                    linear-gradient(rgba(255, 255, 255, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .045) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px; background-attachment: fixed;
+}
+body[data-theme="c05"] .ch-head {
+  position: relative; margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  border: 1.5px solid var(--ink); padding: clamp(1.4rem, 4vw, 3rem); padding-bottom: clamp(2.6rem, 5vw, 3.4rem);
+}
+body[data-theme="c05"] .ch-head::after {
+  content: "Drawing № 05" / ""; position: absolute; right: -1.5px; bottom: -1.5px;
+  border: 1.5px solid var(--ink); padding: .5rem .8rem; background: var(--bg);
+  font: 600 .72rem/1 var(--code); letter-spacing: .18em; text-transform: uppercase;
+}
+body[data-theme="c05"] .ch-meta, body[data-theme="c05"] .ch-title { font-family: var(--code); }
+body[data-theme="c05"] .ch-question { font-style: normal; font-weight: 400; letter-spacing: -.03em; }
+body[data-theme="c05"] .step { border-top: 1px dashed var(--rule); }
+body[data-theme="c05"] .step.movement .step-num {
+  display: inline-block; font: 600 .78rem/1 var(--code); letter-spacing: .18em; color: var(--accent);
+  border: 1.5px solid var(--accent); padding: .45rem .65rem;
+}
+body[data-theme="c05"] .step.movement .step-num::before { content: "Fig. " / ""; }
+body[data-theme="c05"] .vitrines { counter-reset: fig; }
+body[data-theme="c05"] .vitrine { counter-increment: fig; color: rgba(238, 242, 248, .55); }
+body[data-theme="c05"] .vitrine::before {
+  content: ""; display: block; height: 11px; margin-bottom: .55rem;
+  border-left: 1px solid currentColor; border-right: 1px solid currentColor;
+  background: linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat;
+}
+body[data-theme="c05"] .vitrine .art { border: 1px solid rgba(238, 242, 248, .6); box-shadow: none; }
+body[data-theme="c05"] .vitrine figcaption::before {
+  content: "Fig. " counter(fig) / ""; display: block; margin-bottom: .45rem;
+  font: 600 .7rem/1 var(--code); letter-spacing: .16em; color: var(--muted);
+}
+body[data-theme="c05"] .empty-shelf { border-bottom: 2px solid var(--ink); }
+body[data-theme="c05"] .empty-shelf span { border: 1.5px dashed var(--accent); }
+body[data-theme="c05"] .screen-free { border: 1px dashed var(--muted); background: var(--panel); }
+body[data-theme="c05"] .show-tell { position: relative; border: 1.5px solid var(--ink); background: var(--panel); padding-top: 2.8rem; }
+body[data-theme="c05"] .show-tell::before {
+  content: "Specification" / ""; position: absolute; left: 0; top: 0; padding: .45rem .7rem;
+  border-right: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+  font: 600 .7rem/1 var(--code); letter-spacing: .18em; text-transform: uppercase; color: var(--accent);
+}
+
+/* ---------- 06 as public notices: enamel signs on a tiled wall ---------- */
+body[data-theme="c06"] {
+  background-image: linear-gradient(rgba(0, 0, 0, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, .055) 1px, transparent 1px);
+  background-size: 64px 32px; background-attachment: fixed;
+}
+body[data-theme="c06"] .ch-question { font-style: normal; font-weight: 700; letter-spacing: -.04em; }
+body[data-theme="c06"] .step.movement {
+  border-top: 0; border-radius: 18px; position: relative;
+  padding: clamp(1.8rem, 4vw, 3rem) clamp(1.4rem, 4vw, 3.2rem) clamp(1.2rem, 3vw, 2.2rem); margin: 2.2rem 0 1.4rem;
+  background-color: #fff;
+  background-image: radial-gradient(circle at 24px 24px, #A2A7AE 0 3.6px, #5E646C 4.1px 4.8px, transparent 5.3px),
+                    radial-gradient(circle at calc(100% - 24px) 24px, #A2A7AE 0 3.6px, #5E646C 4.1px 4.8px, transparent 5.3px),
+                    radial-gradient(circle at 24px calc(100% - 24px), #A2A7AE 0 3.6px, #5E646C 4.1px 4.8px, transparent 5.3px),
+                    radial-gradient(circle at calc(100% - 24px) calc(100% - 24px), #A2A7AE 0 3.6px, #5E646C 4.1px 4.8px, transparent 5.3px);
+  box-shadow: inset 0 0 0 6px #fff, inset 0 0 0 9px var(--accent), 0 2px 0 #C9C5BA, 0 22px 34px -24px rgba(0, 0, 0, .55);
+}
+body[data-theme="c06"] .step.movement .step-num {
+  width: 3rem; height: 3rem; border-radius: 50%; display: grid; place-items: center; padding: 0; border: 0;
+  background: var(--accent); color: #fff; font: 700 1.05rem/1 var(--brand); letter-spacing: 0;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--accent);
+}
+body[data-theme="c06"] .step.movement h2 { font-weight: 700; text-transform: uppercase; letter-spacing: 0; font-size: clamp(1.45rem, 3.2vw, 2.3rem); }
+body[data-theme="c06"] .movement .pull { display: inline-block; background: var(--accent); color: #fff; padding: .55rem 1rem; font-style: normal; font-weight: 700; }
+body[data-theme="c06"] .movement blockquote.pull { display: block; border-left: 0; background: #EE7C2D; color: #1A1F24; padding: .8rem 1.1rem; border-radius: 10px; }
+body[data-theme="c06"] .decree { background: #F7F5EF; border: 1px solid var(--rule); border-top: 6px solid var(--accent); padding: .8rem .8rem .3rem; box-shadow: 0 12px 20px -16px rgba(0, 0, 0, .5); }
+body[data-theme="c06"] .show-tell {
+  background: #EE7C2D; color: #1A1F24; border: 0; border-radius: 14px; padding: 1.5rem 1.6rem;
+  box-shadow: inset 0 0 0 6px #EE7C2D, inset 0 0 0 8px #1A1F24, 0 22px 34px -24px rgba(0, 0, 0, .55);
+}
+body[data-theme="c06"] .screen-free { background: #fff; border: 2px solid var(--accent); border-radius: 10px; }
+body[data-theme="c06"] .btn-next { border: 2px solid var(--accent); border-radius: 999px; background: #fff; color: var(--accent); font-weight: 700; }
+
+/* ---------- Discovery Exchange as a pinboard: cork, pinned cards ---------- */
+body[data-theme="exchange"] {
+  --bg: #C9A273; --ink: #1C140B; --muted: #3B2D1C; --rule: #A0805A; --accent: #1C140B; --accent-ink: #F7EFE2; --panel: #FFFDF6; --focus: #00225A;
+  background-image: radial-gradient(rgba(70, 40, 10, .2) 1px, transparent 1.6px), radial-gradient(rgba(255, 240, 210, .2) 1px, transparent 1.6px);
+  background-size: 7px 7px, 11px 11px; background-position: 0 0, 3px 5px;
+}
+body[data-theme="exchange"] .ex-steps { gap: 1.4rem 2rem; }
+body[data-theme="exchange"] .ex-steps li {
+  position: relative; background: #FFFDF6; border-top: 0; padding: 1.5rem 1.1rem 1.1rem;
+  box-shadow: 0 12px 20px -12px rgba(0, 0, 0, .6); transform: rotate(-1deg);
+}
+body[data-theme="exchange"] .ex-steps li:nth-child(2) { transform: rotate(.8deg); }
+body[data-theme="exchange"] .ex-steps li:nth-child(3) { transform: rotate(-.4deg); }
+body[data-theme="exchange"] .ex-steps li::before, body[data-theme="exchange"] .ex-card::before {
+  content: ""; position: absolute; top: -8px; left: calc(50% - 8px); width: 16px; height: 16px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 32%, #FFB27A 0, #EE7C2D 45%, #A9480E 100%); box-shadow: 0 3px 3px rgba(0, 0, 0, .35);
+}
+body[data-theme="exchange"] .ex-steps li:nth-child(2)::before, body[data-theme="exchange"] .ex-card::before {
+  background: radial-gradient(circle at 35% 32%, #6D88BC 0, #00225A 50%, #00122F 100%);
+}
+body[data-theme="exchange"] .ex-card { position: relative; border: 0; box-shadow: 0 18px 30px -16px rgba(0, 0, 0, .7); transform: rotate(.6deg); }
+
+@media (max-width: 700px) {
+  body[data-theme="c01"] .ch-head::after { position: static; width: 4.6rem; height: 4.6rem; font-size: .62rem; margin-top: 1.2rem; }
+  body[data-theme="c05"] .ch-head { margin-top: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="c04"] .stage-inline::before, body[data-theme="c04"] .stage-inline::after { animation: none; }
+}
+@media print {
+  body[data-theme] { --bg: #fff; --ink: #000; --muted: #444; --rule: #bbb; --panel: #fff; background-image: none !important; }
+  body[data-theme] .challenge, body[data-theme] .exchange { --bg: #fff; --ink: #000; --muted: #444; --rule: #bbb; --panel: #fff; }
+  body[data-theme] .step, body[data-theme] .ex-card, body[data-theme] .ex-steps li { transform: none !important; box-shadow: none !important; background: #fff !important; }
+  body[data-theme] .ch-head::after, body[data-theme] .challenge::before, body[data-theme] .stage-inline::before, body[data-theme] .stage-inline::after,
+  body[data-theme] .prompt::before, body[data-theme] .prompt::after, body[data-theme] .ex-card::before, body[data-theme] .ex-steps li::before { display: none !important; }
+}
 
 /* ---------- Notebook moments ----------
    Wherever a participant chooses or writes, the controls sit on a sheet of

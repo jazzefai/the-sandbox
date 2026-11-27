@@ -52,6 +52,22 @@ Wherever participants choose or write, the controls sit on a sheet of notebook p
 - **Motion:** the fill and the check draw in with a few quick strokes. With reduced motion they simply appear.
 - **Pencil:** over notebook pages, the mouse cursor becomes a small pencil whose point is the click spot. Mouse and trackpad only; elsewhere the cursor is normal.
 
+## Each room its own place
+
+Like the drops on mschf.com, each invitation has its own setting. The frame stays constant: the corner menu, the SB mark, and the notebook sheets with their pencil. Only the styling changes; participant wording is the same as the spec. The decorative labels (for example "Case file № 03", "Confidential", "Sealed", "Drawing № 05", "Fig. 1", "Specification") are hidden from screen readers.
+
+| Room | Setting |
+|---|---|
+| 01 | **A sealed prediction.** Security-envelope paper, a wax seal, steps separated by tear-off lines, the prompt as an envelope, and an airmail border on the way to Claude. |
+| 02 | **A gallery wall.** White walls, the paired illustrations framed and matted with wall labels, and large quiet wall text. |
+| 03 | **A case file.** A manila folder on a dark desk, steps as typed sheets on index tabs, paper-clipped memos, carbon-copy prompts, and evidence that un-redacts row by row. |
+| 04 | **A game show.** A curtain valance, spotlights, marquee bulbs around the door stage, and a backstage-striped designer mode. |
+| 05 | **A patent drawing.** A Deep Navy blueprint grid, a drawing frame with a title block, figures with dimension lines, and the show-and-tell as a specification. |
+| 06 | **Public notices.** Enamel signs with screws on a tiled wall, round sign numbers, and orange notices. |
+| Exchange | **A pinboard.** Cork, with the three steps and the preview card pinned up. |
+
+The small labels and stamps use the typewriter-style monospace. Headings and body text stay in Circular. Motion (the redactions in 03 and the marquee bulbs in 04) is switched off for people who turn off motion in their device settings. Printing removes the settings and prints plain black on white.
+
 ## Architecture
 
 ```

@@ -3,6 +3,12 @@
   'use strict';
   const TIP = { '01': 'Claude↗', '02': 'Canva AI↗', '03': 'Copilot↗', '04': 'Lovable↗', '05': 'No screen needed', '06': 'No screen needed' };
 
+  const lastWordWithArrow = (text) => {
+    const words = text.split(' ');
+    const last = words.pop();
+    return (words.length ? S.esc(words.join(' ')) + ' ' : '') + `<span class="nowrap">${S.esc(last)}<span class="index-arrow" aria-hidden="true">↗</span></span>`;
+  };
+
   S.views.home = function (root) {
     root.innerHTML = `
       <section class="home">
@@ -19,7 +25,7 @@
             <li class="index-row" data-inv="${c.id}">
               <a href="#/${c.id}" class="index-link" data-tip="${S.esc(TIP[c.id])}">
                 <span class="idx" aria-hidden="true"><span>#</span><span>${c.id}</span></span>
-                <span class="index-title">${S.esc(c.question)}<span class="index-arrow" aria-hidden="true">↗</span></span>
+                <span class="index-title">${lastWordWithArrow(c.question)}</span>
                 <span class="index-sub">
                   <span class="index-q">${S.esc(c.title)}</span>
                   <span class="index-medium">${S.esc(c.medium)} · ${S.esc(c.verb)}</span>

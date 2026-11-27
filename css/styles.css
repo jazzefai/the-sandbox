@@ -109,11 +109,13 @@ body[data-theme="home"] { font-family: var(--mono); }
 .home-intro p:first-child { color: #fff; text-transform: uppercase; }
 .index { list-style: none; margin: 0; padding: 0; }
 .index-row { --c: #fff; }
-.index-link { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); column-gap: .35rem; align-items: start; padding: .2rem 0 .55rem; text-decoration: none; color: var(--index-gray); }
+.index-link { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); column-gap: .35rem; align-items: start; padding: .5rem 0 1.4rem; text-decoration: none; color: var(--index-gray); }
 .idx { display: flex; flex-direction: column; font: 400 .62rem/1 var(--mono); padding-top: .45em; align-items: flex-start; opacity: .9; }
-.index-title { font: 400 clamp(1.9rem, 5.6vw, 4.6rem)/.86 var(--mono); text-transform: uppercase; letter-spacing: -.035em; }
+.index-title { font: 400 clamp(1.9rem, 5.6vw, 4.6rem)/.96 var(--mono); text-transform: uppercase; letter-spacing: -.025em; text-wrap: balance; }
 .index-arrow { display: inline-block; margin-left: .12em; font-size: .7em; vertical-align: .18em; visibility: hidden; }
-.index-sub { grid-column: 2; display: flex; flex-wrap: wrap; gap: .1rem 1.1rem; margin-top: .45rem; font: 400 .85rem/1.35 var(--mono); }
+/* Keeps the hover arrow attached to the last word, so it never wraps onto a line of its own. */
+.nowrap { white-space: nowrap; }
+.index-sub { grid-column: 2; display: flex; flex-wrap: wrap; gap: .2rem 1.1rem; margin-top: .7rem; font: 400 .85rem/1.35 var(--mono); }
 .index-q { color: inherit; }
 .index-medium { text-transform: uppercase; letter-spacing: .04em; font-size: .78rem; opacity: .8; }
 .index-saved { color: #F5C842; text-transform: uppercase; font-size: .72rem; letter-spacing: .04em; }
@@ -139,7 +141,7 @@ body[data-theme="home"] { font-family: var(--mono); }
 .ch-num { font: 400 1rem/1 var(--mono); color: var(--accent); border: 1px solid currentColor; padding: .35rem .45rem; letter-spacing: 0; }
 .ch-head h1 { margin: 1.2rem 0 0; }
 .ch-title { display: block; font: 600 .95rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: .14em; margin-bottom: .9rem; }
-.ch-question { display: block; font-size: clamp(2.3rem, 6.2vw, 5.4rem); line-height: 1; letter-spacing: -.03em; max-width: 17ch; }
+.ch-question { display: block; font-size: clamp(2.3rem, 6.2vw, 5.4rem); line-height: 1.04; letter-spacing: -.025em; max-width: 20ch; text-wrap: balance; }
 .ch-tagline { font: italic 1.25rem/1.3 var(--serif); margin: 1.25rem 0 0; color: var(--muted); }
 .ch-body { max-width: 58rem; }
 .hook { font: 400 clamp(1.2rem, 2.2vw, 1.55rem)/1.35 var(--serif); font-style: italic; max-width: 40ch; margin-bottom: 2.5rem; }

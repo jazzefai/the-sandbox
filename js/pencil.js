@@ -1,6 +1,7 @@
 /* Pencil sounds for the notebook moments.
-   Circling an answer makes a short pencil scratch; ticking a box makes two quick strokes.
-   The sound is generated in the browser (filtered noise), so there are no audio files.
+   Filling in a bubble makes soft pencil shading followed by a warm wooden note;
+   checking a box makes two soft strokes and a slightly brighter note. Calm, low and brief.
+   The sound is generated in the browser, so there are no audio files.
    A "Pencil sound" switch above the first notebook sheet on each page turns it on or off,
    and each person's choice is remembered in this browser. */
 (function (S) {
@@ -8,54 +9,100 @@
   const KEY = 'sandbox.v1.pencilSound';
   const isOn = () => { try { return localStorage.getItem(KEY) !== 'off'; } catch (e) { return true; } };
   let ctx = null;
-  let noise = null;
+  let paper = null;   // soft "brown" noise: warmer and gentler than white noise
+  let out = null;     // master level, kept low and smoothed by a compressor
+  const NOTES = [392.0, 440.0, 523.25, 587.33, 659.25]; // G A C D E: a calm pentatonic scale
+  let lastNote = -1;
 
   function audio() {
     if (!ctx) {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return null;
       ctx = new AC();
-      noise = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
-      const d = noise.getChannelData(0);
-      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      paper = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+      const d = paper.getChannelData(0);
+      let last = 0;
+      for (let i = 0; i < d.length; i++) {
+        last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02;
+        d[i] = last * 3.5;
+      }
+      const comp = ctx.createDynamicsCompressor();
+      comp.threshold.value = -24; comp.ratio.value = 3;
+      out = ctx.createGain();
+      out.gain.value = 0.9;
+      out.connect(comp).connect(ctx.destination);
     }
     if (ctx.state === 'suspended') ctx.resume();
     return ctx;
   }
 
-  /* One pencil stroke: grainy noise through a band-pass filter, with a wobbling level
-     so it sounds like graphite dragging over paper fibres. */
-  function stroke(t, dur, freq, vol) {
+  /* Pencil shading: gentle strokes of soft noise with the harsh top end removed. */
+  function shading(t, dur, strokes, vol) {
     const src = ctx.createBufferSource();
-    src.buffer = noise;
-    const band = ctx.createBiquadFilter();
-    band.type = 'bandpass'; band.Q.value = 0.9;
-    band.frequency.setValueAtTime(freq, t);
-    band.frequency.linearRampToValueAtTime(freq * 1.25, t + dur * 0.5);
-    band.frequency.linearRampToValueAtTime(freq * 0.9, t + dur);
+    src.buffer = paper;
+    const low = ctx.createBiquadFilter();
+    low.type = 'lowpass'; low.frequency.value = 1500; low.Q.value = 0.4;
     const high = ctx.createBiquadFilter();
-    high.type = 'highpass'; high.frequency.value = 1200;
+    high.type = 'highpass'; high.frequency.value = 220;
     const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0, t);
-    gain.gain.linearRampToValueAtTime(vol, t + 0.02);
-    const steps = Math.max(4, Math.round(dur / 0.03));
-    for (let i = 1; i < steps; i++) gain.gain.linearRampToValueAtTime(vol * (0.5 + Math.random() * 0.5), t + (dur * i) / steps);
-    gain.gain.linearRampToValueAtTime(0, t + dur);
-    src.connect(band).connect(high).connect(gain).connect(ctx.destination);
-    src.start(t, Math.random() * 0.5);
-    src.stop(t + dur + 0.05);
+    gain.gain.setValueAtTime(0.0001, t);
+    const seg = dur / strokes;
+    for (let i = 0; i < strokes; i++) {
+      const s0 = t + i * seg;
+      const peak = vol * (0.75 + Math.random() * 0.25);
+      gain.gain.linearRampToValueAtTime(peak, s0 + seg * 0.45);
+      gain.gain.linearRampToValueAtTime(vol * 0.18, s0 + seg);
+    }
+    gain.gain.linearRampToValueAtTime(0.0001, t + dur + 0.06);
+    src.connect(low).connect(high).connect(gain).connect(out);
+    src.start(t, Math.random());
+    src.stop(t + dur + 0.1);
+  }
+
+  /* A soft wooden chime: a warm fundamental with a faint, quickly fading overtone. */
+  function chime(t, freq, vol) {
+    const tone = ctx.createOscillator();
+    tone.type = 'sine'; tone.frequency.value = freq;
+    const shimmer = ctx.createOscillator();
+    shimmer.type = 'sine'; shimmer.frequency.value = freq * 3.98;
+    const g1 = ctx.createGain();
+    g1.gain.setValueAtTime(0.0001, t);
+    g1.gain.exponentialRampToValueAtTime(vol, t + 0.012);
+    g1.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
+    const g2 = ctx.createGain();
+    g2.gain.setValueAtTime(0.0001, t);
+    g2.gain.exponentialRampToValueAtTime(vol * 0.18, t + 0.006);
+    g2.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+    const soften = ctx.createBiquadFilter();
+    soften.type = 'lowpass'; soften.frequency.value = 2400;
+    tone.connect(g1).connect(soften);
+    shimmer.connect(g2).connect(soften);
+    soften.connect(out);
+    tone.start(t); shimmer.start(t);
+    tone.stop(t + 1.2); shimmer.stop(t + 0.3);
+  }
+  function nextNote(offset) {
+    let i;
+    do { i = Math.floor(Math.random() * NOTES.length); } while (i === lastNote && NOTES.length > 1);
+    lastNote = i;
+    return NOTES[Math.min(NOTES.length - 1, i + (offset || 0))];
   }
 
   S.pencil = {
-    circle() {
-      if (!isOn() || !audio()) return;
-      stroke(ctx.currentTime + 0.01, 0.36, 3200, 0.09);
-    },
-    tick() {
+    /* Filling in a bubble: six soft strokes, then a warm note as it completes. */
+    fill() {
       if (!isOn() || !audio()) return;
       const t = ctx.currentTime + 0.01;
-      stroke(t, 0.07, 3800, 0.08);
-      stroke(t + 0.1, 0.13, 3400, 0.09);
+      shading(t, 0.34, 6, 0.05);
+      chime(t + 0.3, nextNote(), 0.06);
+    },
+    /* A check mark: two quick strokes and a slightly brighter note. */
+    check() {
+      if (!isOn() || !audio()) return;
+      const t = ctx.currentTime + 0.01;
+      shading(t, 0.12, 1, 0.045);
+      shading(t + 0.13, 0.16, 1, 0.05);
+      chime(t + 0.28, nextNote(1), 0.055);
     }
   };
 
@@ -63,8 +110,8 @@
   document.addEventListener('change', (e) => {
     const input = e.target;
     if (!(input instanceof HTMLInputElement) || !input.checked || !input.closest('.notebook')) return;
-    if (input.type === 'radio') S.pencil.circle();
-    else if (input.type === 'checkbox') S.pencil.tick();
+    if (input.type === 'radio') S.pencil.fill();
+    else if (input.type === 'checkbox') S.pencil.check();
   });
 
   /* The on/off switch, placed above the first notebook sheet on the page. */
@@ -86,7 +133,7 @@
     b.addEventListener('click', () => {
       try { localStorage.setItem(KEY, isOn() ? 'off' : 'on'); } catch (e) { /* ignore */ }
       syncToggles();
-      if (isOn()) S.pencil.circle();
+      if (isOn()) S.pencil.fill();
       S.announce(isOn() ? 'Pencil sound on.' : 'Pencil sound off.');
     });
     row.appendChild(b);

@@ -25,6 +25,23 @@ Any service that serves plain files over `https://` works. HTTPS matters because
 
 **After any change:** bump the `?v=N` number on the script and stylesheet links in `index.html`. Otherwise browsers that already loaded the site keep the old files.
 
+## Typography
+
+The brand typeface is **Circular** (Lineto), used for everything: headings, labels and body text. Prompt text that people copy is the only exception; it stays in a plain monospace so it reads as "text to paste".
+
+**No font files are included, on purpose.** Circular's license, which is embedded in the font files, forbids "storing on publicly available servers" and "redistributing", and this site is public. So `css/styles.css` refers to Circular only as a font **installed on the viewer's device**, using `local()` with the common names CircularXX, Circular Std and Circular, in the weights Book, Medium, Bold and Black plus their italics.
+
+- **With Circular installed:** the brand font shows. This is the case on brand-team machines, for example.
+- **Everywhere else:** the closest font the device already has is used, which is Avenir Next on Apple devices and Segoe UI on Windows.
+
+**To make every device show the same look**, add a free, openly licensed look-alike such as DM Sans or Figtree:
+
+1. Put its `.woff2` files in `fonts/`, together with its license file.
+2. Add an `@font-face` rule for it.
+3. Put its name right after the Circular entries in `--brand`.
+
+If your organization holds a Lineto **web** license, check its terms before putting Circular web fonts on this public site.
+
 ## Architecture
 
 ```

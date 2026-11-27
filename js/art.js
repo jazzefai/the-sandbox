@@ -96,8 +96,8 @@
         <rect width="400" height="280" fill="#F6E7C8"/>
         <rect x="0" y="242" width="400" height="38" fill="#D9B98A"/>
         <rect x="70" y="34" width="260" height="110" fill="#24443A" stroke="#8A5A2B" stroke-width="8"/>
-        <text x="96" y="76" font-family="Georgia, serif" font-size="17" fill="#F1EFE6">Question 1:</text>
-        <text x="96" y="104" font-family="Georgia, serif" font-size="17" fill="#F1EFE6">Why should I learn from you?</text>
+        <text x="96" y="76" font-family="Sandbox Circular, CircularXX, Circular Std, Avenir Next, Segoe UI, sans-serif" font-size="17" fill="#F1EFE6">Question 1:</text>
+        <text x="96" y="104" font-family="Sandbox Circular, CircularXX, Circular Std, Avenir Next, Segoe UI, sans-serif" font-size="17" fill="#F1EFE6">Why should I learn from you?</text>
         <rect x="14" y="40" width="40" height="40" fill="#E85D4A"/><rect x="346" y="40" width="40" height="40" fill="#3F7CD9"/><rect x="346" y="90" width="40" height="40" fill="#F2B632"/>
         ${person(300, 196, 0.85, '#E85D4A', '#8C5B3E')}
         ${desk(84)}${desk(200)}${desk(316)}
@@ -114,8 +114,8 @@
         ${letter(150, 160, -10)}${letter(250, 166, 12)}${letter(200, 186, -3)}
         <rect x="194" y="112" width="12" height="40" fill="#F3EEE3"/><path d="M200 98c6 6 6 12 0 14-6-2-6-8 0-14z" fill="#F2B632"/>
         <rect x="168" y="214" width="64" height="40" fill="#1B1414" stroke="#C9A45C"/>
-        <text x="200" y="230" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#C9A45C">MENU</text>
-        <text x="200" y="244" text-anchor="middle" font-family="Georgia, serif" font-size="7" fill="#F3EEE3">conversations</text>`);
+        <text x="200" y="230" text-anchor="middle" font-family="Sandbox Circular, CircularXX, Circular Std, Avenir Next, Segoe UI, sans-serif" font-size="9" fill="#C9A45C">MENU</text>
+        <text x="200" y="244" text-anchor="middle" font-family="Sandbox Circular, CircularXX, Circular Std, Avenir Next, Segoe UI, sans-serif" font-size="7" fill="#F3EEE3">conversations</text>`);
     },
     birthday() {
       const gift = (x, y, col) => `<g transform="translate(${x} ${y})"><rect x="-14" y="-14" width="28" height="28" fill="${col}"/><path d="M0 -14v28M-14 0h28" stroke="#FBF7EE" stroke-width="3"/></g>`;

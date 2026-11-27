@@ -1,8 +1,23 @@
-/* The Sandbox — editorial, exhibition-like. No web fonts: system stacks only. */
+/* The Sandbox — typography follows the brand: Circular (Lineto).
+   Circular's license does not allow putting its font files on a public server, so the site
+   never ships them. It uses Circular when it is installed on the viewer's device (local()),
+   and otherwise falls back to the closest fonts the device already has. */
+@font-face { font-family: "Sandbox Circular"; font-weight: 400; font-style: normal; src: local("CircularXX-Book"), local("CircularXX Book"), local("CircularStd-Book"), local("Circular Std Book"), local("Circular-Book"); }
+@font-face { font-family: "Sandbox Circular"; font-weight: 400; font-style: italic; src: local("CircularXX-BookItalic"), local("CircularXX Book Italic"), local("CircularStd-BookItalic"), local("Circular Std Book Italic"), local("Circular-BookItalic"); }
+@font-face { font-family: "Sandbox Circular"; font-weight: 500; font-style: normal; src: local("CircularXX-Medium"), local("CircularXX Medium"), local("CircularStd-Medium"), local("Circular Std Medium"), local("Circular-Medium"); }
+@font-face { font-family: "Sandbox Circular"; font-weight: 500; font-style: italic; src: local("CircularXX-MediumItalic"), local("CircularXX Medium Italic"), local("CircularStd-MediumItalic"), local("Circular Std Medium Italic"), local("Circular-MediumItalic"); }
+@font-face { font-family: "Sandbox Circular"; font-weight: 700; font-style: normal; src: local("CircularXX-Bold"), local("CircularXX Bold"), local("CircularStd-Bold"), local("Circular Std Bold"), local("Circular-Bold"); }
+@font-face { font-family: "Sandbox Circular"; font-weight: 700; font-style: italic; src: local("CircularXX-BoldItalic"), local("CircularXX Bold Italic"), local("CircularStd-BoldItalic"), local("Circular Std Bold Italic"), local("Circular-BoldItalic"); }
+@font-face { font-family: "Sandbox Circular"; font-weight: 900; font-style: normal; src: local("CircularXX-Black"), local("CircularXX Black"), local("CircularStd-Black"), local("Circular Std Black"), local("Circular-Black"); }
+@font-face { font-family: "Sandbox Circular"; font-weight: 900; font-style: italic; src: local("CircularXX-BlackItalic"), local("CircularXX Black Italic"), local("CircularStd-BlackItalic"), local("Circular Std Black Italic"), local("Circular-BlackItalic"); }
+
 :root {
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-  --sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
-  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --brand: "Sandbox Circular", "CircularXX", "Circular Std", "Circular", "Avenir Next", "Avenir", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --serif: var(--brand);
+  --sans: var(--brand);
+  --mono: var(--brand);
+  /* Functional monospace for text people copy and paste (prompts, keys) — not a brand face. */
+  --code: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --bg: #F3F0E8; --ink: #141414; --muted: #555049; --rule: #CFC8BA;
   --accent: #141414; --accent-ink: #F3F0E8; --panel: #FBF9F4; --focus: #1F4BCC;
   --display: var(--serif);
@@ -39,7 +54,7 @@ h1[tabindex="-1"]:focus-visible, h2[tabindex="-1"]:focus-visible { outline: none
 [hidden] { display: none !important; }
 h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.08; margin: 0 0 .5em; letter-spacing: -.01em; }
 p { margin: 0 0 1em; }
-code, kbd { font-family: var(--mono); font-size: .88em; }
+code, kbd { font-family: var(--code); font-size: .88em; }
 kbd { border: 1px solid var(--rule); border-bottom-width: 2px; padding: 0 .3em; border-radius: 3px; }
 .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .skip-link { position: absolute; left: 1rem; top: -4rem; background: var(--ink); color: var(--bg); padding: .6rem 1rem; z-index: 100; }
@@ -190,7 +205,7 @@ output { font: 600 1.4rem/1 var(--mono); min-width: 4.5ch; text-align: right; }
 .prompt-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: .6rem .6rem .6rem 1rem; border-bottom: 1.5px solid var(--ink); }
 .prompt-for { font: 500 .75rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: .1em; }
 .prompt-note { margin: .8rem 1rem 0; font-size: .92rem; color: var(--muted); }
-.prompt-text { margin: 0; padding: 1rem; font: 400 .86rem/1.55 var(--mono); white-space: pre-wrap; word-break: break-word; max-height: 22rem; overflow: auto; }
+.prompt-text { margin: 0; padding: 1rem; font: 400 .86rem/1.55 var(--code); white-space: pre-wrap; word-break: break-word; max-height: 22rem; overflow: auto; }
 .prompt.is-locked .prompt-text { color: var(--muted); }
 .prompt.is-copied { border-color: var(--accent); box-shadow: 6px 6px 0 var(--accent); }
 .prompt-hint, .prompt-status { margin: 0 1rem; font-size: .9rem; }
@@ -200,7 +215,7 @@ output { font: 600 1.4rem/1 var(--mono); min-width: 4.5ch; text-align: right; }
 .copy-glyph { font-size: 1.05em; }
 .copy-fallback { padding: 0 1rem 1rem; }
 .copy-fallback label { font-size: .92rem; font-weight: 600; }
-.copy-fallback textarea { margin-top: .5rem; font-family: var(--mono); font-size: .85rem; }
+.copy-fallback textarea { margin-top: .5rem; font-family: var(--code); font-size: .85rem; }
 
 /* ---------- External callouts ---------- */
 .external { margin: 1.75rem 0; padding: 1.25rem 1.25rem .5rem; border: 2px dashed var(--ink); max-width: 52rem; position: relative; }
@@ -321,7 +336,7 @@ body[data-theme="c04"] .btn-external { background: var(--ink); color: var(--bg);
 .doors-mini .door-caption { font-size: .6rem; max-width: 5rem; }
 .trials { margin-top: 1rem; }
 .trials-h { font-weight: 600; }
-.trials-list { font: .85rem/1.5 var(--mono); padding-left: 1.4rem; }
+.trials-list { font: .85rem/1.5 var(--brand); font-variant-numeric: tabular-nums; padding-left: 1.4rem; }
 .player { position: fixed; inset: 0; z-index: 50; background: #0F1316; color: #F1EDE4; overflow: auto; display: grid; place-items: center; padding: 2rem 1rem; animation: fade .3s ease both; }
 .player-inner { width: 100%; max-width: 46rem; text-align: center; }
 .player-kicker { font: 600 .78rem var(--mono); letter-spacing: .2em; text-transform: uppercase; color: #D9A85B; }

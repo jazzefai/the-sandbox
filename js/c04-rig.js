@@ -2,7 +2,7 @@
 (function (S) {
   'use strict';
   const SLATE = '#3B454D';
-  const GOLD = '#A87B36';
+  const GOLD = '#EE7C2D'; // brand orange (the spec's original gold was #A87B36)
   const LETTERS = ['A', 'B', 'C'];
   const INFLUENCES = ['The color', 'The position', 'What other people supposedly chose', 'Curiosity', 'I deliberately resisted the obvious choice', 'I chose randomly', 'Something else'];
   const CUES = [
@@ -38,7 +38,7 @@ Propose three radically different, surprising interactive mechanisms for investi
       <div class="door-slot ${o.open ? 'is-open' : ''}" data-slot="${letter}">
         <div class="door-frame">
           <div class="door-interior" aria-hidden="true"></div>
-          <button type="button" class="door" data-door="${letter}" style="--door:${o.gold ? GOLD : SLATE}"
+          <button type="button" class="door${o.gold ? ' is-gold' : ''}" data-door="${letter}" style="--door:${o.gold ? GOLD : SLATE}"
             aria-pressed="${o.pressed ? 'true' : 'false'}" ${o.locked ? 'aria-disabled="true"' : ''}
             aria-label="Door ${letter}${captions.length ? ', ' + S.esc(captions.join(', ')) : ''}">
             <span class="door-panels" aria-hidden="true"><span></span><span></span><span></span><span></span></span>

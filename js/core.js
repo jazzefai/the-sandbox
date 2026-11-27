@@ -7,17 +7,17 @@
   /* ---------- Challenge index (participant-facing labels from the spec) ---------- */
   S.CHALLENGES = [
     { id: '01', title: 'Can I Be Predicted?', medium: 'Claude', verb: 'Investigate intelligence',
-      question: 'Am I as unpredictable as I think?', tech: true },
+      question: 'How predictable am I?', tech: true },
     { id: '02', title: 'Lost in Translation', medium: 'Canva AI', verb: 'Investigate perception',
-      question: 'Can you make someone feel something without telling them what to feel?', tech: true },
+      question: 'Do others see what I see?', tech: true },
     { id: '03', title: 'The Evidence Is Lying', medium: 'Microsoft Copilot', verb: 'Investigate persuasion',
-      question: 'Could someone manipulate your judgment without telling you a single lie?', tech: true },
+      question: 'How easily can I be persuaded?', tech: true },
     { id: '04', title: 'Rig the Game', medium: 'Lovable', verb: 'Investigate human behavior',
-      question: 'Can you make someone choose what you want without telling them what to choose?', tech: true },
+      question: 'What makes people behave the way they do?', tech: true },
     { id: '05', title: 'The Impossible Object', medium: 'Human imagination', verb: 'Investigate possibility',
-      question: 'Can you invent something that has no business existing?', tagline: 'An invitation to invent.', tech: false },
+      question: "What could exist that doesn't?", tagline: 'An invitation to invent.', tech: false },
     { id: '06', title: 'Who Made the Rules?', medium: 'Human imagination', verb: 'Investigate necessity',
-      question: 'How much of reality is just something we collectively agreed to?', tagline: 'An invitation to reinvent.', tech: false }
+      question: "What exists that doesn't have to?", tagline: 'An invitation to reinvent.', tech: false }
   ];
   S.byId = (id) => S.CHALLENGES.find((c) => c.id === id);
 

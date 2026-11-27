@@ -51,7 +51,6 @@ Wherever participants choose or write, the controls sit on a sheet of notebook p
 - **Where:** every radio and checkbox group, 01's dilemmas, 03's decision, 04's behavior lab, and the Discovery Exchange form. Any container marked `class="notebook"` gets the treatment; nested ones collapse into a single sheet.
 - **Motion:** the fill and the check draw in with a few quick strokes. With reduced motion they simply appear.
 - **Pencil:** over notebook pages, the mouse cursor becomes a small pencil whose point is the click spot. Mouse and trackpad only; elsewhere the cursor is normal.
-- **Pencil sound:** filling a bubble plays soft pencil shading followed by a quiet, warm wooden note from a calm five-note scale. A check plays two soft strokes and a slightly brighter note. This happens however the answer is chosen: click, tap or keyboard. The sound is generated in the browser (`js/pencil.js`), so there are no audio files. It uses warm, low-passed noise and a low overall level, with no harsh high end. A "✎ Pencil sound on/off" switch sits above the first notebook sheet on each page. It's on by default, and each person's choice is remembered in their browser. Typing is silent.
 
 ## Architecture
 
@@ -68,7 +67,6 @@ js/c02-translation.js      02 · Lost in Translation        (Canva AI)
 js/c03-evidence.js         03 · The Evidence Is Lying      (Microsoft Copilot)
 js/c04-rig.js              04 · Rig the Game               (Lovable) — includes the embedded door game + designer mode
 js/c05-06-imagination.js   05 · The Impossible Object, 06 · Who Made the Rules? + printable versions
-js/pencil.js               pencil shading + chime sounds and the sound on/off switch
 js/exchange.js             Discovery Exchange: prepare an invitation, show it full screen with a QR code
 js/facilitator.js          facilitator notes, evaluation criteria, readiness checklist
 js/app.js                  hash router and top bar

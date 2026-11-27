@@ -567,10 +567,6 @@ body[data-theme="c06"] .show-tell { border-style: double; border-width: 5px; }
 @media (hover: hover) and (pointer: fine) {
   .notebook, .notebook * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg transform='translate%28-12 -2%29 rotate%2845 16 30%29'%3E%3Crect x='12.6' y='3.6' width='6.8' height='20' rx='1' fill='%23fff' opacity='.85'/%3E%3Cpath d='M16 30.6 L12.4 22.6 L19.6 22.6 Z' fill='%23fff' opacity='.85'/%3E%3Cpath d='M16 30 L13 23 L19 23 Z' fill='%23E9CFA6' stroke='%231D2330' stroke-width='.6' stroke-linejoin='round'/%3E%3Cpath d='M16 30 L14.75 27.1 L17.25 27.1 Z' fill='%2300225A'/%3E%3Crect x='13' y='6.4' width='6' height='16.8' fill='%232B2E33' stroke='%231D2330' stroke-width='.6'/%3E%3Cpath d='M15 7.4 V22.2' stroke='%235A5F67' stroke-width='.8'/%3E%3Crect x='13' y='4' width='6' height='2.8' rx='.9' fill='%23EE7C2D' stroke='%231D2330' stroke-width='.6'/%3E%3C/g%3E%3C/svg%3E") 4 28, pointer; }
 }
-.pencil-toggle-row { display: flex; justify-content: flex-end; margin: 1rem 0 -.6rem; }
-.pencil-toggle { font: 500 .78rem/1 var(--brand); letter-spacing: .02em; color: var(--muted); background: none; border: 1px solid var(--rule); border-radius: 2rem; padding: .45rem .8rem; min-height: 2.2rem; cursor: pointer; }
-.pencil-toggle:hover { color: var(--ink); border-color: var(--ink); }
-.pencil-toggle[aria-pressed="false"] { text-decoration: line-through; text-decoration-thickness: 1px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 700px) {

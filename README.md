@@ -1,0 +1,181 @@
+# The Sandbox: Six Invitations to Investigate
+
+An interactive playground of six intellectual adventures, built from `sandbox-challenge-specifications.md` (the source of truth). Four of them use an outside AI platform and two use only the imagination. There are no accounts, scores, required order, or completion tracking.
+
+## Setup
+
+It's a static site: plain files, with no build step, no dependencies and no server code. To try it locally:
+
+```bash
+cd sandbox
+python3 -m http.server 8765
+```
+
+Then open http://localhost:8765.
+
+## Putting it online for free
+
+Any service that serves plain files over `https://` works. HTTPS matters because browsers only allow one-click copying on `https://` (or `localhost`).
+
+**GitHub Pages** (free, with no payment card):
+
+1. Put everything in this `sandbox` folder into a GitHub repository, with `index.html` at the top level. On a free GitHub account, Pages only works for **public** repositories. The site contains no participant data: what people type stays in their own browsers. It does include the facilitator notes, though, which are also one click away on the live site.
+2. In the repository, go to **Settings → Pages**. Under **Build and deployment**, choose **Deploy from a branch**, pick `main` and `/ (root)`, and save.
+3. After a minute or two the site is live at `https://<your-account>.github.io/<repository>/`.
+
+**After any change:** bump the `?v=N` number on the script and stylesheet links in `index.html`. Otherwise browsers that already loaded the site keep the old files.
+
+## Architecture
+
+```
+index.html                 shell; loads plain scripts (no modules, so file:// also works)
+css/styles.css             base styles, one theme per invitation, responsive, reduced-motion, print
+js/core.js                 storage, clipboard with fallback, shared components (prompt block,
+                           external-platform callout, radios/checkboxes, progressive steps, page frame)
+js/art.js                  original SVG illustrations for the spec's visual references
+js/qr.js                   QR code generator (no dependencies)
+js/home.js                 the six invitations
+js/c01-predicted.js        01 · Can I Be Predicted?        (Claude)
+js/c02-translation.js      02 · Lost in Translation        (Canva AI)
+js/c03-evidence.js         03 · The Evidence Is Lying      (Microsoft Copilot)
+js/c04-rig.js              04 · Rig the Game               (Lovable) — includes the embedded door game + designer mode
+js/c05-06-imagination.js   05 · The Impossible Object, 06 · Who Made the Rules? + printable versions
+js/exchange.js             Discovery Exchange: prepare an invitation, show it full screen with a QR code
+js/facilitator.js          facilitator notes, evaluation criteria, readiness checklist
+js/app.js                  hash router and top bar
+```
+
+**Routes**
+
+| Route | Page |
+|---|---|
+| `#/` | Home |
+| `#/01` … `#/06` | The six invitations |
+| `#/05/print`, `#/06/print`, `#/print` (both) | Printable versions of the imagination invitations |
+| `#/exchange` | Discovery Exchange |
+| `#/facilitator` | Facilitator notes. Only linked from the home-page footer, never from inside an invitation. |
+
+**Navigation model (modeled on mschf.com).** The home page is a black, numbered, all-caps monospace index. Hovering an entry turns it white and adds a ↗, and on mouse/trackpad a small yellow label follows the cursor (for example "Claude↗" or "No screen needed"). **Every link opens in a new tab**, including internal ones, so each invitation lives in its own tab and the index stays open behind it:
+
+- A `MutationObserver` in `js/app.js` applies `target="_blank"`, `rel="noopener noreferrer"` and a screen-reader "(opens in a new tab)" to every link, including ones added later. The skip link is the only exception.
+- Bare URLs in the instructions (claude.ai, canva.com, m365, lovable.dev) are now real links.
+- Inline text links show a ↗.
+- A small fixed corner menu (01–06, Exchange↗, and an SB mark linking to the index) replaces the old top bar. On phones it sits at the top of the page instead.
+- Each invitation's "Wander elsewhere" list uses the same index style.
+- Colored `///` rows lead to the Discovery Exchange and the printable versions.
+
+Participant-facing content is unchanged, and each invitation keeps its own visual identity inside its tab.
+
+**State.** Each invitation saves to `localStorage` under its own key (`sandbox.v1.c01` and so on), so progress survives moving between invitations, tabs and reloads. When another tab changes saved answers, open tabs refresh to match — unless the person is typing at that moment. Nothing is sent anywhere. There's a "Clear my answers" control on every invitation, plus "Clear everything saved here" on the home page for shared devices. If storage is blocked (for example in private browsing), a notice explains that answers won't persist.
+
+**Fidelity.** Participant-facing copy, choices, examples, prompts and reveals are taken word for word from the spec. Prompt substitutions:
+
+- **01:** each choice is inserted as `1. <question> — My choice: <answer>`.
+- **02:** the visual description is inserted, with a trailing full stop trimmed to avoid "..". The chosen feeling is never included.
+- **03:** the chosen or custom question is inserted. An optional "My preferred position" field fills `[INSERT YOUR POSITION]`; if it's left blank, the placeholder is kept.
+- **04:** question, prediction and experience are inserted verbatim.
+
+**Decisions made where the spec was silent** (agreed before the build):
+
+1. In 04, the designer-mode "prediction" is a door selector (A/B/C), set to B to begin with.
+2. In 03, the optional position field described above.
+3. In 03 Step 5, there's no copy prompt for the two opposing briefings, because the spec gives none and an untested prompt wasn't added.
+4. In 02, the solo path's "image-capable AI" is left unnamed.
+5. In 02, the chosen feeling is shown privately on screen and doesn't pre-fill "What I intended".
+6. Visual references are original SVG illustrations. The 02 chair pairs are labeled "Illustrations, not controlled experimental comparisons."
+
+Smaller readings:
+
+- 03 Step 2 appears after the evidence is revealed. The recommendation and confidence then lock, so the participant's original call is kept.
+- 04 designer mode:
+  - Positioning moves the target to first place; the other doors keep their order.
+  - Non-target doors have no caption.
+  - Several captions stack on the target.
+  - The player view is a full-screen overlay, so the designer controls and prediction are hidden. Escape returns to designer mode.
+  - Each trial is noted locally as an observation (target, prediction, choice, cues). This is not a score.
+- In 04 Step 3, clicking an example replaces the question field without asking only if the field is empty or holds another example.
+- "Copy my findings / discoveries / invitation" copies only the entries that are filled in or ticked.
+- "Key questions" for 01–04 appear at the end as optional "Questions worth chasing". For 05 and 06 they are facilitator-facing, as the spec places them.
+
+## External dependencies
+
+The site itself has none: no web fonts, CDNs, analytics, APIs or server code. These invitations send participants elsewhere, each clearly marked "Leaves the Sandbox":
+
+| Invitation | Platform | URL |
+|---|---|---|
+| 01 | Claude | https://claude.ai/new |
+| 02 | Canva AI (+ any image-capable AI for the solo path) | https://www.canva.com/ai-image-generator/ |
+| 03 | Microsoft Copilot Chat | https://m365.cloud.microsoft/ |
+| 04 | Lovable | https://lovable.dev/ |
+
+## Platform access requirements — needs authenticated testing
+
+The Sandbox does **not** check, simulate or assume any of these. Verify each with a participant-type account before the day:
+
+- [ ] **Claude:** participants can sign in at claude.ai and start a new conversation. The 01 prompt runs end to end (predictions committed before answers).
+- [ ] **Canva AI:** the AI image generator is available on participants' Canva plans; note any generation quotas.
+- [ ] **Image-capable AI (02 solo path):** at least one tool participants can use accepts image uploads.
+- [ ] **Microsoft Copilot Chat:** enabled for participants' organizational M365 accounts at m365.cloud.microsoft. The spec notes that ordinary Copilot Chat suffices and Premium-specific value is not verified.
+- [ ] **Lovable:** sign-up works, and free credits cover one build plus at least one revision. Only one tester had enough credits.
+- [ ] **Network:** device or network policies don't block any of the four domains.
+
+## Known limitations
+
+- **The Discovery Exchange is for sharing in person.** Nothing is sent or pooled. People prepare a title, a question and an optional link, then press **Show full screen**. That screen shows the title, the question and, if there's a link, a large QR code plus a clickable short form of the link. Their private note stays off it, so others try the thing before hearing the explanation. The facilitator view includes a plan for a 15-minute "find two people" sharing moment. QR codes are generated in the browser, and decoding was checked up to a 300-character link.
+- **Nothing persists after the session.** There's no record of what the room made unless people print their card or keep their own links.
+- **Phone-friendliness isn't guaranteed.** A QR code only helps if what's behind it works on a phone. The page asks people to scan their own code first; otherwise people try it on the maker's laptop.
+- **Clipboard** needs `https://` or `localhost`; elsewhere participants copy manually from a pre-selected box. Tested in Chromium. Safari and Firefox clipboard behavior hasn't been tested by hand yet.
+- **Many tabs:** because every link opens a new tab, participants can pile up tabs. Closing an invitation's tab is how you "leave" it.
+- **Not copied from mschf.com:** it opens scrolled to the newest item at the bottom; the Sandbox has no chronology, and that would hide the introduction. Its "???" rows for unreleased drops would have added content.
+- **Visual references** are stylized illustrations, not photographs. Swap in real images in `js/art.js` if you have them.
+- **The 15-minute target, novice usability and broad appeal are unverified.** All six received positive feedback from one prototype tester. 01 and 02 were reconstructed from earlier conversation details, so their interface labels may differ from the originals.
+- **The 04 designer mode is a handoff decision,** not part of the original tested build.
+- **Reduced motion:** with `prefers-reduced-motion`, animations and the door swing are effectively removed.
+
+## What was tested (in-browser, Chromium)
+
+- **Copying:** every invitation's copy button locks and unlocks under the right conditions, and every prompt is personalized correctly. A real click copied to the clipboard. The blocked-clipboard fallback was confirmed (append `?copyfail` to the URL to force it).
+- **01:** copying unlocks only after all five choices are made.
+- **02:** the feeling never appears in the prompt; there's a warning if the description names it; the findings copy correctly.
+- **03:**
+  - the reveal is gated on a recommendation
+  - the recommendation and confidence are shown and locked after the reveal
+  - the evidence table has six rows
+  - the custom-topic validation works
+  - the position placeholder is filled or kept as appropriate
+  - the technique counter counts correctly
+- **04:**
+  - Door B is gold, the captions are correct, and both verdicts work
+  - the choice locks after opening
+  - designer cue combinations (order, color, stacked captions) render correctly
+  - the player overlay hides the controls, and the result and debrief are correct
+  - the trial log works
+  - Escape and focus return work
+  - the lab examples, the "Something else" category and the prompt gating work
+- **Navigation and state:** all routes work, including the not-found page. State survives reload and navigation, and clearing works.
+- **Layout and keyboard:** no horizontal overflow at 375px on any route. Keyboard-only play of the 04 player view works. No console errors.
+- **Exchange:**
+  - link validation works, and user text is escaped (no HTML injection)
+  - the QR code shown on the page decodes to the exact link
+  - the full-screen view traps focus and Escape returns focus
+  - no overflow at 375px with a long Canva link
+- **New tabs:** every link on every page opens a new tab with the screen-reader label. Two tabs on the same invitation stay in sync. The index renders at 1280px and 375px with no overflow.
+
+**Cache:** script and stylesheet links carry a `?v=N` version. Bump it in `index.html` after any edit, so browsers that already loaded the site fetch the new files.
+
+**Not tested:** real phones scanning the codes, deployment to an actual https host, screen readers (VoiceOver/NVDA), Safari/Firefox, printing on physical paper, and any of the external platforms.
+
+## Facilitator readiness checklist
+
+(Also available as a tickable list at `#/facilitator`.)
+
+- [ ] Host on `https://` (see Setup) and open it on a participant-type laptop and a phone.
+- [ ] Press every copy button once on that setup.
+- [ ] Complete the platform access checks above.
+- [ ] Print copies of 05 and 06 (`#/print`) for anyone who wants to go screen-free.
+- [ ] Plan the sharing moment (see `#/facilitator`) and give a heads-up about 15 minutes before it.
+- [ ] From a phone, scan an Exchange QR code that opens a published Lovable app and a Canva view link, while signed out.
+- [ ] On shared devices, clear saved data between participants (home page footer).
+- [ ] Time a novice through one AI invitation (the 15-minute target is unverified).
+- [ ] Keep `#/facilitator` off the projector before play, so objectives aren't revealed.
+- [ ] Observe, don't score: activation, delight, agency, originality, transfer. Also watch for friction, abandonment, fatigue, over-reliance on AI or facilitators, and whether people have mental space. Don't claim learning gains from enjoyment alone.

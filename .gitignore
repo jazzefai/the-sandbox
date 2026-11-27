@@ -1,0 +1,4 @@
+# Discovery Exchange posts — never commit participants' content
+data/
+node_modules/
+.DS_Store

@@ -119,7 +119,7 @@ I want to see whether you can make me reconsider my position.`;
         ${S.externalTpl({
           platform: 'Microsoft Copilot', url: 'https://m365.cloud.microsoft/',
           lead: 'Open <a href="https://m365.cloud.microsoft/">https://m365.cloud.microsoft/</a>, sign in with your organizational account, open Copilot Chat, and paste your prompt.',
-          access: 'Requires your organizational Microsoft 365 account with Copilot Chat available. Whether it is available is set by your organization — the Sandbox can\'t check this.'
+          access: 'Requires your organizational Microsoft 365 account with Copilot Chat available.'
         })}
       `)}
       ${S.nextTpl(3, 'Continue to Step 3 · Make AI argue against you')}

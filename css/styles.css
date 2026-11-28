@@ -942,10 +942,46 @@ body[data-theme="c04"] .stage-inline::before, body[data-theme="c04"] .stage-inli
 body[data-theme="c04"] .stage-inline::before { top: .75rem; }
 body[data-theme="c04"] .stage-inline::after { bottom: .75rem; animation-delay: -.55s; }
 @keyframes c04-bulbs { to { background-position: 22px 0; } }
+/* Designer mode as a TV control room: a dark console, the switches as faders, the preview on a
+   studio monitor, and Launch as the big broadcast button */
 body[data-theme="c04"] .designer {
-  border: 2px dashed #EE7C2D;
-  background: repeating-linear-gradient(-45deg, rgba(238, 124, 45, .07) 0 12px, transparent 12px 24px), var(--panel);
+  border: 1px solid #424039; border-radius: 10px; padding: 1.4rem 1.5rem 1.6rem;
+  background: linear-gradient(180deg, #1C1B19, #121211 60%, #0E0E0D);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), inset 0 -2px 0 rgba(0, 0, 0, .6), 0 22px 40px -28px rgba(0, 0, 0, .9);
 }
+body[data-theme="c04"] .designer-h {
+  display: inline-block; padding: .45rem .7rem; border-radius: 3px; letter-spacing: .22em;
+  background: #080808; color: #FFFFFF; box-shadow: inset 0 0 0 1px #424039;
+}
+body[data-theme="c04"] .switches { border: 1px solid #424039; border-radius: 6px; padding: .6rem .9rem .3rem; background: rgba(8, 8, 8, .55); }
+body[data-theme="c04"] .switches legend { padding: 0 .4rem; font: 600 .72rem/1 var(--code); letter-spacing: .16em; text-transform: uppercase; color: #BDBCB8; }
+body[data-theme="c04"] .switch-row { border-bottom-color: #2A2926; }
+/* each switch is a fader: a dark slot with a ridged cap that slides up the scale and lights the channel */
+body[data-theme="c04"] .switch-track {
+  width: 3rem; height: 1.3rem; border-radius: 3px; background: linear-gradient(#080808, #080808) center / 100% 3px no-repeat, #1C1B19;
+  box-shadow: inset 0 0 0 1px #424039, inset 0 2px 4px rgba(0, 0, 0, .7);
+}
+body[data-theme="c04"] .switch-thumb {
+  top: .1rem; left: .12rem; width: 1.1rem; height: 1.1rem; border-radius: 2px;
+  background: repeating-linear-gradient(90deg, #8B8A86 0 2px, #BDBCB8 2px 4px); box-shadow: 0 1px 2px rgba(0, 0, 0, .8);
+}
+body[data-theme="c04"] .switch[aria-checked="true"] .switch-track {
+  background: linear-gradient(#76CEE1, #76CEE1) center / 100% 3px no-repeat, #1C1B19;
+  box-shadow: inset 0 0 0 1px #76CEE1, 0 0 12px rgba(118, 206, 225, .45);
+}
+body[data-theme="c04"] .switch[aria-checked="true"] .switch-thumb { transform: translateX(1.66rem); background: repeating-linear-gradient(90deg, #FFFFFF 0 2px, #BDBCB8 2px 4px); }
+/* the preview sits on a studio monitor */
+body[data-theme="c04"] .designer-preview {
+  position: relative; display: inline-block; max-width: 100%; padding: .9rem 1.1rem 1rem; border-radius: 8px;
+  background: #080808; box-shadow: 0 0 0 6px #2A2926, 0 0 0 7px #424039, 0 14px 24px -14px rgba(0, 0, 0, .9);
+}
+body[data-theme="c04"] .designer-preview .hint { color: #BDBCB8; font: 600 .7rem/1 var(--code); letter-spacing: .14em; text-transform: uppercase; }
+/* Launch is the broadcast button */
+body[data-theme="c04"] .designer [data-launch] {
+  background: #4B0000; border-color: #EF322D; color: #FFFFFF; border-radius: 8px; padding: .95rem 1.4rem; letter-spacing: .04em;
+  box-shadow: 0 0 0 3px #080808, 0 0 22px rgba(239, 50, 45, .55);
+}
+body[data-theme="c04"] .designer [data-launch]:hover { background: #5E0505; box-shadow: 0 0 0 3px #080808, 0 0 30px rgba(239, 50, 45, .75); }
 body[data-theme="c04"] .prompt { border-color: #EE7C2D; }
 body[data-theme="c04"] .prompt-head { background: rgba(238, 124, 45, .12); border-color: #EE7C2D; }
 
@@ -1009,29 +1045,20 @@ body[data-theme="c04"] .door-reveal::before, body[data-theme="c04"] .player-resu
   body[data-theme="c04"] .curtain .ch-question { margin-inline: 0; }
 }
 
-/* 04 · the doors as a sports-broadcast collage. Cut-out doors with white
-   sticker borders on torn paper and diagonal slashes; A and C in grey halftone, B the only door in
+/* 04 · the doors as a sports-broadcast collage on a studio light wall. Cut-out doors with white
+   sticker borders; A and C in grey halftone, B the only door in
    color. B gets nothing the reveal doesn't admit to: color, centre, and the same caption style. */
 body[data-theme="c04"] .doors:not(.doors-mini) {
   overflow: hidden; isolation: isolate;
   position: relative; padding: 1.6rem clamp(.8rem, 3vw, 2rem) 2.2rem; border-radius: 3px;
-  background: radial-gradient(rgba(255, 255, 255, .05) 1px, transparent 1.4px) 0 0 / 5px 5px, #080808;
-  box-shadow: none;
-}
-/* diagonal slashes */
-body[data-theme="c04"] .doors:not(.doors-mini)::before {
-  content: ""; position: absolute; inset: -20%; z-index: -2; pointer-events: none;
+  /* a studio light wall: a grid of softly glowing panels, lit evenly so no door gets more light than another */
   background:
-    linear-gradient(115deg, transparent 0 38%, #00225A 38% 47%, transparent 47% 100%),
-    linear-gradient(115deg, transparent 0 49%, #FFFFFF 49% 51%, transparent 51% 100%),
-    linear-gradient(115deg, transparent 0 56%, #76CEE1 56% 61%, transparent 61% 100%);
-}
-/* a torn strip of paper behind the doors */
-body[data-theme="c04"] .doors:not(.doors-mini)::after {
-  content: ""; position: absolute; left: -2%; right: -2%; top: 34%; height: 34%; z-index: -1; pointer-events: none;
-  background: radial-gradient(rgba(0, 0, 0, .12) 1px, transparent 1.5px) 0 0 / 4px 4px, #FFFFFF;
-  clip-path: polygon(0 8%, 4% 0, 9% 7%, 15% 2%, 22% 9%, 30% 1%, 37% 8%, 45% 3%, 52% 10%, 60% 2%, 68% 9%, 75% 1%, 83% 8%, 90% 2%, 96% 9%, 100% 4%, 100% 92%, 95% 100%, 88% 93%, 80% 99%, 72% 91%, 64% 98%, 56% 92%, 48% 100%, 40% 93%, 32% 99%, 24% 92%, 16% 98%, 8% 91%, 0 97%);
-  transform: rotate(-2deg);
+    linear-gradient(to bottom, rgba(8, 8, 8, .6), rgba(8, 8, 8, 0) 22%, rgba(8, 8, 8, 0) 70%, rgba(8, 8, 8, .8) calc(100% - 2.2rem), #080808 calc(100% - 2.2rem)),
+    linear-gradient(90deg, #080808 0 5px, transparent 5px) 0 0 / 52px 52px,
+    linear-gradient(#080808 0 5px, transparent 5px) 0 0 / 52px 52px,
+    radial-gradient(circle at 50% 50%, rgba(239, 50, 45, .75) 0, rgba(239, 50, 45, .28) 46%, rgba(239, 50, 45, 0) 72%) 2.5px 2.5px / 52px 52px,
+    #4B0000;
+  box-shadow: inset 0 0 0 1px rgba(239, 50, 45, .35);
 }
 /* cut-out doors with white sticker borders, slightly askew */
 body[data-theme="c04"] .door-frame { box-shadow: 0 0 0 5px #FFFFFF, 0 10px 18px rgba(0, 0, 0, .55); background: #080808; }

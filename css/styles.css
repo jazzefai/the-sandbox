@@ -1008,6 +1008,37 @@ body[data-theme="c04"] .door-reveal::before, body[data-theme="c04"] .player-resu
   body[data-theme="c04"] .curtain .ch-question { margin-inline: 0; }
 }
 
+/* 04 · the doors as a sitcom apartment hallway on the studio stage: striped wallpaper and a
+   baseboard behind them, a peephole, a brass apartment number and a doormat for each door.
+   The rig is unchanged: A and C match, B is orange, centered and captioned. */
+body[data-theme="c04"] .doors:not(.doors-mini) {
+  position: relative; padding: 1.6rem clamp(.8rem, 3vw, 2rem) 2.2rem; border-radius: 3px;
+  background:
+    linear-gradient(transparent calc(100% - 2.6rem), #3B2C22 calc(100% - 2.6rem), #3B2C22 calc(100% - 2.1rem), #2A2019 calc(100% - 2.1rem)),
+    repeating-linear-gradient(90deg, #26363B 0 16px, #2B3C41 16px 18px, #26363B 18px 34px, #22322F 34px 36px);
+  box-shadow: inset 0 18px 30px -20px rgba(0, 0, 0, .7);
+}
+body[data-theme="c04"] .door-frame { box-shadow: inset 0 0 0 4px #4B555E, 0 0 0 5px #5A4636, 0 0 0 7px #3B2C22; }
+/* peephole */
+body[data-theme="c04"] .door::before {
+  content: ""; position: absolute; left: 50%; top: 21%; width: 9%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%;
+  background: radial-gradient(circle, #0E1114 0 38%, #C9A25A 42% 70%, #7A5A26 74%); box-shadow: 0 1px 1px rgba(0, 0, 0, .45); z-index: 1;
+}
+/* brass apartment number */
+body[data-theme="c04"] .door-letter {
+  left: 50%; right: auto; top: 7%; transform: translateX(-50%); padding: .18em .42em; border-radius: 2px;
+  background: linear-gradient(#E3C27F, #B98E45); color: #2A1E0C; box-shadow: 0 1px 1px rgba(0, 0, 0, .45);
+}
+body[data-theme="c04"] .door.is-gold .door-letter { color: #2A1E0C; }
+/* doormat */
+body[data-theme="c04"] .door-frame::after {
+  content: ""; position: absolute; left: 8%; right: 8%; top: calc(100% + 7px); height: .6rem; border-radius: 2px; pointer-events: none;
+  background: repeating-linear-gradient(90deg, #8A6A3E 0 3px, #7A5C34 3px 5px); box-shadow: 0 2px 3px rgba(0, 0, 0, .45);
+}
+body[data-theme="c04"] .doors:not(.doors-mini) .door-caption { margin-top: 1.5rem; }
+body[data-theme="c04"] .doors-mini .door::before, body[data-theme="c04"] .doors-mini .door-frame::after { display: none; }
+body[data-theme="c04"] .doors-mini .door-letter { padding: .05em .25em; }
+
 /* ---------- 05 as a patent drawing: blueprint sheet, figures, a specification ---------- */
 body[data-theme="c05"] {
   background-image: linear-gradient(rgba(255, 255, 255, .11) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .11) 1px, transparent 1px),

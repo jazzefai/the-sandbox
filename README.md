@@ -59,7 +59,7 @@ Like the drops on mschf.com, each challenge wears its own disguise. The frame st
 | Challenge | Disguise |
 |---|---|
 | 01 | **A sealed prediction.** Security-envelope paper, a wax seal, steps separated by tear-off lines, the prompt as an envelope, and an airmail border on the way to Claude. |
-| 02 | **A gallery wall.** White walls, the paired illustrations framed and matted with wall labels, and large quiet wall text. |
+| 02 | **A gallery wall.** White walls, the paired illustrations framed and matted with wall labels, and large quiet wall text. After Step 5, one photograph of an empty chair hangs six times as an edition (1/6 … 6/6), each print titled with one of the challenge's six feelings: the same picture fits every title. **The photograph's source and usage rights must be confirmed before it goes on the public site.** |
 | 03 | **A case file.** A manila folder on a dark desk, steps as typed sheets on index tabs, paper-clipped memos, carbon-copy prompts, and evidence that un-redacts row by row. |
 | 04 | **A game show.** A curtain valance, spotlights, marquee bulbs around the door stage, and a backstage-striped designer mode. |
 | 05 | **A patent drawing.** A Deep Navy blueprint grid, a drawing frame with a title block, figures with dimension lines, and the show-and-tell as a specification. |

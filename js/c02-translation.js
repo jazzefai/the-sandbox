@@ -95,7 +95,19 @@
           'Which visual decisions influence meaning?',
           "What does AI infer when it lacks the creator's context?"
         ])}
-      `)}`;
+      `)}
+      <section class="edition" data-edition hidden aria-label="One photograph, six titles">
+        <ol class="edition-row">
+          ${FEELINGS.slice(0, OWN).map((t, i) => `
+            <li class="print">
+              <figure>
+                <img class="print-img" src="img/chair.jpg" width="960" height="540"
+                  alt="${i ? 'The same photograph.' : 'Photograph: an empty wooden chair on a dark floor, under a single beam of light.'}">
+                <figcaption class="print-label"><span class="print-ed" aria-hidden="true">${i + 1}/${OWN}</span>${S.esc(t)}</figcaption>
+              </figure>
+            </li>`).join('')}
+        </ol>
+      </section>`;
 
     root.innerHTML = S.shellTpl('02', body);
     const save = () => store.save();
@@ -117,6 +129,7 @@
     const own = S.$(root, '[data-own]');
     const named = S.$(root, '[data-named]');
     const secret = S.$(root, '[data-secret]');
+    const edition = S.$(root, '[data-edition]');
     function update() {
       own.hidden = st.feeling !== OWN;
       const f = feelingText();
@@ -129,6 +142,7 @@
       refreshImage();
       refreshFindings();
       updateSteps();
+      edition.hidden = st.step < 5;
     }
     S.$$(root, 'input[name="feeling"]').forEach((r) => r.addEventListener('change', () => {
       st.feeling = Number(r.value); save(); update();
@@ -137,6 +151,7 @@
     S.$(root, '#c02-custom').addEventListener('input', (e) => { st.custom = e.target.value; save(); update(); });
     S.$(root, '#c02-visual').addEventListener('input', (e) => { st.visual = e.target.value; save(); update(); });
     S.$$(root, '[data-f]').forEach((t) => t.addEventListener('input', () => { st[t.dataset.f] = t.value; save(); update(); }));
+    S.$$(root, '[data-next]').forEach((b) => b.addEventListener('click', update));
     S.bindClear(root, store, () => render(root));
     update();
   };

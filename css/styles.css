@@ -690,6 +690,25 @@ body[data-theme="c02"] .ask-list { max-width: 40rem; }
 body[data-theme="c02"] .ask-list li { margin: 0; padding: .65rem 0; border-bottom: 1px solid var(--rule); font-style: italic; }
 body[data-theme="c02"] .ask-list li:first-child { border-top: 1px solid var(--rule); }
 
+/* 02's payoff: one photograph printed six times, each titled with one of the challenge's feelings */
+.edition { padding: clamp(3.5rem, 8vw, 6rem) 0 1rem; }
+.edition-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3.2rem) clamp(1.2rem, 3vw, 2.4rem); }
+.print { margin: 0; }
+.print figure { margin: 0; }
+.print-img {
+  display: block; width: calc(100% - 14px); height: auto; margin: 7px; background: #fff; padding: clamp(.45rem, 1.3vw, .85rem);
+  box-shadow: 0 0 0 6px #1F1C19, 0 22px 34px -18px rgba(0, 0, 0, .45);
+}
+.print-label {
+  display: inline-block; margin-top: 1.15rem; padding: .5rem .7rem; max-width: 100%;
+  background: #fff; color: var(--ink); border: 1px solid var(--rule); box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+  font-size: .8rem; line-height: 1.35;
+}
+.print-ed { display: block; margin-bottom: .35rem; font: 500 .64rem/1 var(--code); letter-spacing: .14em; color: var(--muted); }
+@media (max-width: 760px) { .edition-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 440px) { .edition-row { grid-template-columns: 1fr; } }
+@media print { .edition { display: none !important; } }
+
 /* ---------- 04 as a game show: curtain, spotlights, marquee bulbs ---------- */
 body[data-theme="c04"] {
   background-image: radial-gradient(50% 45% at 12% 0%, rgba(238, 124, 45, .16), transparent 70%),

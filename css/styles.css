@@ -688,6 +688,7 @@ body[data-theme="c02"] .stage--cockpit h1 { order: 1; margin-top: 0; align-self:
 body[data-theme="c02"] .stage--cockpit .ch-title { color: rgba(22, 21, 20, .82); text-shadow: 0 0 14px rgba(255, 249, 240, .8); }
 body[data-theme="c02"] .stage--cockpit .ch-question {
   margin: 0 auto; max-width: 18ch; font-size: clamp(2.1rem, 4.8vw, 4.2rem);
+  font-style: normal; font-weight: 700; letter-spacing: -.035em;
   color: #141414; text-shadow: 0 0 34px rgba(255, 249, 240, .75), 0 0 2px rgba(255, 249, 240, .5);
 }
 body[data-theme="c02"] .stage--cockpit .stage-cue { order: 3; align-self: center; }

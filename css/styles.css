@@ -1008,36 +1008,55 @@ body[data-theme="c04"] .door-reveal::before, body[data-theme="c04"] .player-resu
   body[data-theme="c04"] .curtain .ch-question { margin-inline: 0; }
 }
 
-/* 04 · the doors as a sitcom apartment hallway on the studio stage: striped wallpaper and a
-   baseboard behind them, a peephole, a brass apartment number and a doormat for each door.
-   The rig is unchanged: A and C match, B is orange, centered and captioned. */
+/* 04 · the doors as a sports-broadcast collage. Cut-out doors with white
+   sticker borders on torn paper and diagonal slashes; A and C in grey halftone, B the only door in
+   color. B gets nothing the reveal doesn't admit to: color, centre, and the same caption style. */
 body[data-theme="c04"] .doors:not(.doors-mini) {
+  overflow: hidden; isolation: isolate;
   position: relative; padding: 1.6rem clamp(.8rem, 3vw, 2rem) 2.2rem; border-radius: 3px;
+  background: radial-gradient(rgba(255, 255, 255, .05) 1px, transparent 1.4px) 0 0 / 5px 5px, #111214;
+  box-shadow: none;
+}
+/* diagonal slashes */
+body[data-theme="c04"] .doors:not(.doors-mini)::before {
+  content: ""; position: absolute; inset: -20%; z-index: -2; pointer-events: none;
   background:
-    linear-gradient(transparent calc(100% - 2.6rem), #3B2C22 calc(100% - 2.6rem), #3B2C22 calc(100% - 2.1rem), #2A2019 calc(100% - 2.1rem)),
-    repeating-linear-gradient(90deg, #26363B 0 16px, #2B3C41 16px 18px, #26363B 18px 34px, #22322F 34px 36px);
-  box-shadow: inset 0 18px 30px -20px rgba(0, 0, 0, .7);
+    linear-gradient(115deg, transparent 0 38%, #00225A 38% 47%, transparent 47% 100%),
+    linear-gradient(115deg, transparent 0 49%, #F4F1EA 49% 51%, transparent 51% 100%),
+    linear-gradient(115deg, transparent 0 56%, #4B3A8F 56% 61%, transparent 61% 100%);
 }
-body[data-theme="c04"] .door-frame { box-shadow: inset 0 0 0 4px #4B555E, 0 0 0 5px #5A4636, 0 0 0 7px #3B2C22; }
-/* peephole */
-body[data-theme="c04"] .door::before {
-  content: ""; position: absolute; left: 50%; top: 21%; width: 9%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%;
-  background: radial-gradient(circle, #0E1114 0 38%, #C9A25A 42% 70%, #7A5A26 74%); box-shadow: 0 1px 1px rgba(0, 0, 0, .45); z-index: 1;
+/* a torn strip of paper behind the doors */
+body[data-theme="c04"] .doors:not(.doors-mini)::after {
+  content: ""; position: absolute; left: -2%; right: -2%; top: 34%; height: 34%; z-index: -1; pointer-events: none;
+  background: radial-gradient(rgba(0, 0, 0, .12) 1px, transparent 1.5px) 0 0 / 4px 4px, #E9E4D8;
+  clip-path: polygon(0 8%, 4% 0, 9% 7%, 15% 2%, 22% 9%, 30% 1%, 37% 8%, 45% 3%, 52% 10%, 60% 2%, 68% 9%, 75% 1%, 83% 8%, 90% 2%, 96% 9%, 100% 4%, 100% 92%, 95% 100%, 88% 93%, 80% 99%, 72% 91%, 64% 98%, 56% 92%, 48% 100%, 40% 93%, 32% 99%, 24% 92%, 16% 98%, 8% 91%, 0 97%);
+  transform: rotate(-2deg);
 }
-/* brass apartment number */
+/* cut-out doors with white sticker borders, slightly askew */
+body[data-theme="c04"] .door-frame { box-shadow: 0 0 0 5px #fff, 0 10px 18px rgba(0, 0, 0, .55); background: #0B0C0E; }
+body[data-theme="c04"] .door-slot:nth-child(1) .door-frame { transform: rotate(-2.2deg); }
+body[data-theme="c04"] .door-slot:nth-child(2) .door-frame { transform: rotate(1deg); }
+body[data-theme="c04"] .door-slot:nth-child(3) .door-frame { transform: rotate(2.4deg); }
+body[data-theme="c04"] .door:not(.is-gold) {
+  background: radial-gradient(circle, rgba(0, 0, 0, .55) 1.1px, transparent 1.6px) 0 0 / 5px 5px, linear-gradient(160deg, #9AA0A6, #5E646B);
+}
+body[data-theme="c04"] .door.is-gold {
+  background: radial-gradient(circle, rgba(120, 40, 0, .28) 1.1px, transparent 1.6px) 0 0 / 5px 5px, var(--door);
+}
+body[data-theme="c04"] .door-panels span { border-color: rgba(0, 0, 0, .4); }
+/* letters as cut-out stickers */
 body[data-theme="c04"] .door-letter {
-  left: 50%; right: auto; top: 7%; transform: translateX(-50%); padding: .18em .42em; border-radius: 2px;
-  background: linear-gradient(#E3C27F, #B98E45); color: #2A1E0C; box-shadow: 0 1px 1px rgba(0, 0, 0, .45);
+  left: 10%; right: auto; top: 5%; transform: rotate(-6deg); padding: .15em .4em; border-radius: 0;
+  background: #fff; color: #111; font-weight: 800; box-shadow: 2px 2px 0 rgba(0, 0, 0, .5);
 }
-body[data-theme="c04"] .door.is-gold .door-letter { color: #2A1E0C; }
-/* doormat */
-body[data-theme="c04"] .door-frame::after {
-  content: ""; position: absolute; left: 8%; right: 8%; top: calc(100% + 7px); height: .6rem; border-radius: 2px; pointer-events: none;
-  background: repeating-linear-gradient(90deg, #8A6A3E 0 3px, #7A5C34 3px 5px); box-shadow: 0 2px 3px rgba(0, 0, 0, .45);
+/* every caption in the same broadcast lower-third style, so B's label isn't louder than A's or C's */
+body[data-theme="c04"] .doors:not(.doors-mini) .door-caption {
+  display: inline-block; margin-top: 1.1rem; padding: .3rem .55rem; background: #F4F1EA; color: #111214;
+  font-weight: 700; letter-spacing: .08em; transform: skew(-8deg); min-height: 0;
 }
-body[data-theme="c04"] .doors:not(.doors-mini) .door-caption { margin-top: 1.5rem; }
-body[data-theme="c04"] .doors-mini .door::before, body[data-theme="c04"] .doors-mini .door-frame::after { display: none; }
-body[data-theme="c04"] .doors-mini .door-letter { padding: .05em .25em; }
+@media (max-width: 560px) {
+  body[data-theme="c04"] .doors:not(.doors-mini) .door-caption { font-size: .58rem; letter-spacing: .02em; padding: .25rem .35rem; max-width: 100%; }
+}
 
 /* ---------- 05 as a patent drawing: blueprint sheet, figures, a specification ---------- */
 body[data-theme="c05"] {

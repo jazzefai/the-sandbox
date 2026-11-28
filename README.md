@@ -148,7 +148,7 @@ The site itself has none: no web fonts, CDNs, analytics, APIs or server code. Th
 | Challenge | Platform | URL |
 |---|---|---|
 | 01 | Claude | https://claude.ai/new |
-| 02 | **A journey.** It opens on a full-screen cockpit view at golden hour with the question in the sky (the organizer's own photograph, made with Canva AI and Google Flow, with the golden sunlight painted in; `img/cockpit.jpg`). Below is the trip: step labels as split-flap departures-board tiles, the prompt as a boarding pass with a tear-off stub, the Canva AI box as an airport direction sign, "Your secret feeling" as a luggage tag, the illustrations as postcards, the writing boxes as arrival cards, and "Working alone?" as an information-desk sign. |
+| 02 | Canva AI (+ any image-capable AI for the solo path) | https://www.canva.com/ai-image-generator/ |
 | 03 | Microsoft Copilot Chat | https://m365.cloud.microsoft/ |
 | 04 | Lovable | https://lovable.dev/ |
 

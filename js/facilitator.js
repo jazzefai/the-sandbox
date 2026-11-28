@@ -16,7 +16,9 @@
       steps: ['Choose something difficult to express', 'Make the image (in Canva AI)', "See through someone else's eyes", 'Change one thing', 'Capture your discovery']
     },
     '03': {
-      keyq: null,
+      // The spec gives no key questions for 03; these are drawn from the challenge's own wording.
+      keyq: ['Could someone manipulate your judgment without telling you a single lie?', 'What did each briefing leave out, and did you notice before the reveal?', 'When does choosing what to emphasize become misleading?', 'Which techniques did you catch that AI missed, and which did it catch that you missed?', 'Why might two people weigh the same evidence so differently?'],
+      keyqNote: 'Not in the spec, which gives none for this challenge: drawn from its own wording (its original driving question, the reveal, the techniques list and Steps 4 and 5).',
       desc: 'Participants make a recommendation from two opposing briefings, then learn both were built from the same data. They go on to use Copilot to build, and then catch, persuasive framing on a question they care about.',
       steps: ['You have the power to decide', 'Become the manipulator (in Copilot)', 'Make AI argue against you', 'Catch AI in the act', 'The social experiment', 'What did you discover? (optional)']
     },
@@ -130,7 +132,7 @@
               <div class="f-card">
                 <h3><span class="o-num">${c.id}</span> ${S.esc(c.title)} <span class="f-medium">${S.esc(c.medium)}</span></h3>
                 <dl>
-                  <dt>Key questions</dt><dd>${keyq ? S.listTpl(keyq.map(S.esc)) : 'The spec gives none for this challenge. Its optional “What did you discover?” statements play that role.'}</dd>
+                  <dt>Key questions</dt><dd>${keyq ? S.listTpl(keyq.map(S.esc)) : 'The spec gives none for this challenge. Its optional “What did you discover?” statements play that role.'}${b.keyqNote ? `<p class="hint">${S.esc(b.keyqNote)}</p>` : ''}</dd>
                   <dt>Description</dt><dd><strong>${S.esc(c.question)}</strong> ${S.esc(c.medium)} · ${S.esc(c.verb)}. ${S.esc(b.desc)}</dd>
                   <dt>Time</dt><dd>${S.esc(TIME)}</dd>
                   <dt>Step by step</dt><dd><ol class="f-steps">${b.steps.map((s) => `<li>${S.esc(s)}</li>`).join('')}</ol></dd>

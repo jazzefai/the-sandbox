@@ -1,4 +1,9 @@
-/* 01 · Can I Be Predicted?  — Claude · Investigate intelligence */
+/* 01 · Can I Be Predicted?  — Claude · Investigate intelligence
+   Flow (a change from the spec, made by the organizer after testing it themselves): make something
+   impossible in Claude, keep changing it, then make the spec's five quick choices in the SAME
+   conversation so Claude reads them alongside what it watched you make, then ask it to predict your
+   next five changes, then compare. The spec's own five-dilemma prompt is kept as an optional
+   adventure ("try the original version"). Untested with a group. */
 (function (S) {
   'use strict';
   const DILEMMAS = [
@@ -8,9 +13,9 @@
     { q: 'You can choose one gift.', o: ['A mysterious gift with unknown contents.', 'A guaranteed $50.'] },
     { q: 'Which would bother you more?', o: ['Being misunderstood.', 'Being predictable.'] }
   ];
+  // The spec's prompt, word for word: used by the "try the original version" adventure.
   const PROMPT_TAIL = 'Based only on these choices, design five new surprising, low-stakes dilemmas. For each, predict which option I will choose and explain the assumption behind your prediction. Commit to your predictions before I reveal my answers. Do not infer sensitive personal attributes or present this as a psychological assessment. After I answer, compare your predictions with my actual choices and help me investigate which assumptions were unsupported.';
-  /* Make something first (added after testing: the prediction was more interesting when it was about
-     something the participant had made). Not part of the original spec; untested with a group. */
+  const READ_TAIL = "Using these choices and what you've seen me make and change in this conversation, tell me what you think they suggest about how I approach things, then make a few specific predictions about me. Do not infer sensitive personal attributes or present this as a psychological assessment.";
   const CURIOUS = "[SOMETHING ORDINARY I'M CURIOUS ABOUT]";
   const makePrompt = (thing) => `Create a working interactive visual experiment as a Claude Artifact.
 
@@ -22,13 +27,15 @@ Open the working experience directly. No introductory explanation or tutorial. U
   const PREDICT = "Before I change anything, predict the next five changes I will make to this experiment, and the assumption behind each prediction. Commit to your predictions now. I'll make my changes and then tell you what I did. Then compare your predictions with what I actually did and help me investigate which assumptions were unsupported. Do not infer sensitive personal attributes or present this as a psychological assessment.";
 
   S.views['01'] = function render(root) {
-    const store = S.store('c01', { curious: '', answers: [null, null, null, null, null], skipQuick: false, step: 1 });
+    const store = S.store('c01', { curious: '', answers: [null, null, null, null, null], step: 1 });
     const st = store.data;
     const count = () => st.answers.filter((a) => a !== null).length;
     const done = () => count() === DILEMMAS.length;
     const choicesText = () => DILEMMAS.map((d, i) => `${i + 1}. ${d.q} — My choice: ${d.o[st.answers[i]]}`).join('\n');
-    const prompt = () => `Here are five choices I made:\n${choicesText()}\n\n${PROMPT_TAIL}`;
-    const preview = () => `Here are five choices I made:\n${done() ? choicesText() : '[Your five choices will appear here once you have made them.]'}\n\n${PROMPT_TAIL}`;
+    const pending = '[Your five choices will appear here once you have made them.]';
+    const readPrompt = (list) => `Can you predict me? Here are five choices I made:\n${list}\n\n${READ_TAIL}`;
+    const origPrompt = (list) => `Here are five choices I made:\n${list}\n\n${PROMPT_TAIL}`;
+    const curious = () => st.curious.trim().replace(/[.\s]+$/, '');
 
     const dilemmas = DILEMMAS.map((d, i) => `
       <fieldset class="dilemma" data-dilemma="${i}">
@@ -42,8 +49,6 @@ Open the working experience directly. No introductory explanation or tutorial. U
             </label>`).join('')}
         </div>
       </fieldset>`).join('');
-
-    const curious = () => st.curious.trim().replace(/[.\s]+$/, '');
 
     const body = `
       <p class="hook">Make something impossible. Then see whether a machine can guess what you'll do with it.</p>
@@ -63,28 +68,26 @@ Open the working experience directly. No introductory explanation or tutorial. U
       `)}
       ${S.nextTpl(2, 'Continue to Step 2 · Play with it')}
       ${S.stepTpl(2, 'Play with it', `
-        <p class="lede">Explore what Claude made. Move the controls, push things to extremes, ask Claude to change something. There are no instructions. Take as long as you like.</p>
+        <p class="lede">Ask Claude to change it. Make it behave like something else, give it a new shape, ask why it looks the way it does. Move the controls too. There are no instructions. Take as long as you like.</p>
+        <p class="aside-note">Stay in the same Claude conversation from here on: the next two steps work because Claude has watched what you made.</p>
       `)}
-      ${S.nextTpl(3, 'Continue to Step 3 · Let AI predict you')}
-      ${S.stepTpl(3, 'Let AI predict you', `
-        <p class="pull">Now, would you like to find out how predictable you are?</p>
-        <p class="lede">Before you change anything else, paste this into the same Claude conversation.</p>
-        ${S.promptTpl('c01-predict', { for: 'Claude (same conversation)', label: 'Copy the predict-me prompt' })}
-        <p>Then make five changes of your own, with the controls or by asking Claude. Tell Claude what you did, and let it compare.</p>
-      `)}
-      ${S.nextTpl(4, 'Continue to Step 4 · Five quick choices (optional)')}
-      <p class="next-wrap" data-skip-wrap hidden><button type="button" class="btn btn-quiet" data-skip-quick>Skip to Step 5 · Catch AI making assumptions <span aria-hidden="true">→</span></button></p>
-      ${S.stepTpl(4, 'Five quick choices', `
-        <p class="lede">Want to test it another way? Make five quick choices, then paste the prompt into a <strong>new</strong> Claude conversation, so the two predictions stay separate. Go with whatever you'd actually choose.</p>
+      ${S.nextTpl(3, 'Continue to Step 3 · Can you predict me?')}
+      ${S.stepTpl(3, 'Can you predict me?', `
+        <p class="lede">Make five quick choices. Go with whatever you'd actually choose. Then paste the prompt into the same Claude conversation.</p>
         <div class="dilemmas notebook">${dilemmas}</div>
         <p class="tally" aria-live="polite" data-tally></p>
-        ${S.promptTpl('c01-prompt', { for: 'Claude (new conversation)', label: 'Copy my experiment prompt' })}
-        <p class="aside-note">Open <a href="https://claude.ai/new">claude.ai/new</a>, paste the prompt, and answer Claude's new dilemmas honestly.</p>
-      `, { optional: true })}
+        ${S.promptTpl('c01-read', { for: 'Claude (same conversation)', label: 'Copy my predict-me prompt' })}
+      `)}
+      ${S.nextTpl(4, 'Continue to Step 4 · Let AI predict your next move')}
+      ${S.stepTpl(4, 'Let AI predict your next move', `
+        <p class="pull">Now, would you like to find out how predictable you are?</p>
+        <p class="lede">Before you change anything else, paste this into the same Claude conversation.</p>
+        ${S.promptTpl('c01-predict', { for: 'Claude (same conversation)', label: 'Copy the next-move prompt' })}
+        <p>Then make five changes of your own, with the controls or by asking Claude. Tell Claude what you did, and let it compare.</p>
+      `)}
       ${S.nextTpl(5, 'Continue to Step 5 · Catch AI making assumptions')}
       ${S.stepTpl(5, 'Catch AI making assumptions', `
-        <p data-unskip-wrap hidden><button type="button" class="btn btn-quiet" data-unskip>Try the five quick choices after all</button></p>
-        <p class="lede">Compare what you actually did with what Claude predicted. If you tried both rounds, which version of you was easier to predict: the one who made something, or the one who made five quick choices? Investigate whichever results interest you most.</p>
+        <p class="lede">Compare what you actually did with what Claude predicted. Investigate whichever results interest you most. Did knowing its predictions change what you did?</p>
         ${S.questionsTpl([
           'What did AI assume about you?',
           'Which assumptions were reasonable?',
@@ -95,6 +98,9 @@ Open the working experience directly. No introductory explanation or tutorial. U
         <aside class="adventures" aria-label="Optional adventures">
           <p class="adventures-h">Optional adventures</p>
           ${S.listTpl(['Make yourself harder to predict.', 'Try the experiment with another person.', "Compare a colleague's predictions with AI's.", 'Invent your own version.'])}
+          <p class="adventures-h">Try the original version</p>
+          <p>Paste your five choices into a <strong>new</strong> Claude conversation, where it knows nothing about what you made. Does it predict you as well?</p>
+          ${S.promptTpl('c01-prompt', { for: 'Claude (new conversation)', label: 'Copy the original prompt' })}
         </aside>
       `)}`;
 
@@ -126,27 +132,22 @@ Open the working experience directly. No introductory explanation or tutorial. U
     const refreshMake = S.bindPrompt(root, 'c01-make', { getText: () => makePrompt(curious() || CURIOUS) });
     S.bindPrompt(root, 'c01-predict', { getText: () => PREDICT, copiedMsg: 'Copied. Paste it into the same Claude conversation.' });
     S.$(root, '#c01-curious').addEventListener('input', (e) => { st.curious = e.target.value; save(); refreshMake(); });
-    const refreshPrompt = S.bindPrompt(root, 'c01-prompt', {
-      getText: prompt, preview, enabled: done,
-      disabledHint: () => `Answer all five to unlock your prompt (${count()} of 5 answered).`
+    const lockHint = () => `Answer all five to unlock your prompt (${count()} of 5 answered).`;
+    const refreshRead = S.bindPrompt(root, 'c01-read', {
+      getText: () => readPrompt(choicesText()), preview: () => readPrompt(done() ? choicesText() : pending),
+      enabled: done, disabledHint: lockHint, copiedMsg: 'Copied. Paste it into the same Claude conversation.'
+    });
+    const refreshOrig = S.bindPrompt(root, 'c01-prompt', {
+      getText: () => origPrompt(choicesText()), preview: () => origPrompt(done() ? choicesText() : pending),
+      enabled: done, disabledHint: lockHint
     });
     const tally = S.$(root, '[data-tally]');
-    const skipWrap = S.$(root, '[data-skip-wrap]');
-    const unskipWrap = S.$(root, '[data-unskip-wrap]');
-    const quickStep = S.$(root, '[data-step="4"]');
     function update() {
       tally.textContent = done() ? 'All five chosen. Your prompt is ready.' : `${count()} of 5 chosen`;
-      refreshPrompt();
+      refreshRead(); refreshOrig();
       updateSteps();
-      // The five quick choices are optional: people can skip straight to Step 5 and come back later.
-      skipWrap.hidden = st.step !== 3;
-      if (st.skipQuick) quickStep.hidden = true;
-      unskipWrap.hidden = !st.skipQuick;
     }
-    const goTo = (sel) => { const h = S.$(root, sel); if (h) { h.focus({ preventScroll: true }); h.scrollIntoView({ behavior: S.reducedMotion() ? 'auto' : 'smooth', block: 'start' }); } };
-    S.$(root, '[data-skip-quick]').addEventListener('click', () => { st.skipQuick = true; st.step = 5; save(); update(); goTo('#step-5-h'); });
-    S.$(root, '[data-unskip]').addEventListener('click', () => { st.skipQuick = false; save(); update(); goTo('#step-4-h'); });
-    S.$$(root, '[data-next]').forEach((b) => b.addEventListener('click', () => { if (Number(b.dataset.next) === 4) st.skipQuick = false; save(); update(); }));
+    S.$$(root, '[data-next]').forEach((b) => b.addEventListener('click', update));
     S.$$(root, '.dilemma input').forEach((inp) => inp.addEventListener('change', () => {
       const i = Number(inp.name.slice(1));
       st.answers[i] = Number(inp.value);

@@ -102,7 +102,9 @@
     const head = S.$(root, '.ch-head');
     head.classList.add('stage', 'stage--cockpit');
     head.insertAdjacentHTML('afterbegin', '<div class="stage-photo" role="img" aria-label="Photograph: the view from an airliner cockpit down a long runway, with a low golden sun just above the horizon."></div>');
-    head.insertAdjacentHTML('beforeend', '<p class="stage-cue" aria-hidden="true">Scroll</p>');
+    // The stage is the exhibition's poster: a framed sheet with a gallery bill, like the title wall of a show.
+    head.insertAdjacentHTML('afterbegin', '<p class="stage-bill" aria-hidden="true"><span>Gallery 02</span><span>Now showing</span></p>');
+    head.insertAdjacentHTML('beforeend', '<p class="stage-cue" aria-hidden="true">Enter the exhibition</p>');
     const save = () => store.save();
     const updateSteps = S.bindSteps(root, st, save);
     const refreshImage = S.bindPrompt(root, 'c02-prompt', {

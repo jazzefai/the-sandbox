@@ -169,6 +169,32 @@ Propose three radically different, surprising interactive mechanisms for investi
       <div class="player" data-player hidden role="dialog" aria-modal="true" aria-label="Player view"></div>`;
 
     root.innerHTML = S.shellTpl('04', body);
+
+    // 04 opens on a closed stage curtain with the question in a spotlight; it parts as you scroll.
+    // Nothing behind it shows the doors, so it can't nudge anyone's choice.
+    (function curtain() {
+      const head = S.$(root, '.ch-head');
+      head.classList.add('curtain');
+      head.insertAdjacentHTML('afterbegin', '<div class="curtain-stage" aria-hidden="true"></div><div class="curtain-panel curtain-l" aria-hidden="true"></div><div class="curtain-panel curtain-r" aria-hidden="true"></div>');
+      const L = S.$(head, '.curtain-l'), R = S.$(head, '.curtain-r');
+      const set = (p) => { L.style.transform = `translateX(${(-p * 100).toFixed(2)}%)`; R.style.transform = `translateX(${(p * 100).toFixed(2)}%)`; };
+      if (S.reducedMotion()) { set(1); return; }
+      let ticking = false;
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          if (!head.isConnected) { window.removeEventListener('scroll', onScroll); return; }
+          const p = Math.max(0, Math.min(1, window.scrollY / (head.offsetHeight * 0.55)));
+          set(p * p * (3 - 2 * p));
+        });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+    // Studio sign: ON AIR lights while the full-screen player view is running.
+    root.insertAdjacentHTML('beforeend', '<p class="on-air" aria-hidden="true">On air</p>');
     const updateSteps = S.bindSteps(root, st, save, (n) => n !== 2 || st.opened);
 
     /* ----- Step 1: the choice experiment ----- */

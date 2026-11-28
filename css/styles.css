@@ -948,6 +948,66 @@ body[data-theme="c04"] .designer {
 body[data-theme="c04"] .prompt { border-color: #EE7C2D; }
 body[data-theme="c04"] .prompt-head { background: rgba(238, 124, 45, .12); border-color: #EE7C2D; }
 
+/* 04 opens on a closed stage curtain: the question sits in a spotlight on the velvet,
+   and the curtains part as you scroll. No doors behind it, so nothing nudges the choice. */
+body[data-theme="c04"] { overflow-x: clip; }
+body[data-theme="c04"] .ch-head.curtain {
+  position: relative; isolation: isolate; overflow: hidden; border-bottom: 0;
+  margin: 0 calc(50% - 50vw) clamp(2.5rem, 6vw, 4rem); padding: clamp(3rem, 8vh, 5rem) max(var(--gutter), calc(50vw - 42rem));
+  min-height: max(32rem, calc(100svh - 2.6rem)); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+}
+body[data-theme="c04"] .curtain-stage {
+  position: absolute; inset: 0; z-index: -3; pointer-events: none;
+  background: radial-gradient(ellipse 40% 55% at 50% 42%, rgba(255, 214, 170, .28), transparent 70%), linear-gradient(#121417, #1A1F24 70%, #2B2119);
+}
+body[data-theme="c04"] .curtain-panel {
+  position: absolute; top: 0; bottom: 0; width: 50.5%; z-index: -2; pointer-events: none; will-change: transform;
+  background:
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, .38) 0, rgba(0, 0, 0, 0) 2.1rem, rgba(255, 220, 190, .08) 3.1rem, rgba(0, 0, 0, 0) 4.1rem, rgba(0, 0, 0, .38) 5.4rem),
+    linear-gradient(180deg, #5A1B09 0%, #8C2F15 40%, #6A210C 100%);
+  box-shadow: inset 0 -90px 90px -50px rgba(0, 0, 0, .65);
+}
+body[data-theme="c04"] .curtain-l { left: 0; box-shadow: inset -30px 0 40px -20px rgba(0, 0, 0, .55), inset 0 -90px 90px -50px rgba(0, 0, 0, .65); }
+body[data-theme="c04"] .curtain-r { right: 0; box-shadow: inset 30px 0 40px -20px rgba(0, 0, 0, .55), inset 0 -90px 90px -50px rgba(0, 0, 0, .65); }
+/* the spotlight lands on the velvet, behind the words */
+body[data-theme="c04"] .ch-head.curtain::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 34% 30% at 50% 50%, rgba(255, 196, 140, .42), rgba(255, 170, 110, .12) 55%, transparent 75%);
+}
+body[data-theme="c04"] .curtain .ch-meta { justify-content: center; color: rgba(255, 236, 220, .88); }
+body[data-theme="c04"] .curtain .ch-title { color: rgba(255, 236, 220, .9); }
+body[data-theme="c04"] .curtain .ch-question { color: #FFF6EC; margin-inline: auto; text-shadow: 0 2px 24px rgba(0, 0, 0, .6), 0 0 48px rgba(238, 124, 45, .35); }
+@media (max-width: 700px) { body[data-theme="c04"] .ch-head.curtain { min-height: max(28rem, calc(100svh - 9rem)); } }
+
+/* Studio signs: ON AIR during the player view, APPLAUSE when a result appears */
+body[data-theme="c04"] .on-air { display: none; }
+body[data-theme="c04"].has-player .on-air {
+  display: inline-flex; align-items: center; gap: .55rem; position: fixed; top: .9rem; left: 50%; transform: translateX(-50%); z-index: 60; margin: 0;
+  padding: .5rem .95rem; font: 700 .8rem/1 var(--code); letter-spacing: .3em; text-transform: uppercase; color: #FFF0EB; background: #B3261E; border-radius: 4px;
+  box-shadow: 0 0 0 2px #5A120D, 0 0 26px rgba(255, 70, 50, .7); animation: c04-onair 2.4s ease-in-out infinite;
+}
+body[data-theme="c04"] .on-air::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: #FFE2DA; }
+@keyframes c04-onair { 50% { box-shadow: 0 0 0 2px #5A120D, 0 0 10px rgba(255, 70, 50, .35); } }
+body[data-theme="c04"] .door-reveal, body[data-theme="c04"] .player-result { padding-top: 3.8rem; }
+body[data-theme="c04"] .door-reveal::before, body[data-theme="c04"] .player-result::before {
+  content: "Applause" / ""; position: absolute; top: 1rem; left: 50%; transform: translateX(-50%);
+  font: 700 .8rem/1 var(--code); letter-spacing: .32em; text-transform: uppercase; color: #FFF0EB; background: #B3261E;
+  padding: .5rem .9rem; border-radius: 4px; box-shadow: 0 0 0 2px #5A120D, 0 0 22px rgba(255, 90, 60, .65);
+  animation: c04-applause .45s steps(1) 4;
+}
+@keyframes c04-applause { 50% { opacity: .3; box-shadow: 0 0 0 2px #5A120D; } }
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="c04"].has-player .on-air, body[data-theme="c04"] .door-reveal::before, body[data-theme="c04"] .player-result::before { animation: none; }
+}
+@media print {
+  body[data-theme="c04"] .curtain-stage, body[data-theme="c04"] .curtain-panel, body[data-theme="c04"] .on-air,
+  body[data-theme="c04"] .door-reveal::before, body[data-theme="c04"] .player-result::before, body[data-theme="c04"] .ch-head.curtain::before { display: none !important; }
+  body[data-theme="c04"] .ch-head.curtain { min-height: 0; margin: 0 0 1rem; padding: 0; display: block; text-align: left; }
+  body[data-theme="c04"] .curtain .ch-question, body[data-theme="c04"] .curtain .ch-title, body[data-theme="c04"] .curtain .ch-meta { color: #000 !important; text-shadow: none; }
+  body[data-theme="c04"] .curtain .ch-meta { justify-content: flex-start; }
+  body[data-theme="c04"] .curtain .ch-question { margin-inline: 0; }
+}
+
 /* ---------- 05 as a patent drawing: blueprint sheet, figures, a specification ---------- */
 body[data-theme="c05"] {
   background-image: linear-gradient(rgba(255, 255, 255, .11) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .11) 1px, transparent 1px),

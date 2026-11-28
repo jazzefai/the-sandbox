@@ -158,6 +158,28 @@ I want to see whether you can make me reconsider my position.`;
       </section>`;
 
     root.innerHTML = S.shellTpl('03', body);
+
+    // 03 opens on a redacted document: a typed sheet, mostly blacked out. The bars over the
+    // question lift as the page loads, then the Confidential stamp lands. Decorative lines only:
+    // the visible fragments are generic file words, so nothing gives away the reveal.
+    (function dossier() {
+      const head = S.$(root, '.ch-head');
+      const words = ['Finding 3:', 'source', 'estimated', 'however,', 'not verified', 'see appendix', 'summary', 'reported', 'per cent', 'Finding 7:', 'unclear', 'in contrast,'];
+      let seed = 7;
+      const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+      const line = (n) => {
+        let out = '', used = 0;
+        while (used < n) {
+          if (rand() < 0.22) { const w = words[Math.floor(rand() * words.length)]; out += `<span class="w">${S.esc(w)}</span>`; used += w.length + 1; }
+          else { const len = 3 + Math.floor(rand() * 11); out += `<span class="rx" style="width:${len}ch"></span>`; used += len + 1; }
+        }
+        return `<span class="dl">${out}</span>`;
+      };
+      const block = (rows) => `<p class="dossier-lines" aria-hidden="true">${Array.from({ length: rows }, (_, i) => line(i % 3 === 2 ? 26 : 46)).join('')}</p>`;
+      head.classList.add('dossier');
+      S.$(head, '.ch-meta').insertAdjacentHTML('afterend', block(4));
+      S.$(head, 'h1').insertAdjacentHTML('afterend', block(6));
+    })();
     const save = () => store.save();
     const updateSteps = S.bindSteps(root, st, save, (n) => n !== 2 || st.revealed);
 

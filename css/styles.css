@@ -826,6 +826,41 @@ body[data-theme="c02"] .btn-next { border: 2px solid #00225A; border-radius: 999
   body[data-theme="c02"] .secret { clip-path: none; background: none; border: 1px solid #999; }
 }
 
+/* 03 opens on a redacted document: a typed sheet clipped in the folder, mostly blacked out;
+   the bars over the question lift as the page loads, then the Confidential stamp lands */
+body[data-theme="c03"] .ch-head.dossier {
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(2.5rem, 5vw, 3.5rem); padding: clamp(1.6rem, 4vw, 3.2rem) clamp(1.2rem, 4vw, 3.4rem);
+  background: #FFFDF6; border-bottom: 0; min-height: min(86svh, 50rem);
+  display: flex; flex-direction: column; justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 6px 7px 0 -1px #F4EDD9, 6px 7px 0 0 var(--rule), 0 24px 40px -26px rgba(60, 40, 10, .6);
+}
+body[data-theme="c03"] .dossier-lines { display: grid; gap: .15rem; margin: 1.1rem 0; font: .8rem/1.85 var(--code); color: #5E5745; overflow: hidden; }
+body[data-theme="c03"] .dossier-lines .dl { display: block; white-space: nowrap; overflow: hidden; }
+body[data-theme="c03"] .dossier-lines .rx { display: inline-block; height: .95em; vertical-align: -.14em; background: #141414; margin-right: .6ch; }
+body[data-theme="c03"] .dossier-lines .w { margin-right: .7ch; }
+body[data-theme="c03"] .dossier h1 { margin: .6rem 0; }
+body[data-theme="c03"] .dossier .ch-title, body[data-theme="c03"] .dossier .ch-question {
+  width: fit-content; max-width: 100%;
+  background: linear-gradient(#141414, #141414) right / 100% 100% no-repeat;
+  animation: c03-lift .65s cubic-bezier(.6, 0, .3, 1) .6s both;
+}
+body[data-theme="c03"] .dossier .ch-question { font-weight: 600; letter-spacing: -.03em; animation-delay: 1s; }
+body[data-theme="c03"] .ch-head.dossier::after { animation: c03-stamp .4s cubic-bezier(.2, 1.6, .4, 1) 1.8s both; }
+@keyframes c03-lift { from { background-size: 100% 100%; } to { background-size: 0% 100%; } }
+@keyframes c03-stamp { from { opacity: 0; transform: rotate(-7deg) scale(1.9); } to { opacity: .85; transform: rotate(-7deg) scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="c03"] .dossier .ch-title, body[data-theme="c03"] .dossier .ch-question { animation: none; background: none; }
+  body[data-theme="c03"] .ch-head.dossier::after { animation: none; }
+}
+@media (max-width: 700px) {
+  body[data-theme="c03"] .ch-head.dossier { min-height: 0; }
+}
+@media print {
+  body[data-theme="c03"] .dossier-lines { display: none !important; }
+  body[data-theme="c03"] .ch-head.dossier { min-height: 0; box-shadow: none; padding: 0; background: none; display: block; }
+  body[data-theme="c03"] .dossier .ch-title, body[data-theme="c03"] .dossier .ch-question { background: none; animation: none; }
+}
+
 /* ---------- 04 as a game show: curtain, spotlights, marquee bulbs ---------- */
 body[data-theme="c04"] {
   background-image: radial-gradient(50% 45% at 12% 0%, rgba(238, 124, 45, .16), transparent 70%),

@@ -2,9 +2,42 @@
    Not linked from inside any challenge, so objectives aren't revealed before play. */
 (function (S) {
   'use strict';
+  /* Each challenge's briefing card: key questions, description, time, step by step, why this matters.
+     Key questions, steps and "why" come from the spec; descriptions are facilitator summaries. */
+  const BRIEF = {
+    '01': {
+      keyq: ['What did AI assume about you?', 'Which assumptions were reasonable?', 'Where did it make an unsupported leap?', 'Did anything about your own choices surprise you?', 'What does it mean for AI to appear to understand someone?'],
+      desc: 'Participants make five small choices, hand them to Claude, and see whether it can predict their answers to five new dilemmas. Then they look for the assumptions it made about them.',
+      steps: ['Make five choices', 'Let AI predict you (in Claude)', 'Catch AI making assumptions', 'Optional adventures']
+    },
+    '02': {
+      keyq: ['Can different interpretations be equally valid?', 'What is the relationship between intention and perception?', 'Which visual decisions influence meaning?', "What does AI infer when it lacks the creator's context?"],
+      desc: 'Participants choose a hard-to-express feeling, describe it only as a picture, make the image in Canva AI, and find out what someone else (or another AI) reads into it without being told.',
+      steps: ['Choose something difficult to express', 'Make the image (in Canva AI)', "See through someone else's eyes", 'Change one thing', 'Capture your discovery']
+    },
+    '03': {
+      keyq: null,
+      desc: 'Participants make a recommendation from two opposing briefings, then learn both were built from the same data. They go on to use Copilot to build, and then catch, persuasive framing on a question they care about.',
+      steps: ['You have the power to decide', 'Become the manipulator (in Copilot)', 'Make AI argue against you', 'Catch AI in the act', 'The social experiment', 'What did you discover? (optional)']
+    },
+    '04': {
+      keyq: ['Can you predict how another person will behave?', 'How does the design of an environment influence human choices?', 'When does influence become manipulation?', 'What happens when your prediction fails?', 'How might you design a system that supports greater human agency?'],
+      desc: 'Participants play a three-door game that was quietly rigged, see how it was rigged (and can rig one for someone else), then invent and build their own behavior experiment in Lovable.',
+      steps: ['Play the choice experiment', 'Go behind the curtain (optional worked example)', 'Invent your own human experiment', 'Build it (in Lovable)', 'Optional adventure · Reverse the manipulation']
+    },
+    '05': {
+      desc: 'A screen-free story in three movements: invent an ordinary object with an impossible ability, then find out what people actually do with it. Ends in a show-and-tell.',
+      steps: ['01 · The invitation', '02 · The invention', '03 · The plot twist', 'Show-and-tell']
+    },
+    '06': {
+      desc: 'A screen-free story in three movements: suspend one familiar rule, imagine life without it, then meet someone who needed it. Ends in a show-and-tell.',
+      steps: ['01 · The invitation', '02 · The rebellion', '03 · The plot twist', 'Show-and-tell']
+    }
+  };
+  const TIME = 'Aim: something presentable in about 15 minutes, with optional deeper exploration. Unverified — time a novice before the day.';
   const NOTES = {
     '01': {
-      notes: 'AI can construct plausible interpretations from limited information. Plausibility is not the same as understanding.',
+      notes:'AI can construct plausible interpretations from limited information. Plausibility is not the same as understanding.',
       show: 'Personalized prediction experiment and surprising discoveries.',
       aha: 'I caught AI making an assumption about me.', role: 'Investigator of human and machine intelligence.',
       access: 'Claude account (claude.ai/new).'
@@ -92,13 +125,18 @@
           </section>
 
           <section aria-labelledby="f-each"><h2 id="f-each">Challenge by challenge</h2>
-            ${S.CHALLENGES.map((c) => { const n = NOTES[c.id]; return `
+            <p class="hint">One briefing card per challenge. Everything here is for facilitators: the key questions and “why this matters” give away what participants are meant to discover.</p>
+            ${S.CHALLENGES.map((c) => { const n = NOTES[c.id]; const b = BRIEF[c.id]; const keyq = b.keyq || n.keyq; const why = n.why || n.notes; return `
               <div class="f-card">
                 <h3><span class="o-num">${c.id}</span> ${S.esc(c.title)} <span class="f-medium">${S.esc(c.medium)}</span></h3>
                 <dl>
-                  ${n.notes ? `<dt>Notes</dt><dd>${S.esc(n.notes)}</dd>` : ''}
-                  ${n.keyq ? `<dt>Key questions</dt><dd>${S.listTpl(n.keyq.map(S.esc))}</dd>` : ''}
-                  ${n.why ? `<dt>Why this matters</dt><dd>${S.esc(n.why)}</dd>` : ''}
+                  <dt>Key questions</dt><dd>${keyq ? S.listTpl(keyq.map(S.esc)) : 'The spec gives none for this challenge. Its optional “What did you discover?” statements play that role.'}</dd>
+                  <dt>Description</dt><dd><strong>${S.esc(c.question)}</strong> ${S.esc(c.medium)} · ${S.esc(c.verb)}. ${S.esc(b.desc)}</dd>
+                  <dt>Time</dt><dd>${S.esc(TIME)}</dd>
+                  <dt>Step by step</dt><dd><ol class="f-steps">${b.steps.map((s) => `<li>${S.esc(s)}</li>`).join('')}</ol></dd>
+                  <dt>Why this matters</dt><dd>${why ? S.esc(why) : 'The spec doesn\'t state one for this challenge; see its key questions and candidate aha.'}</dd>
+                </dl>
+                <dl class="f-also">
                   <dt>Something to show</dt><dd>${S.esc(n.show)}</dd>
                   <dt>Candidate aha</dt><dd>${S.esc(n.aha)}</dd>
                   <dt>Role</dt><dd>${S.esc(n.role)}</dd>

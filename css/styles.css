@@ -556,6 +556,10 @@ body[data-theme="c06"] .show-tell { border-style: double; border-width: 5px; }
 .f-card dt, .f-eval dt { font-weight: 600; }
 .f-card dd, .f-eval dd { margin: 0; }
 .f-card dd ul { margin: 0; padding-left: 1.1rem; }
+.f-steps { margin: 0; padding-left: 1.3rem; }
+.f-steps li { margin: .1rem 0; }
+.f-card dl + .f-also { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--rule); }
+.f-also dt, .f-also dd { font-size: .92rem; }
 .f-check { list-style: none; padding: 0; display: grid; gap: .5rem; }
 
 .notfound { padding: 5rem 0; }

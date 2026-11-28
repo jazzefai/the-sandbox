@@ -177,7 +177,7 @@ Propose three radically different, surprising interactive mechanisms for investi
       head.classList.add('curtain');
       head.insertAdjacentHTML('afterbegin', '<div class="curtain-stage" aria-hidden="true"></div><div class="curtain-panel curtain-l" aria-hidden="true"></div><div class="curtain-panel curtain-r" aria-hidden="true"></div>');
       const L = S.$(head, '.curtain-l'), R = S.$(head, '.curtain-r');
-      const set = (p) => { L.style.transform = `translateX(${(-p * 100).toFixed(2)}%)`; R.style.transform = `translateX(${(p * 100).toFixed(2)}%)`; };
+      const set = (p) => { const k = (1 - 0.86 * p).toFixed(3); L.style.transform = `scaleX(${k})`; R.style.transform = `scaleX(${k})`; }; // curtains gather toward the sides as they open, like real stage drapes
       if (S.reducedMotion()) { set(1); return; }
       let ticking = false;
       const onScroll = () => {

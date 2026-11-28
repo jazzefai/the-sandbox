@@ -861,6 +861,55 @@ body[data-theme="c03"] .ch-head.dossier::after { animation: c03-stamp .4s cubic-
   body[data-theme="c03"] .dossier .ch-title, body[data-theme="c03"] .dossier .ch-question { background: none; animation: none; }
 }
 
+/* 03 · Step 4: the six techniques stand in a police lineup against a height chart;
+   ticking one stamps CAUGHT on that suspect */
+body[data-theme="c03"] .techniques.notebook {
+  margin-left: 0; border-radius: 4px; padding: 1.3rem 1.2rem 1.4rem;
+  background-color: #E6E0CF;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 calc(2.4rem - 1px), rgba(27, 26, 23, .28) calc(2.4rem - 1px) 2.4rem);
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+body[data-theme="c03"] .techniques.notebook::before { display: none; }
+body[data-theme="c03"] .techniques .checks-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; counter-reset: suspect; }
+body[data-theme="c03"] .techniques .check {
+  position: relative; counter-increment: suspect; align-items: flex-start;
+  background: #FFFDF6; border: 1px solid var(--rule); border-radius: 3px; padding: 2.6rem .9rem .9rem;
+  box-shadow: 0 10px 18px -14px rgba(0, 0, 0, .55);
+}
+body[data-theme="c03"] .techniques .check:hover { background: #fff; }
+body[data-theme="c03"] .techniques .check::before {
+  content: "Suspect " counter(suspect) / ""; position: absolute; left: 0; right: 0; top: 0; padding: .45rem .8rem;
+  background: #1B1A17; color: #F4EEDC; font: 600 .7rem/1 var(--code); letter-spacing: .18em; text-transform: uppercase;
+}
+body[data-theme="c03"] .techniques .check-label { display: block; font-weight: 700; }
+body[data-theme="c03"] .techniques .check-desc { display: block; margin-top: .45rem; font-size: .9rem; }
+body[data-theme="c03"] .techniques .check-desc::before {
+  content: "Known for" / ""; display: block; margin-bottom: .15rem;
+  font: 600 .66rem/1.2 var(--code); letter-spacing: .14em; text-transform: uppercase; color: #6B6350;
+}
+body[data-theme="c03"] .techniques .check:has(input:checked)::after {
+  content: "Caught" / ""; position: absolute; right: .5rem; top: -.35rem; pointer-events: none;
+  font: 700 .8rem/1 var(--code); letter-spacing: .2em; text-transform: uppercase; color: var(--accent);
+  border: 3px double var(--accent); padding: .35rem .5rem; background: rgba(255, 253, 246, .85);
+  transform: rotate(-12deg); animation: c03-stamp .35s cubic-bezier(.2, 1.6, .4, 1) both;
+}
+@media (max-width: 860px) { body[data-theme="c03"] .techniques .checks-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { body[data-theme="c03"] .techniques .checks-list { grid-template-columns: 1fr; } }
+
+/* 03 · the reveal: red string from each briefing to the evidence rows it drew on */
+body[data-theme="c03"] .red-string { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 3; overflow: visible; }
+body[data-theme="c03"] .red-string path { fill: none; stroke: #B3261E; stroke-width: 1.6; stroke-linecap: round; opacity: .85; }
+body[data-theme="c03"] .red-string circle { fill: #C8382F; stroke: #7A1913; stroke-width: 1; }
+body[data-theme="c03"] .red-string.is-drawing path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: c03-string 1.1s ease-out 1.3s forwards; }
+body[data-theme="c03"] .red-string.is-drawing circle { opacity: 0; animation: c03-pin .2s ease-out 1.2s forwards; }
+@keyframes c03-string { to { stroke-dashoffset: 0; } }
+@keyframes c03-pin { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="c03"] .red-string.is-drawing path, body[data-theme="c03"] .red-string.is-drawing circle { animation: none; stroke-dashoffset: 0; opacity: 1; }
+  body[data-theme="c03"] .techniques .check:has(input:checked)::after { animation: none; }
+}
+@media print { body[data-theme="c03"] .red-string { display: none !important; } }
+
 /* ---------- 04 as a game show: curtain, spotlights, marquee bulbs ---------- */
 body[data-theme="c04"] {
   background-image: radial-gradient(50% 45% at 12% 0%, rgba(238, 124, 45, .16), transparent 70%),

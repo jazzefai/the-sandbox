@@ -221,17 +221,67 @@ I want to see whether you can make me reconsider my position.`;
         yourCall.innerHTML = `<span class="yc-label">Your recommendation</span> ${S.esc(RECS[st.rec])} <span class="yc-label">Your confidence</span> ${st.conf}%`;
       }
       S.$(root, '[data-own]').hidden = st.topic !== OWN;
-      techCountEl.textContent = `${techCount()} of 6 selected`;
+      techCountEl.textContent = `${techCount()} of 6 caught`;
       discSection.hidden = st.step < 5;
       refreshDossier(); refreshAgainst(); refreshDisc();
       updateSteps();
+      if (st.revealed && drawn) requestAnimationFrame(() => drawStrings(false));
     }
+
+    // Step 4's techniques stand in a lineup: each is a suspect "known for" its description.
+    S.$$(root, '.techniques .check-desc').forEach((d) => { d.textContent = d.textContent.replace(/^\s*—\s*/, ''); });
+
+    /* At the reveal, red string pins each briefing to the rows of evidence it drew on.
+       Both briefings tie into the same table, which is the twist made visible. Decorative. */
+    const stepOne = S.$(root, '[data-step="1"]');
+    const briefs = S.$$(root, '.briefing');
+    const LINKS = [[0, 1, 2, 5], [2, 3, 4, 5]]; // Briefing A and B → evidence rows they rely on
+    let strings = null, drawn = false;
+    function drawStrings(animate) {
+      if (!st.revealed || revealed.hidden || briefs.length < 2) return;
+      const rows = S.$$(revealed, '.evidence tbody tr');
+      if (rows.length < 6) return;
+      const box = stepOne.getBoundingClientRect();
+      if (!strings) {
+        strings = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        strings.setAttribute('class', 'red-string');
+        strings.setAttribute('aria-hidden', 'true');
+        stepOne.appendChild(strings);
+      }
+      strings.setAttribute('width', box.width); strings.setAttribute('height', box.height);
+      strings.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+      const rel = (r) => ({ l: r.left - box.left, r: r.right - box.left, t: r.top - box.top, b: r.bottom - box.top, h: r.height });
+      const table = rel(S.$(revealed, '.evidence').getBoundingClientRect());
+      let out = '';
+      briefs.forEach((card, side) => {
+        const c = rel(card.getBoundingClientRect());
+        LINKS[side].forEach((rowIdx, k) => {
+          const rr = rel(rows[rowIdx].getBoundingClientRect());
+          const y0 = c.t + c.h * (k + 1) / (LINKS[side].length + 1);
+          const y1 = rr.t + rr.h / 2;
+          let d, x0, x1;
+          if (side === 0) { // left edge of A, down the left margin, into the row's left end
+            x0 = c.l; x1 = table.l; const bend = Math.max(8, Math.min(x0, x1) - 22 - k * 5);
+            d = `M${x0},${y0} C${bend},${y0} ${bend},${y1} ${x1},${y1}`;
+          } else {          // right edge of B, down the right margin, back across to the row's right end
+            x0 = c.r; x1 = table.r; const bend = Math.min(box.width - 8, Math.max(x0, x1) + 22 + k * 5);
+            d = `M${x0},${y0} C${bend},${y0} ${bend},${y1} ${x1},${y1}`;
+          }
+          out += `<path d="${d}" pathLength="1"/><circle cx="${x0}" cy="${y0}" r="4.5"/><circle cx="${x1}" cy="${y1}" r="4.5"/>`;
+        });
+      });
+      strings.innerHTML = out;
+      if (animate && !drawn && !S.reducedMotion()) { strings.classList.add('is-drawing'); setTimeout(() => strings.classList.remove('is-drawing'), 3200); }
+      drawn = true;
+    }
+    if (window.ResizeObserver) new ResizeObserver(() => { if (strings) drawStrings(false); }).observe(stepOne);
 
     S.$$(root, 'input[name="rec"]').forEach((r) => r.addEventListener('change', () => { st.rec = Number(r.value); save(); update(); }));
     conf.addEventListener('input', () => { st.conf = Number(conf.value); save(); update(); });
     revealBtn.addEventListener('click', () => {
       if (st.rec === null) { revealHint.textContent = 'Choose a recommendation first.'; S.announce('Choose a recommendation first.'); return; }
       st.revealed = true; save(); update();
+      requestAnimationFrame(() => drawStrings(true));
       revealed.focus();
     });
     S.$$(root, 'input[name="topic"]').forEach((r) => r.addEventListener('change', () => {
@@ -245,5 +295,6 @@ I want to see whether you can make me reconsider my position.`;
     S.$$(root, '[data-next]').forEach((b) => b.addEventListener('click', update));
     S.bindClear(root, store, () => render(root));
     update();
+    if (st.revealed) requestAnimationFrame(() => drawStrings(false));
   };
 })(window.Sandbox);

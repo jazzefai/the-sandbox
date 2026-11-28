@@ -25,6 +25,10 @@ Any service that serves plain files over `https://` works. HTTPS matters because
 
 **After any change:** bump the `?v=N` number on the script and stylesheet links in `index.html`. Otherwise browsers that already loaded the site keep the old files.
 
+## Color
+
+Every color on the site comes from the Reinvention brand palette (v2.0): the TFA core colors Power Red #EF322D, Dark Maroon #4B0000, Breakthrough Blue #76CEE1 and Deep Navy #00225A; the neutrals Midnight Black #080808, Charcoal Gray #424039, Soft Stone #8B8A86 and White; and the Reinvention accents Hyper-Orange #EE7C2D and Innovation Cyan #76E2CD, used sparingly. Where a page needs an in-between shade (paper, rules, panels, shading), it uses a tint or shade of one of those colors. The illustrations in `js/art.js` and the Peeling Pavement scene keep their own colors, because the colors are part of what they show (for example "warm golden sunlight" vs "cold blue light"). Every text pairing passes WCAG AA contrast.
+
 ## Typography
 
 The brand typeface is **Circular** (Lineto), used for everything: headings, labels and body text. Prompt text that people copy is the only exception; it stays in a plain monospace so it reads as "text to paste".

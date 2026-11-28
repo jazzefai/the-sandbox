@@ -59,7 +59,7 @@ Like the drops on mschf.com, each challenge wears its own disguise. The frame st
 | Challenge | Disguise |
 |---|---|
 | 01 | **A sealed prediction.** Security-envelope paper, a wax seal, steps separated by tear-off lines, the prompt as an envelope, and an airmail border on the way to Claude. |
-| 02 | **A gallery wall.** White walls, the paired illustrations framed and matted with wall labels, and large quiet wall text. It opens on the exhibition poster: a full-screen cockpit view at golden hour inside a hairline frame, a "Gallery 02 — Now showing" bill, the show title in wide-tracked lettering, the question in the sky and the credit line along the foot; "Enter the exhibition" leads down into the gallery. The photograph was made by the organizer with Canva AI and Google Flow, with the golden sunlight painted in afterwards (`img/cockpit.jpg`). |
+| 02 | **A journey.** It opens on a full-screen cockpit view at golden hour with the question in the sky (the organizer's own photograph, made with Canva AI and Google Flow, with the golden sunlight painted in; `img/cockpit.jpg`). Below is the trip: step labels as split-flap departures-board tiles, the prompt as a boarding pass with a tear-off stub, the Canva AI box as an airport direction sign, "Your secret feeling" as a luggage tag, the illustrations as postcards, the writing boxes as arrival cards, and "Working alone?" as an information-desk sign. |
 | 03 | **A case file.** A manila folder on a dark desk, steps as typed sheets on index tabs, paper-clipped memos, carbon-copy prompts, and evidence that un-redacts row by row. |
 | 04 | **A game show.** A curtain valance, spotlights, marquee bulbs around the door stage, and a backstage-striped designer mode. |
 | 05 | **A patent drawing.** A Deep Navy blueprint grid, a drawing frame with a title block, figures with dimension lines, and the show-and-tell as a specification. |
@@ -148,7 +148,7 @@ The site itself has none: no web fonts, CDNs, analytics, APIs or server code. Th
 | Challenge | Platform | URL |
 |---|---|---|
 | 01 | Claude | https://claude.ai/new |
-| 02 | Canva AI (+ any image-capable AI for the solo path) | https://www.canva.com/ai-image-generator/ |
+| 02 | **A journey.** It opens on a full-screen cockpit view at golden hour with the question in the sky (the organizer's own photograph, made with Canva AI and Google Flow, with the golden sunlight painted in; `img/cockpit.jpg`). Below is the trip: step labels as split-flap departures-board tiles, the prompt as a boarding pass with a tear-off stub, the Canva AI box as an airport direction sign, "Your secret feeling" as a luggage tag, the illustrations as postcards, the writing boxes as arrival cards, and "Working alone?" as an information-desk sign. |
 | 03 | Microsoft Copilot Chat | https://m365.cloud.microsoft/ |
 | 04 | Lovable | https://lovable.dev/ |
 

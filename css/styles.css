@@ -29,7 +29,7 @@
 /* ---------- Themes ---------- */
 body[data-theme="home"] { --bg:#000; --ink:#F2F2F2; --muted:#9A9FA4; --rule:#2A2D30; --accent:#F2F2F2; --accent-ink:#000; --panel:#0D0E0F; --focus:#EE7C2D; }
 body[data-theme="c01"] { --bg:#EDEFF2; --ink:#0E1116; --muted:#4A5260; --rule:#C3C9D2; --accent:#00225A; --accent-ink:#fff; --panel:#F8F9FB; --focus:#00225A; --display: var(--sans); }
-body[data-theme="c02"] { --bg:#F6F5F1; --ink:#161514; --muted:#5E5A55; --rule:#DEDAD2; --accent:#B8402E; --accent-ink:#fff; --panel:#FFFFFF; --focus:#B8402E; }
+body[data-theme="c02"] { --bg:#F2F1ED; --ink:#141820; --muted:#555B66; --rule:#D3D8E0; --accent:#00225A; --accent-ink:#fff; --panel:#FFFFFF; --focus:#00225A; }
 body[data-theme="c03"] { --bg:#F4EEDC; --ink:#1B1A17; --muted:#5A554A; --rule:#CFC4A6; --accent:#B3261E; --accent-ink:#fff; --panel:#FBF7EA; --focus:#7A1913; --display: var(--serif); }
 body[data-theme="c04"] { --bg:#1A1F24; --ink:#F1EDE4; --muted:#ADB5BC; --rule:#353E46; --accent:#EE7C2D; --accent-ink:#1A1F24; --panel:#222930; --focus:#EE7C2D; --display: var(--sans); }
 body[data-theme="c05"] { --bg:#00225A; --ink:#EEF2F8; --muted:#B4C2DA; --rule:#3A5689; --accent:#EE7C2D; --accent-ink:#0B1530; --panel:#0A2A62; --focus:#EE7C2D; }
@@ -642,35 +642,6 @@ body[data-theme="c01"] .questions, body[data-theme="c01"] .adventures {
   background: #fff; border-left: 0; border-top: 3px solid #00225A; box-shadow: 0 12px 24px -20px rgba(0, 20, 60, .6);
 }
 
-/* ---------- 02 as a gallery wall: white walls, framed works, wall labels ---------- */
-body[data-theme="c02"] .ch-head { border-bottom: 0; padding-top: clamp(3.5rem, 9vw, 7rem); }
-body[data-theme="c02"] .ch-head::after { display: none; }
-body[data-theme="c02"] .ch-question { font-weight: 400; letter-spacing: -.035em; }
-body[data-theme="c02"] .step { border-top: 0; padding-top: clamp(3rem, 7vw, 5.5rem); }
-body[data-theme="c02"] .step-num { display: flex; align-items: center; gap: .9rem; color: var(--muted); letter-spacing: .24em; font-size: .72rem; }
-body[data-theme="c02"] .step-num::before { content: ""; width: 2.5rem; height: 1px; background: currentColor; }
-body[data-theme="c02"] .step h2 { font-size: clamp(2rem, 4.4vw, 3.3rem); letter-spacing: -.03em; }
-body[data-theme="c02"] .pair { gap: clamp(1rem, 3vw, 2.5rem); }
-body[data-theme="c02"] .pair-item .art {
-  border: 0; background: #fff; padding: clamp(.7rem, 2vw, 1.4rem); margin: 9px;
-  width: calc(100% - 18px); box-shadow: 0 0 0 clamp(5px, .8vw, 9px) #1F1C19, 0 26px 40px -18px rgba(0, 0, 0, .45);
-}
-body[data-theme="c02"] .pair-item p {
-  display: inline-block; margin-top: 1.3rem; padding: .45rem .7rem; background: #fff; color: var(--ink);
-  border: 1px solid var(--rule); font-size: .8rem; box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
-}
-body[data-theme="c02"] .pair-vs { color: var(--muted); }
-body[data-theme="c02"] .prompt { background: #fff; border: 1px solid var(--rule); box-shadow: 0 2px 4px rgba(0, 0, 0, .05), 0 22px 34px -26px rgba(0, 0, 0, .45); }
-body[data-theme="c02"] .prompt.is-copied { border-color: var(--accent); box-shadow: 6px 6px 0 var(--accent); }
-body[data-theme="c02"] .external { border: 1px solid var(--ink); background: transparent; }
-body[data-theme="c02"] .pull { font-size: clamp(1.5rem, 3vw, 2.3rem); font-style: italic; letter-spacing: -.015em; max-width: 26ch; margin: 2.5rem 0; }
-body[data-theme="c02"] .secret { background: #fff; border-color: var(--accent); }
-body[data-theme="c02"] .field-big:focus-within, body[data-theme="c02"] [data-step="5"] .field:focus-within { border-color: var(--focus); box-shadow: 0 0 0 2px var(--focus), 0 18px 30px -24px rgba(0, 0, 0, .4); }
-body[data-theme="c02"] .solo { background: #fff; border-left: 0; border-top: 1px solid var(--ink); }
-body[data-theme="c02"] .questions { background: transparent; border-left: 1px solid var(--ink); }
-body[data-theme="c02"] .btn-next { border: 1px solid var(--ink); border-radius: 2rem; }
-body[data-theme="c02"] .btn-external { background: var(--ink); color: var(--bg); }
-
 /* 02 opens on a stage: one photograph fills the screen, the question stands in the beam,
    and scrolling down walks you off the stage into the white gallery. */
 body[data-theme="c02"] { overflow-x: clip; }
@@ -720,38 +691,6 @@ body[data-theme="c02"] .stage--cockpit .ch-question {
 }
 body[data-theme="c02"] .stage--cockpit .stage-cue { order: 3; align-self: center; }
 
-/* The stage as the exhibition's poster: a hairline frame, a gallery bill, the show's title in
-   wide-tracked vinyl lettering, and the credit line along the foot of the sheet. */
-body[data-theme="c02"] .ch-head.stage::before {
-  content: ""; position: absolute; inset: clamp(.7rem, 1.8vw, 1.4rem); z-index: 0; pointer-events: none;
-  border: 1px solid rgba(255, 252, 245, .55);
-}
-body[data-theme="c02"] .stage-bill {
-  position: absolute; left: clamp(1.6rem, 3.6vw, 2.8rem); top: clamp(1.5rem, 3.4vw, 2.6rem); margin: 0; z-index: 1;
-  display: flex; gap: 1.4rem; font: 600 .68rem/1 var(--sans); text-transform: uppercase; letter-spacing: .28em;
-  color: rgba(255, 252, 245, .92); text-shadow: 0 1px 8px rgba(0, 0, 0, .55);
-}
-body[data-theme="c02"] .stage-bill span + span::before { content: "—"; margin-right: 1.4rem; letter-spacing: 0; opacity: .7; }
-body[data-theme="c02"] .stage--cockpit .ch-title {
-  font-size: clamp(.95rem, 1.5vw, 1.25rem); letter-spacing: .42em; margin-bottom: 1.1rem; padding-left: .42em;
-}
-body[data-theme="c02"] .stage--cockpit .ch-meta {
-  background: none; padding: .9rem 0 0; margin-bottom: .6rem; border-top: 1px solid rgba(255, 252, 245, .45);
-  width: min(100%, 34rem); gap: .8rem; letter-spacing: .2em;
-}
-body[data-theme="c02"] .stage--cockpit .ch-num { background: none; }
-body[data-theme="c02"] .stage--cockpit .stage-cue { margin-bottom: clamp(2rem, 4vw, 2.8rem); }
-@media (max-width: 700px) {
-  body[data-theme="c02"] .stage-bill { gap: .9rem; font-size: .6rem; letter-spacing: .22em; }
-  body[data-theme="c02"] .stage-bill span + span::before { margin-right: .9rem; }
-}
-@media print {
-  body[data-theme="c02"] .stage-bill, body[data-theme="c02"] .ch-head.stage::before { display: none !important; }
-  body[data-theme="c02"] .ch-head.stage--cockpit { display: block; text-align: left; padding: 0; }
-  body[data-theme="c02"] .stage--cockpit .ch-meta { border-top: 0; padding: 0; justify-content: flex-start; width: auto; }
-  body[data-theme="c02"] .stage--cockpit .ch-question { margin: 0; }
-}
-
 @media (max-width: 700px) { body[data-theme="c02"] .ch-head.stage { min-height: max(30rem, calc(100svh - 6.5rem)); } body[data-theme="c02"] .stage--cockpit .stage-photo { background-position: 66% 50%; } }
 @media (prefers-reduced-motion: reduce) {
   body[data-theme="c02"] .stage-photo, body[data-theme="c02"] .stage-cue::after { animation: none; }
@@ -762,28 +701,98 @@ body[data-theme="c02"] .stage--cockpit .stage-cue { margin-bottom: clamp(2rem, 4
   body[data-theme="c02"] .stage .ch-question, body[data-theme="c02"] .stage .ch-title, body[data-theme="c02"] .stage .ch-meta, body[data-theme="c02"] .stage .ch-num { color: #000 !important; text-shadow: none; border-color: #000; }
 }
 
-/* 02, continued: writing on gallery comment cards and a visitor guide */
+/* ---------- 02 as a journey: a departures board, a boarding pass, a luggage tag, postcards and an arrival card ----------
+   "Lost in Translation" starts in the cockpit; the page below is the trip. */
+body[data-theme="c02"] .step { border-top: 0; padding-top: clamp(2.5rem, 6vw, 4.5rem); }
+/* Step labels: split-flap tiles on a departures board */
+body[data-theme="c02"] .step-num, body[data-theme="c02"] .stage-bill {
+  display: inline-flex; align-items: center; gap: .7rem; padding: .5rem .7rem; margin: 0 0 .9rem;
+  font: 600 .8rem/1 var(--code); letter-spacing: .18em; text-transform: uppercase; color: #FFB25B; border-radius: 3px;
+  background: linear-gradient(transparent calc(50% - .5px), rgba(0, 0, 0, .7) calc(50% - .5px), rgba(0, 0, 0, .7) calc(50% + .5px), transparent calc(50% + .5px)), #0E1625;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07), 0 2px 0 #050A12;
+}
+body[data-theme="c02"] .step h2 { font-weight: 700; letter-spacing: -.03em; }
+body[data-theme="c02"] .stage-bill { position: absolute; left: clamp(1.2rem, 3vw, 2.4rem); top: clamp(1.2rem, 3vw, 2rem); z-index: 1; margin: 0; }
+body[data-theme="c02"] .stage-bill span + span { color: #F4F1EA; }
+
+/* The prompt is a boarding pass: navy header band, a perforated tear-off stub with a barcode */
+body[data-theme="c02"] .prompt {
+  position: relative; background: #fff; border: 0; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 22px 34px -24px rgba(0, 20, 60, .55);
+}
+body[data-theme="c02"] .prompt-head { background: #00225A; color: #fff; border-bottom: 0; padding: .65rem .65rem .65rem 1.1rem; }
+body[data-theme="c02"] .prompt-for { color: #fff; }
+body[data-theme="c02"] .prompt .btn-copy { background: #EE7C2D; border-color: #EE7C2D; color: #1A1F24; --focus: #fff; }
+body[data-theme="c02"] .prompt-text, body[data-theme="c02"] .prompt-note, body[data-theme="c02"] .prompt .prompt-hint, body[data-theme="c02"] .prompt .prompt-status { margin-right: 5.2rem; }
+body[data-theme="c02"] .prompt-text { padding-right: 0; }
+body[data-theme="c02"] .prompt::before {
+  content: ""; position: absolute; right: 4.4rem; top: 3.4rem; bottom: .9rem; border-left: 2px dashed #C9CFDA; pointer-events: none;
+}
+body[data-theme="c02"] .prompt::after {
+  content: ""; position: absolute; right: 1.2rem; width: 2.2rem; top: 4.2rem; bottom: 1.6rem; pointer-events: none; opacity: .85;
+  background: repeating-linear-gradient(180deg, #1D2330 0 2px, transparent 2px 4px, #1D2330 4px 7px, transparent 7px 9px, #1D2330 9px 10px, transparent 10px 13px);
+}
+body[data-theme="c02"] .prompt.is-copied { box-shadow: 0 0 0 3px #EE7C2D, 0 22px 34px -24px rgba(0, 20, 60, .55); }
+@media (max-width: 560px) {
+  body[data-theme="c02"] .prompt::before, body[data-theme="c02"] .prompt::after { display: none; }
+  body[data-theme="c02"] .prompt-text, body[data-theme="c02"] .prompt-note, body[data-theme="c02"] .prompt .prompt-hint, body[data-theme="c02"] .prompt .prompt-status { margin-right: 1rem; }
+  body[data-theme="c02"] .prompt-text { padding-right: 1rem; }
+}
+
+/* Leaving for Canva AI: an airport direction sign */
+body[data-theme="c02"] .external { --focus: #FFB25B; background: #00225A; color: #fff; border: 0; border-radius: 6px; padding: 1.3rem 1.4rem .7rem; }
+body[data-theme="c02"] .external a { color: #fff; }
+body[data-theme="c02"] .external-tag { color: #FFB25B; }
+body[data-theme="c02"] .external-url, body[data-theme="c02"] .external-access { color: rgba(255, 255, 255, .8); }
+body[data-theme="c02"] .btn-external { background: #EE7C2D; border-color: #EE7C2D; color: #1A1F24; }
+
+/* "Your secret feeling" is a luggage tag: it travels with you, and nobody else reads it */
+body[data-theme="c02"] .secret {
+  border: 0; padding: .85rem 1.3rem .85rem 2.9rem; color: #2A2112; max-width: 40rem;
+  background: radial-gradient(circle at 1.45rem 50%, var(--bg) 0 .34rem, #A8884A .36rem .48rem, transparent .5rem), #EAD49F;
+  clip-path: polygon(1.1rem 0, 100% 0, 100% 100%, 1.1rem 100%, 0 calc(100% - .9rem), 0 .9rem);
+}
+body[data-theme="c02"] .secret-label { color: #5E4410; }
+
+/* The illustrations are postcards */
+body[data-theme="c02"] .pair { gap: clamp(1rem, 3vw, 2.5rem); }
+body[data-theme="c02"] .pair-item {
+  background: #fff; padding: .6rem .6rem .45rem; transform: rotate(-1.2deg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .1), 0 16px 26px -18px rgba(0, 0, 0, .5);
+}
+body[data-theme="c02"] .pair-item:last-child { transform: rotate(1.3deg); }
+body[data-theme="c02"] .pair-item .art { border: 0; }
+body[data-theme="c02"] .pair-item p { margin: .5rem .2rem .15rem; font-size: .86rem; color: var(--ink); }
+body[data-theme="c02"] .pair-vs { color: #00225A; font-style: normal; font-weight: 700; }
+
+/* Writing on an arrival card: a navy header band, boxes to fill in */
 body[data-theme="c02"] .field-big, body[data-theme="c02"] [data-step="5"] .field {
-  background: #fff; border: 1px solid var(--rule); padding: 1.15rem 1.3rem 1.2rem; max-width: 40rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 18px 30px -24px rgba(0, 0, 0, .4);
+  background: #F1F5FA; border: 1px solid #BFCBDD; border-top: 6px solid #00225A; border-radius: 4px;
+  padding: 1rem 1.2rem 1.1rem; max-width: 40rem;
 }
-body[data-theme="c02"] [data-step="5"] .field label {
-  font: 600 .72rem/1.2 var(--sans); text-transform: uppercase; letter-spacing: .2em; color: var(--muted); margin-bottom: .75rem;
-}
-body[data-theme="c02"] .field-big textarea, body[data-theme="c02"] [data-step="5"] .field textarea {
-  background-color: #fff; border: 0; border-radius: 0; box-shadow: none; padding: 0 .1rem .25rem;
-}
+body[data-theme="c02"] .field-big:focus-within, body[data-theme="c02"] [data-step="5"] .field:focus-within { box-shadow: 0 0 0 2px #00225A; }
+body[data-theme="c02"] [data-step="5"] .field label { font: 700 .74rem/1.2 var(--sans); text-transform: uppercase; letter-spacing: .16em; color: #00225A; margin-bottom: .7rem; }
+body[data-theme="c02"] .field-big textarea, body[data-theme="c02"] [data-step="5"] .field textarea { background-color: #fff; border: 1px solid #D3DBE8; box-shadow: none; }
+
+/* "Working alone?" is an information-desk sign */
 body[data-theme="c02"] .solo {
-  position: relative; background: #fff; border: 0; padding: 1.4rem 1.5rem 1.2rem 4.4rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 18px 30px -24px rgba(0, 0, 0, .4);
+  position: relative; background: #fff; border: 0; border-radius: 6px; padding: 1.3rem 1.4rem 1.1rem 4.3rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 18px 30px -24px rgba(0, 20, 60, .45);
 }
 body[data-theme="c02"] .solo::before {
-  content: "i" / ""; position: absolute; left: 1.4rem; top: 1.3rem; width: 1.9rem; height: 1.9rem; border-radius: 50%;
-  display: grid; place-items: center; background: var(--ink); color: #fff; font: italic 700 1rem/1 Georgia, serif;
+  content: "i" / ""; position: absolute; left: 1.3rem; top: 1.2rem; width: 2rem; height: 2rem; border-radius: 5px;
+  display: grid; place-items: center; background: #00225A; color: #fff; font: italic 700 1.05rem/1 Georgia, serif;
 }
 body[data-theme="c02"] .ask-list { max-width: 40rem; }
-body[data-theme="c02"] .ask-list li { margin: 0; padding: .65rem 0; border-bottom: 1px solid var(--rule); font-style: italic; }
-body[data-theme="c02"] .ask-list li:first-child { border-top: 1px solid var(--rule); }
+body[data-theme="c02"] .ask-list li { margin: 0; padding: .6rem 0; border-bottom: 1px solid var(--rule); }
+body[data-theme="c02"] .pull { color: #00225A; border-left: 3px solid #EE7C2D; padding-left: 1rem; max-width: 34ch; }
+body[data-theme="c02"] .questions { background: #fff; border-left: 4px solid #EE7C2D; }
+body[data-theme="c02"] .btn-next { border: 2px solid #00225A; border-radius: 999px; color: #00225A; background: #fff; font-weight: 600; }
+@media print {
+  body[data-theme="c02"] .prompt::before, body[data-theme="c02"] .prompt::after, body[data-theme="c02"] .stage-bill { display: none !important; }
+  body[data-theme="c02"] .pair-item { transform: none; box-shadow: none; }
+  body[data-theme="c02"] .secret { clip-path: none; background: none; border: 1px solid #999; }
+}
 
 /* ---------- 04 as a game show: curtain, spotlights, marquee bulbs ---------- */
 body[data-theme="c04"] {

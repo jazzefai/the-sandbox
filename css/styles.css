@@ -876,7 +876,7 @@ body[data-theme="c03"] .techniques .check {
 }
 body[data-theme="c03"] .techniques .check:hover { background: radial-gradient(circle at 1.25rem 1.2rem, #F1ECDD 0 .34rem, #B89A55 .36rem .5rem, transparent .52rem), #EFDFB2; }
 body[data-theme="c03"] .techniques .check::before {
-  content: "Technique " counter(technique) / ""; position: absolute; left: 2.2rem; top: .85rem;
+  content: "Tactic " counter(technique) / ""; position: absolute; left: 2.2rem; top: .85rem;
   color: #3B3220; font: 600 .7rem/1 var(--code); letter-spacing: .16em; text-transform: uppercase;
 }
 body[data-theme="c03"] .techniques .check-label { display: block; font-weight: 700; }

@@ -667,6 +667,48 @@ body[data-theme="c02"] .questions { background: transparent; border-left: 1px so
 body[data-theme="c02"] .btn-next { border: 1px solid var(--ink); border-radius: 2rem; }
 body[data-theme="c02"] .btn-external { background: var(--ink); color: var(--bg); }
 
+/* 02 opens on a stage: one photograph fills the screen, the question stands in the beam,
+   and scrolling down walks you off the stage into the white gallery. */
+body[data-theme="c02"] { overflow-x: clip; }
+body[data-theme="c02"] .ch-head.stage {
+  --stage-ink: #F4F1EA;
+  position: relative; isolation: isolate; overflow: hidden;
+  margin: 0 calc(50% - 50vw) clamp(3rem, 7vw, 5rem); padding: 0 max(var(--gutter), calc(50vw - 42rem));
+  min-height: max(34rem, 100svh); border: 0;
+  display: grid; grid-template-rows: auto 1fr auto; color: var(--stage-ink); background: #04070B;
+}
+body[data-theme="c02"] .stage-photo {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: url("../img/chair.jpg") 41% 50% / cover no-repeat;
+  animation: c02-drift 24s ease-in-out infinite alternate;
+}
+/* Darken the edges so the type stays readable wherever it falls */
+body[data-theme="c02"] .stage-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(2, 4, 8, .55) 0%, rgba(2, 4, 8, 0) 26%, rgba(2, 4, 8, 0) 70%, rgba(2, 4, 8, .65) 100%);
+}
+@keyframes c02-drift { from { transform: scale(1); } to { transform: scale(1.045); } }
+body[data-theme="c02"] .stage .ch-meta { padding-top: clamp(4.5rem, 9vh, 6rem); color: rgba(244, 241, 234, .78); text-shadow: 0 1px 12px rgba(0, 0, 0, .7); }
+body[data-theme="c02"] .stage .ch-num { color: var(--stage-ink); border-color: rgba(244, 241, 234, .6); }
+body[data-theme="c02"] .stage h1 { align-self: start; margin-top: clamp(2rem, 9vh, 5.5rem); }
+body[data-theme="c02"] .stage .ch-title { color: rgba(244, 241, 234, .82); text-shadow: 0 1px 12px rgba(0, 0, 0, .7); }
+body[data-theme="c02"] .stage .ch-question { color: #fff; text-shadow: 0 2px 30px rgba(0, 0, 0, .55), 0 1px 3px rgba(0, 0, 0, .5); max-width: 13ch; }
+body[data-theme="c02"] .stage-cue {
+  justify-self: start; margin: 0 0 1.8rem; font: 500 .72rem/1 var(--sans); text-transform: uppercase; letter-spacing: .24em;
+  color: rgba(244, 241, 234, .7); display: flex; align-items: center; gap: .8rem;
+}
+body[data-theme="c02"] .stage-cue::after { content: "↓"; font-size: 1rem; letter-spacing: 0; animation: c02-nudge 1.8s ease-in-out infinite; }
+@keyframes c02-nudge { 50% { transform: translateY(5px); } }
+@media (max-width: 700px) { body[data-theme="c02"] .ch-head.stage { min-height: max(30rem, calc(100svh - 6.5rem)); } }
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="c02"] .stage-photo, body[data-theme="c02"] .stage-cue::after { animation: none; }
+}
+@media print {
+  body[data-theme="c02"] .ch-head.stage { min-height: 0; margin: 0 0 1rem; padding: 0; color: #000; background: none; display: block; }
+  body[data-theme="c02"] .stage-photo, body[data-theme="c02"] .stage-cue { display: none !important; }
+  body[data-theme="c02"] .stage .ch-question, body[data-theme="c02"] .stage .ch-title, body[data-theme="c02"] .stage .ch-meta, body[data-theme="c02"] .stage .ch-num { color: #000 !important; text-shadow: none; border-color: #000; }
+}
+
 /* 02, continued: writing on gallery comment cards and a visitor guide */
 body[data-theme="c02"] .field-big, body[data-theme="c02"] [data-step="5"] .field {
   background: #fff; border: 1px solid var(--rule); padding: 1.15rem 1.3rem 1.2rem; max-width: 40rem;
@@ -689,25 +731,6 @@ body[data-theme="c02"] .solo::before {
 body[data-theme="c02"] .ask-list { max-width: 40rem; }
 body[data-theme="c02"] .ask-list li { margin: 0; padding: .65rem 0; border-bottom: 1px solid var(--rule); font-style: italic; }
 body[data-theme="c02"] .ask-list li:first-child { border-top: 1px solid var(--rule); }
-
-/* 02's payoff: one photograph printed six times, each titled with one of the challenge's feelings */
-.edition { padding: clamp(3.5rem, 8vw, 6rem) 0 1rem; }
-.edition-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3.2rem) clamp(1.2rem, 3vw, 2.4rem); }
-.print { margin: 0; }
-.print figure { margin: 0; }
-.print-img {
-  display: block; width: calc(100% - 14px); height: auto; margin: 7px; background: #fff; padding: clamp(.45rem, 1.3vw, .85rem);
-  box-shadow: 0 0 0 6px #1F1C19, 0 22px 34px -18px rgba(0, 0, 0, .45);
-}
-.print-label {
-  display: inline-block; margin-top: 1.15rem; padding: .5rem .7rem; max-width: 100%;
-  background: #fff; color: var(--ink); border: 1px solid var(--rule); box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
-  font-size: .8rem; line-height: 1.35;
-}
-.print-ed { display: block; margin-bottom: .35rem; font: 500 .64rem/1 var(--code); letter-spacing: .14em; color: var(--muted); }
-@media (max-width: 760px) { .edition-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 440px) { .edition-row { grid-template-columns: 1fr; } }
-@media print { .edition { display: none !important; } }
 
 /* ---------- 04 as a game show: curtain, spotlights, marquee bulbs ---------- */
 body[data-theme="c04"] {

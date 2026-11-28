@@ -38,7 +38,7 @@
   const NOTES = {
     '01': {
       notes:'AI can construct plausible interpretations from limited information. Plausibility is not the same as understanding.',
-      show: 'Personalized prediction experiment and surprising discoveries.',
+      show: 'Personalized prediction experiment and surprising discoveries, plus the impossible thing they made.',
       aha: 'I caught AI making an assumption about me.', role: 'Investigator of human and machine intelligence.',
       access: 'Claude account (claude.ai/new).'
     },
@@ -78,7 +78,7 @@
   const CHECKLIST = [
     'Host the Sandbox on an https:// address (or localhost). Copy buttons fall back to manual copy elsewhere.',
     'Open every challenge on a participant-type laptop and on a phone; press each copy button once.',
-    'Sign in to claude.ai/new with a participant-type account and run the 01 prompt end to end.',
+    'Run 01 end to end with a participant-type Claude account: make something, change it a few times, then use both predict prompts. Note whether the first build runs without fixes, and how long the whole thing takes.',
     'Confirm Canva AI image generation is available on participants\' Canva plans and note any generation limits.',
     'Confirm Copilot Chat is enabled at m365.cloud.microsoft for participants\' organizational accounts.',
     'Confirm Lovable sign-up works on the network and estimate whether free credits cover one build plus one revision.',

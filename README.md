@@ -159,7 +159,7 @@ The site itself has none: no web fonts, CDNs, analytics, APIs or server code. Th
 
 The Sandbox does **not** check, simulate or assume any of these. Verify each with a participant-type account before the day:
 
-- [ ] **Claude:** participants can sign in at claude.ai and start a new conversation. The 01 prompt runs end to end (predictions committed before answers).
+- [ ] **Claude:** participants can sign in at claude.ai and start a new conversation. 01 runs end to end: the make-something prompt produces a working interactive piece (note whether it needs fixes), and both predict prompts work with predictions committed before answers. Time the whole thing.
 - [ ] **Canva AI:** the AI image generator is available on participants' Canva plans; note any generation quotas.
 - [ ] **Image-capable AI (02 solo path):** at least one tool participants can use accepts image uploads.
 - [ ] **Microsoft Copilot Chat:** enabled for participants' organizational M365 accounts at m365.cloud.microsoft. The spec notes that ordinary Copilot Chat suffices and Premium-specific value is not verified.

@@ -221,14 +221,14 @@ I want to see whether you can make me reconsider my position.`;
         yourCall.innerHTML = `<span class="yc-label">Your recommendation</span> ${S.esc(RECS[st.rec])} <span class="yc-label">Your confidence</span> ${st.conf}%`;
       }
       S.$(root, '[data-own]').hidden = st.topic !== OWN;
-      techCountEl.textContent = `${techCount()} of 6 caught`;
+      techCountEl.textContent = `${techCount()} of 6 flagged`;
       discSection.hidden = st.step < 5;
       refreshDossier(); refreshAgainst(); refreshDisc();
       updateSteps();
       if (st.revealed && drawn) requestAnimationFrame(() => drawStrings(false));
     }
 
-    // Step 4's techniques stand in a lineup: each is a suspect "known for" its description.
+    // Step 4: each technique is an evidence tag; its description reads as "what it does".
     S.$$(root, '.techniques .check-desc').forEach((d) => { d.textContent = d.textContent.replace(/^\s*—\s*/, ''); });
 
     /* At the reveal, red string pins each briefing to the rows of evidence it drew on.

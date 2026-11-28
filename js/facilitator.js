@@ -8,7 +8,7 @@
     '01': {
       keyq: ['What did AI assume about you?', 'Which assumptions were reasonable?', 'Where did it make an unsupported leap?', 'Did anything about your own choices surprise you?', 'What does it mean for AI to appear to understand someone?'],
       desc: 'Participants have Claude build a small impossible, interactive thing around something ordinary they are curious about, play with it, then ask Claude to predict the next five changes they will make. An optional second round runs the original five quick choices in a new conversation, so they can compare which version of them was easier to predict. The make-first path is not in the spec: it was added after the organizer found the prediction far more engaging when it was about something they had made. Untested with a group, and likely to run past 15 minutes.',
-      steps: ['Make something impossible (in Claude)', 'Play with it', 'Let AI predict you (same conversation) · optional second round: five quick choices (new conversation)', 'Catch AI making assumptions', 'Optional adventures']
+      steps: ['Make something impossible (in Claude) · naming your own curiosity is recommended', 'Play with it', 'Let AI predict you (same conversation)', 'Five quick choices (optional, new conversation; can be skipped)', 'Catch AI making assumptions', 'Optional adventures']
     },
     '02': {
       keyq: ['Can different interpretations be equally valid?', 'What is the relationship between intention and perception?', 'Which visual decisions influence meaning?', "What does AI infer when it lacks the creator's context?"],

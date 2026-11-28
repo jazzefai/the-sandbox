@@ -22,7 +22,7 @@ Open the working experience directly. No introductory explanation or tutorial. U
   const PREDICT = "Before I change anything, predict the next five changes I will make to this experiment, and the assumption behind each prediction. Commit to your predictions now. I'll make my changes and then tell you what I did. Then compare your predictions with what I actually did and help me investigate which assumptions were unsupported. Do not infer sensitive personal attributes or present this as a psychological assessment.";
 
   S.views['01'] = function render(root) {
-    const store = S.store('c01', { curious: '', answers: [null, null, null, null, null], step: 1 });
+    const store = S.store('c01', { curious: '', answers: [null, null, null, null, null], skipQuick: false, step: 1 });
     const st = store.data;
     const count = () => st.answers.filter((a) => a !== null).length;
     const done = () => count() === DILEMMAS.length;
@@ -50,9 +50,9 @@ Open the working experience directly. No introductory explanation or tutorial. U
       ${S.stepTpl(1, 'Make something impossible', `
         <p class="lede">Pick something ordinary you're curious about: a pavement, a coffee cup, a staircase, anything.</p>
         <div class="field">
-          <label for="c01-curious">Something ordinary I'm curious about <span class="tag">optional</span></label>
-          <input id="c01-curious" type="text" maxlength="120" autocomplete="off" value="${S.esc(st.curious)}" placeholder="a tiled pavement">
-          <p class="hint">It fills the blank in the prompt. Leave it empty and fill in <code>${S.esc(CURIOUS)}</code> yourself in Claude.</p>
+          <label for="c01-curious">Something ordinary I'm curious about <span class="tag tag-rec">recommended</span></label>
+          <input id="c01-curious" type="text" maxlength="120" autocomplete="off" value="${S.esc(st.curious)}" placeholder="a tiled pavement" aria-describedby="c01-curious-hint">
+          <p class="hint" id="c01-curious-hint">Naming it is what makes the thing yours, and the predictions more interesting. It fills the blank in the prompt; you can also fill in <code>${S.esc(CURIOUS)}</code> yourself in Claude.</p>
         </div>
         ${S.promptTpl('c01-make', { for: 'Claude', label: 'Copy my make-something prompt' })}
         ${S.externalTpl({
@@ -71,17 +71,19 @@ Open the working experience directly. No introductory explanation or tutorial. U
         <p class="lede">Before you change anything else, paste this into the same Claude conversation.</p>
         ${S.promptTpl('c01-predict', { for: 'Claude (same conversation)', label: 'Copy the predict-me prompt' })}
         <p>Then make five changes of your own, with the controls or by asking Claude. Tell Claude what you did, and let it compare.</p>
-        <details class="round-two" data-round-two ${count() ? 'open' : ''}>
-          <summary>Optional second round · Five quick choices</summary>
-          <p class="lede">Want to test it another way? Make five quick choices, then paste the prompt into a <strong>new</strong> Claude conversation, so the two predictions stay separate. Go with whatever you'd actually choose.</p>
-          <div class="dilemmas notebook">${dilemmas}</div>
-          <p class="tally" aria-live="polite" data-tally></p>
-          ${S.promptTpl('c01-prompt', { for: 'Claude (new conversation)', label: 'Copy my experiment prompt' })}
-          <p class="aside-note">Open <a href="https://claude.ai/new">claude.ai/new</a>, paste the prompt, and answer Claude's new dilemmas honestly.</p>
-        </details>
       `)}
-      ${S.nextTpl(4, 'Continue to Step 4 · Catch AI making assumptions')}
-      ${S.stepTpl(4, 'Catch AI making assumptions', `
+      ${S.nextTpl(4, 'Continue to Step 4 · Five quick choices (optional)')}
+      <p class="next-wrap" data-skip-wrap hidden><button type="button" class="btn btn-quiet" data-skip-quick>Skip to Step 5 · Catch AI making assumptions <span aria-hidden="true">→</span></button></p>
+      ${S.stepTpl(4, 'Five quick choices', `
+        <p class="lede">Want to test it another way? Make five quick choices, then paste the prompt into a <strong>new</strong> Claude conversation, so the two predictions stay separate. Go with whatever you'd actually choose.</p>
+        <div class="dilemmas notebook">${dilemmas}</div>
+        <p class="tally" aria-live="polite" data-tally></p>
+        ${S.promptTpl('c01-prompt', { for: 'Claude (new conversation)', label: 'Copy my experiment prompt' })}
+        <p class="aside-note">Open <a href="https://claude.ai/new">claude.ai/new</a>, paste the prompt, and answer Claude's new dilemmas honestly.</p>
+      `, { optional: true })}
+      ${S.nextTpl(5, 'Continue to Step 5 · Catch AI making assumptions')}
+      ${S.stepTpl(5, 'Catch AI making assumptions', `
+        <p data-unskip-wrap hidden><button type="button" class="btn btn-quiet" data-unskip>Try the five quick choices after all</button></p>
         <p class="lede">Compare what you actually did with what Claude predicted. If you tried both rounds, which version of you was easier to predict: the one who made something, or the one who made five quick choices? Investigate whichever results interest you most.</p>
         ${S.questionsTpl([
           'What did AI assume about you?',
@@ -108,11 +110,22 @@ Open the working experience directly. No introductory explanation or tutorial. U
       disabledHint: () => `Answer all five to unlock your prompt (${count()} of 5 answered).`
     });
     const tally = S.$(root, '[data-tally]');
+    const skipWrap = S.$(root, '[data-skip-wrap]');
+    const unskipWrap = S.$(root, '[data-unskip-wrap]');
+    const quickStep = S.$(root, '[data-step="4"]');
     function update() {
       tally.textContent = done() ? 'All five chosen. Your prompt is ready.' : `${count()} of 5 chosen`;
       refreshPrompt();
       updateSteps();
+      // The five quick choices are optional: people can skip straight to Step 5 and come back later.
+      skipWrap.hidden = st.step !== 3;
+      if (st.skipQuick) quickStep.hidden = true;
+      unskipWrap.hidden = !st.skipQuick;
     }
+    const goTo = (sel) => { const h = S.$(root, sel); if (h) { h.focus({ preventScroll: true }); h.scrollIntoView({ behavior: S.reducedMotion() ? 'auto' : 'smooth', block: 'start' }); } };
+    S.$(root, '[data-skip-quick]').addEventListener('click', () => { st.skipQuick = true; st.step = 5; save(); update(); goTo('#step-5-h'); });
+    S.$(root, '[data-unskip]').addEventListener('click', () => { st.skipQuick = false; save(); update(); goTo('#step-4-h'); });
+    S.$$(root, '[data-next]').forEach((b) => b.addEventListener('click', () => { if (Number(b.dataset.next) === 4) st.skipQuick = false; save(); update(); }));
     S.$$(root, '.dilemma input').forEach((inp) => inp.addEventListener('change', () => {
       const i = Number(inp.name.slice(1));
       st.answers[i] = Number(inp.value);

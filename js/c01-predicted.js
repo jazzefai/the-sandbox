@@ -100,6 +100,27 @@ Open the working experience directly. No introductory explanation or tutorial. U
 
     root.innerHTML = S.shellTpl('01', body);
 
+    // 01 opens on a live scene: Peeling Pavement, the organizer's own impossible thing made with Claude.
+    const head = S.$(root, '.ch-head');
+    if (S.pavement && window.ResizeObserver && window.IntersectionObserver) {
+      head.classList.add('stage01');
+      head.insertAdjacentHTML('afterbegin', `
+        <canvas class="stage01-scene" role="img" aria-label="Animation: paving slabs peel out of liquid ground, twist through the air, stack into a standing letter R, then drop back in."></canvas>
+        <div class="stage01-veil" aria-hidden="true"></div>`);
+      head.insertAdjacentHTML('beforeend', '<p class="stage01-bar"><button type="button" class="stage01-pause" data-pause aria-pressed="false"></button></p>');
+      const scene = S.pavement(S.$(head, '.stage01-scene'), { offsetY: 0.66 });
+      const btn = S.$(head, '[data-pause]');
+      const label = () => {
+        const on = scene.playing();
+        btn.setAttribute('aria-pressed', String(!on));
+        btn.innerHTML = on
+          ? '<span aria-hidden="true">❚❚</span> Pause the animation'
+          : '<span aria-hidden="true">▶</span> Play the animation';
+      };
+      btn.addEventListener('click', () => { if (scene.playing()) scene.pause(); else scene.play(); label(); });
+      label();
+    }
+
     const save = () => store.save();
     const updateSteps = S.bindSteps(root, st, save);
     const refreshMake = S.bindPrompt(root, 'c01-make', { getText: () => makePrompt(curious() || CURIOUS) });

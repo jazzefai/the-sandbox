@@ -58,7 +58,7 @@ Like the drops on mschf.com, each challenge wears its own disguise. The frame st
 
 | Challenge | Disguise |
 |---|---|
-| 01 | **A sealed prediction.** Security-envelope paper, a wax seal, steps separated by tear-off lines, the prompt as an envelope, and an airmail border on the way to Claude. |
+| 01 | **A sealed prediction.** It opens on a live scene: Peeling Pavement, the organizer's own impossible thing made with Claude, plays full-bleed in its fog with the question above it (`js/pavement.js`, adapted from the original artifact; a pause button, paused when scrolled away, and a still frame for people who turn off motion). Below: Security-envelope paper, a wax seal, steps separated by tear-off lines, the prompt as an envelope, and an airmail border on the way to Claude. |
 | 02 | **A journey.** It opens on a full-screen cockpit view at golden hour with the question in the sky (the organizer's own photograph, made with Canva AI and Google Flow, with the golden sunlight painted in; `img/cockpit.jpg`). Below is the trip: step labels as split-flap departures-board tiles, the prompt as a boarding pass with a tear-off stub, the Canva AI box as an airport direction sign, "Your secret feeling" as a luggage tag, the illustrations as postcards, the writing boxes as arrival cards, and "Working alone?" as an information-desk sign. |
 | 03 | **A case file.** A manila folder on a dark desk, steps as typed sheets on index tabs, paper-clipped memos, carbon-copy prompts, and evidence that un-redacts row by row. |
 | 04 | **A game show.** A curtain valance, spotlights, marquee bulbs around the door stage, and a backstage-striped designer mode. |
@@ -76,6 +76,7 @@ css/styles.css             base styles, one disguise per challenge, responsive, 
 js/core.js                 storage, clipboard with fallback, shared components (prompt block,
                            external-platform callout, radios/checkboxes, progressive steps, page frame)
 js/art.js                  original SVG illustrations for the spec's visual references
+js/pavement.js             01's opening scene: Peeling Pavement, running live (no dependencies)
 js/qr.js                   QR code generator (no dependencies)
 js/home.js                 the six challenges
 js/c01-predicted.js        01 · Can I Be Predicted?        (Claude)

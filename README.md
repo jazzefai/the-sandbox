@@ -114,10 +114,12 @@ Participant-facing content is unchanged, and each challenge keeps its own visual
 
 **Fidelity.** Participant-facing copy, choices, examples, prompts and reveals are taken word for word from the spec. Prompt substitutions:
 
-- **01:** each choice is inserted as `1. <question> — My choice: <answer>`.
+- **01:** the make-something prompt fills `[SOMETHING ORDINARY I'M CURIOUS ABOUT]` from an optional field (blank keeps the placeholder). In the optional second round, each choice is inserted as `1. <question> — My choice: <answer>`.
 - **02:** the visual description is inserted, with a trailing full stop trimmed to avoid "..". The chosen feeling is never included.
 - **03:** the chosen or custom question is inserted. An optional "My preferred position" field fills `[INSERT YOUR POSITION]`; if it's left blank, the placeholder is kept.
 - **04:** question, prediction and experience are inserted verbatim.
+
+**A change from the spec, made by the organizer after testing:** 01 now starts with "Make something first". Participants have Claude build a small impossible, interactive thing around something ordinary they're curious about, play with it, then ask Claude to predict their next five changes. The spec's five quick choices are kept word for word as an optional second round in a new conversation, so people can compare which version of them was easier to predict. This came from the organizer's own run: the prediction was far more engaging when it was about something they had made. It is untested with a group and likely to run past 15 minutes.
 
 **Decisions made where the spec was silent** (agreed before the build):
 
@@ -178,7 +180,7 @@ The Sandbox does **not** check, simulate or assume any of these. Verify each wit
 ## What was tested (in-browser, Chromium)
 
 - **Copying:** every challenge's copy button locks and unlocks under the right conditions, and every prompt is personalized correctly. A real click copied to the clipboard. The blocked-clipboard fallback was confirmed (append `?copyfail` to the URL to force it).
-- **01:** copying unlocks only after all five choices are made.
+- **01:** in the optional second round, copying unlocks only after all five choices are made.
 - **02:** the feeling never appears in the prompt; there's a warning if the description names it; the findings copy correctly.
 - **03:**
   - the reveal is gated on a recommendation

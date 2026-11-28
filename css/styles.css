@@ -638,6 +638,13 @@ body[data-theme="c01"] .external {
   border: 8px solid transparent; background: #fff; background-clip: padding-box; padding: 1.25rem 1.4rem .6rem;
   border-image: repeating-linear-gradient(45deg, #00225A 0 10px, #fff 10px 20px, #EE7C2D 20px 30px, #fff 30px 40px) 8;
 }
+/* The optional second round folds away under a tear-off line */
+body[data-theme="c01"] .round-two { margin: 2.5rem 0 1rem; padding-top: 1.1rem; border-top: 2px dashed rgba(0, 34, 90, .45); }
+body[data-theme="c01"] .round-two > summary { cursor: pointer; display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; color: #00225A; padding: .4rem 0; min-height: 2.5rem; }
+body[data-theme="c01"] .round-two > summary::marker { content: ""; }
+body[data-theme="c01"] .round-two > summary::before { content: "+" / ""; display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border: 1.5px solid #00225A; border-radius: 50%; font-weight: 700; line-height: 1; }
+body[data-theme="c01"] .round-two[open] > summary::before { content: "\2212" / ""; }
+body[data-theme="c01"] .round-two > summary::-webkit-details-marker { display: none; }
 body[data-theme="c01"] .questions, body[data-theme="c01"] .adventures {
   background: #fff; border-left: 0; border-top: 3px solid #00225A; box-shadow: 0 12px 24px -20px rgba(0, 20, 60, .6);
 }

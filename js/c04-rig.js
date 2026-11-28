@@ -1,7 +1,7 @@
 /* 04 · Rig the Game — Lovable · Investigate human behavior */
 (function (S) {
   'use strict';
-  const SLATE = '#3B454D';
+  const SLATE = '#424039'; // Charcoal Gray (brand neutral)
   const GOLD = '#EE7C2D'; // brand orange (the spec's original gold was #A87B36)
   const LETTERS = ['A', 'B', 'C'];
   const INFLUENCES = ['The color', 'The position', 'What other people supposedly chose', 'Curiosity', 'I deliberately resisted the obvious choice', 'I chose randomly', 'Something else'];

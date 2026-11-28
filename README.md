@@ -59,7 +59,7 @@ Like the drops on mschf.com, each challenge wears its own disguise. The frame st
 | Challenge | Disguise |
 |---|---|
 | 01 | **A sealed prediction.** Security-envelope paper, a wax seal, steps separated by tear-off lines, the prompt as an envelope, and an airmail border on the way to Claude. |
-| 02 | **A gallery wall.** White walls, the paired illustrations framed and matted with wall labels, and large quiet wall text. It opens on a full-screen stage: a photograph of an empty chair under a single beam of light, with the question standing in the beam; scrolling down walks you off the stage into the gallery. **The photograph's source and usage rights must be confirmed before it goes on the public site.** |
+| 02 | **A gallery wall.** White walls, the paired illustrations framed and matted with wall labels, and large quiet wall text. It opens on a full-screen stage: the view from a cockpit down a runway at golden hour, with the question in the sky; scrolling down walks you off the stage into the gallery. The photograph was made by the organizer with Canva AI and Google Flow, with the golden sunlight painted in afterwards (`img/cockpit.jpg`). |
 | 03 | **A case file.** A manila folder on a dark desk, steps as typed sheets on index tabs, paper-clipped memos, carbon-copy prompts, and evidence that un-redacts row by row. |
 | 04 | **A game show.** A curtain valance, spotlights, marquee bulbs around the door stage, and a backstage-striped designer mode. |
 | 05 | **A patent drawing.** A Deep Navy blueprint grid, a drawing frame with a title block, figures with dimension lines, and the show-and-tell as a specification. |

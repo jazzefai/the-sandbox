@@ -679,7 +679,7 @@ body[data-theme="c02"] .ch-head.stage {
 }
 body[data-theme="c02"] .stage-photo {
   position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: url("../img/chair.jpg") 41% 50% / cover no-repeat;
+  background: url("../img/cockpit.jpg?v=2") 50% 50% / cover no-repeat;
   animation: c02-drift 24s ease-in-out infinite alternate;
 }
 /* Darken the edges so the type stays readable wherever it falls */
@@ -699,7 +699,24 @@ body[data-theme="c02"] .stage-cue {
 }
 body[data-theme="c02"] .stage-cue::after { content: "↓"; font-size: 1rem; letter-spacing: 0; animation: c02-nudge 1.8s ease-in-out infinite; }
 @keyframes c02-nudge { 50% { transform: translateY(5px); } }
-@media (max-width: 700px) { body[data-theme="c02"] .ch-head.stage { min-height: max(30rem, calc(100svh - 6.5rem)); } }
+/* The cockpit stage: the question sits in the sunrise sky above the runway, in dark ink */
+body[data-theme="c02"] .ch-head.stage--cockpit { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: clamp(5rem, 19vh, 11rem); }
+body[data-theme="c02"] .stage--cockpit .stage-photo { background-image: url("../img/cockpit.jpg?v=2"); background-position: 50% 50%; }
+body[data-theme="c02"] .stage--cockpit .stage-photo::after {
+  background: radial-gradient(ellipse 48% 26% at 50% 24%, rgba(255, 249, 240, .45), rgba(255, 249, 240, 0) 72%),
+              linear-gradient(180deg, rgba(2, 4, 8, 0) 70%, rgba(2, 4, 8, .6) 100%);
+}
+body[data-theme="c02"] .stage--cockpit .ch-meta { order: 2; margin: auto 0 1rem; padding: .45rem .7rem; background: rgba(4, 6, 10, .72); flex-wrap: wrap; justify-content: center; color: rgba(244, 241, 234, .85); text-shadow: 0 1px 10px rgba(0, 0, 0, .8); }
+body[data-theme="c02"] .stage--cockpit .ch-num { color: #F4F1EA; border-color: rgba(244, 241, 234, .6); background: rgba(0, 0, 0, .35); }
+body[data-theme="c02"] .stage--cockpit h1 { order: 1; margin-top: 0; align-self: center; }
+body[data-theme="c02"] .stage--cockpit .ch-title { color: rgba(22, 21, 20, .82); text-shadow: 0 0 14px rgba(255, 249, 240, .8); }
+body[data-theme="c02"] .stage--cockpit .ch-question {
+  margin: 0 auto; max-width: 18ch; font-size: clamp(2.1rem, 4.8vw, 4.2rem);
+  color: #141414; text-shadow: 0 0 34px rgba(255, 249, 240, .75), 0 0 2px rgba(255, 249, 240, .5);
+}
+body[data-theme="c02"] .stage--cockpit .stage-cue { order: 3; align-self: center; }
+
+@media (max-width: 700px) { body[data-theme="c02"] .ch-head.stage { min-height: max(30rem, calc(100svh - 6.5rem)); } body[data-theme="c02"] .stage--cockpit .stage-photo { background-position: 66% 50%; } }
 @media (prefers-reduced-motion: reduce) {
   body[data-theme="c02"] .stage-photo, body[data-theme="c02"] .stage-cue::after { animation: none; }
 }

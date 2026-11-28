@@ -100,8 +100,8 @@
     root.innerHTML = S.shellTpl('02', body);
     // 02 opens on a stage: the photograph fills the screen behind the question.
     const head = S.$(root, '.ch-head');
-    head.classList.add('stage');
-    head.insertAdjacentHTML('afterbegin', '<div class="stage-photo" role="img" aria-label="Photograph: an empty wooden chair on a dark floor, under a single beam of light."></div>');
+    head.classList.add('stage', 'stage--cockpit');
+    head.insertAdjacentHTML('afterbegin', '<div class="stage-photo" role="img" aria-label="Photograph: the view from an airliner cockpit down a long runway, with a low golden sun just above the horizon."></div>');
     head.insertAdjacentHTML('beforeend', '<p class="stage-cue" aria-hidden="true">Scroll</p>');
     const save = () => store.save();
     const updateSteps = S.bindSteps(root, st, save);
